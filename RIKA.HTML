@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחוז ירושלים והעיר ירושלים - מפת ההדרכה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #070543;
+            --accent-light-blue: #94d8ff;
+            --accent-purple: #460c91;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #ffffff;
+            color: var(--primary-blue);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active { display: flex; }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .preview-iframe { width: 100%; height: 60vh; border: none; }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header Section -->
+    <header class="bg-[#070543] text-white py-8 text-center">
+        <h1 class="text-4xl font-bold">מערך ההדרכה - מחוז ירושלים</h1>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container mx-auto p-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- כרטיסי מחוזות -->
+            <div class="p-6 bg-white shadow-xl rounded-2xl border-b-4 border-[#460c91] text-center hover:scale-105 transition">
+                <h2 class="text-2xl font-bold mb-4">מחוז ירושלים</h2>
+                <button onclick="openModal('district')" class="bg-[#460c91] text-white px-6 py-2 rounded-full font-bold">לדף המידע</button>
+            </div>
+            
+            <div class="p-6 bg-white shadow-xl rounded-2xl border-b-4 border-[#460c91] text-center hover:scale-105 transition">
+                <h2 class="text-2xl font-bold mb-4">העיר ירושלים</h2>
+                <button onclick="openModal('city')" class="bg-[#460c91] text-white px-6 py-2 rounded-full font-bold">לדף המידע</button>
+            </div>
+
+            <div class="p-6 bg-white shadow-xl rounded-2xl border-b-4 border-[#460c91] text-center hover:scale-105 transition">
+                <h2 class="text-2xl font-bold mb-4">מזרח ירושלים</h2>
+                <button onclick="openModal('east')" class="bg-[#460c91] text-white px-6 py-2 rounded-full font-bold">לדף המידע</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal -->
+    <div id="infoModal" class="modal">
+        <div class="modal-content w-full max-w-2xl relative">
+            <button onclick="closeModal()" class="absolute top-4 left-4 text-2xl font-bold text-gray-500 hover:text-black">×</button>
+            <div id="modalContent">
+                <h2 id="modalTitle" class="text-3xl font-bold mb-4"></h2>
+                <p>תוכן ההדרכות המפורט יופיע כאן בהתאם למחוז שנבחר.</p>
+            </div>
+            <div id="modalNavigation" class="mt-6"></div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            const modal = document.getElementById('infoModal');
+            const title = document.getElementById('modalTitle');
+            title.innerText = id === 'district' ? 'מחוז ירושלים' : id === 'city' ? 'העיר ירושלים' : 'מזרח ירושלים';
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('infoModal').classList.remove('active');
+        }
+    </script>
+</body>
+</html>
