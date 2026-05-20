@@ -19,82 +19,529 @@
             font-family: 'Assistant', sans-serif;
             background-color: #ffffff;
             color: var(--primary-blue);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(148, 216, 255, 0.08) 0px, transparent 40%),
+                radial-gradient(at 100% 100%, rgba(70, 12, 145, 0.03) 0px, transparent 40%);
+        }
+
+        .category-card {
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            border: 2px solid var(--primary-blue);
+            border-radius: 1.5rem;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--primary-blue);
+            color: white !important;
+            box-shadow: 0 15px 30px rgba(7, 5, 67, 0.2);
+        }
+
+        .category-card:hover span { color: white; }
+        .category-card:hover i { color: var(--accent-light-blue); }
+
+        .subject-card {
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 180px;
+            border-width: 1.5px;
+            text-align: center;
+            padding: 1.5rem;
+            background-color: #ffffff;
+            border-radius: 1rem;
+            cursor: pointer;
+            border-color: #e2e8f0;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
         }
 
         .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(7, 5, 67, 0.7);
             z-index: 1000;
-            justify-content: center;
-            align-items: center;
+            backdrop-filter: blur(6px);
         }
 
         .modal.active { display: flex; }
 
-        .modal-content {
-            background: white;
+        .contact-box {
+            background-color: #f8fafc;
+            border-top: 4px solid var(--accent-light-blue);
             padding: 2rem;
             border-radius: 1rem;
-            max-width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
+            margin-top: 2rem;
+            text-align: center;
         }
 
-        .preview-iframe { width: 100%; height: 60vh; border: none; }
+        .view-action-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 3.5rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            white-space: nowrap;
+        }
+
+        .file-preview-container {
+            width: 100%;
+            height: 75vh;
+            background: #f1f5f9;
+            border-radius: 1rem;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .preview-img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .preview-iframe { width: 100%; height: 100%; border: none; }
+
+        @media (max-width: 640px) {
+            .mobile-header-text { font-size: 1.6rem !important; line-height: 1.2; }
+            .mobile-subtitle-text { font-size: 1.3rem !important; }
+            .category-card { padding: 2rem 1rem; }
+            .subject-card { min-height: 150px; padding: 1rem; }
+            .file-preview-container { height: 60vh; }
+        }
+
+        .view-section { display: none; }
+        .view-section.active { display: block; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="min-h-screen text-right">
 
-    <!-- Header Section -->
-    <header class="bg-[#070543] text-white py-8 text-center">
-        <h1 class="text-4xl font-bold">מערך ההדרכה - מחוז ירושלים</h1>
+    <header class="bg-white border-b border-gray-50 py-10 px-4 no-print text-center">
+        <div class="max-w-6xl mx-auto flex flex-col items-center text-center">
+            <img src="assets/logo.png" alt="לוגו מחוז ירושלים" class="h-32 md:h-40 mb-6 drop-shadow-md" onerror="this.src='https://via.placeholder.com/200?text=Logo'">
+            <div class="space-y-1">
+                <h1 id="mainAppTitle" class="text-4xl md:text-6xl font-extrabold text-[#070543] tracking-tight mobile-header-text">מחוז ירושלים והעיר ירושלים</h1>
+            </div>
+            <div class="mt-8 px-12 py-8 bg-[#070543] rounded-2xl shadow-xl border border-[#070543] w-full max-w-2xl">
+                <h3 id="blueBoxTitle" class="text-2xl md:text-4xl font-bold text-white mobile-subtitle-text whitespace-nowrap leading-snug text-center">מערך ההדרכה לשנה"ל תשפ"ז</h3>
+            </div>
+        </div>
     </header>
 
-    <!-- Main Content Area -->
-    <main class="container mx-auto p-6">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- כרטיסי מחוזות -->
-            <div class="p-6 bg-white shadow-xl rounded-2xl border-b-4 border-[#460c91] text-center hover:scale-105 transition">
-                <h2 class="text-2xl font-bold mb-4">מחוז ירושלים</h2>
-                <button onclick="openModal('district')" class="bg-[#460c91] text-white px-6 py-2 rounded-full font-bold">לדף המידע</button>
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        
+        <div id="homeView" class="view-section active">
+            <section id="homeIntro" class="mb-12 text-center max-w-4xl mx-auto">
+                <h3 class="text-2xl font-bold mb-4 text-[#070543]">מנהלות ומנהלים יקרים,</h3>
+                <div class="text-xl md:text-2xl text-gray-700 leading-relaxed space-y-3 text-center font-medium">
+                    <p class="font-extrabold text-[#070543]">מערכת הגפ"ן נפתחה לרכישת הדרכות.</p>
+                    <p>
+                        רכזנו עבורכם.ן את תחומי ההדרכה המוצעים במסגרת המחוז ומידע אודות כל תחום. 
+                        זאת לטובת בחירה מושכלת ומותאמת לצרכי בית הספר והצוות החינוכי.
+                    </p>
+                </div>
+            </section>
+
+            <div id="costsSectionContainer" class="mb-20 bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 border-b p-6 text-center">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-[#070543]">מדריך רכש ועלויות - הדרכה בגפ"ן שנת 2026</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-0 text-right">
+                    <div class="p-8 border-l border-gray-100">
+                        <div class="flex items-center gap-3 mb-8">
+                            <h4 class="text-2xl font-bold text-[#070543] border-b-4 border-blue-400 pb-1">לוח זמנים לרכישות</h4>
+                        </div>
+                        <ul class="space-y-6">
+                            <li class="flex items-start gap-4 bg-blue-50 p-5 rounded-2xl text-xl">
+                                <i class="fa-solid fa-calendar-check mt-1 text-blue-600"></i>
+                                <div><span class="block font-bold">פתיחת הגפ"ן לרכישת הדרכה:</span><span class="text-blue-900">החל מ-4 במאי 2026</span></div>
+                            </li>
+                            <li class="flex items-start gap-4 bg-red-50 p-5 rounded-2xl text-xl">
+                                <i class="fa-solid fa-calendar-xmark mt-1 text-red-600"></i>
+                                <div><span class="block font-bold text-red-700">סגירת חלון הרכישה:</span><span class="font-bold">30 ביוני 2026</span></div>
+                            </li>
+                            <li class="flex items-start gap-4 bg-gray-50 p-5 rounded-2xl text-xl">
+                                <i class="fa-solid fa-calendar-day mt-1 text-gray-600"></i>
+                                <div><span class="block font-bold">מועד אחרון למחיקה:</span><span>עד 31 בדצמבר 2026</span></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex items-center gap-3 mb-8">
+                            <h4 class="text-2xl font-bold text-[#070543] border-b-4 border-teal-400 pb-1">עלויות הדרכה</h4>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4">
+                            <div class="flex items-center gap-4 bg-indigo-50 p-5 rounded-2xl text-xl border-r-4 border-indigo-500">
+                                <div class="flex justify-between w-full">
+                                    <span class="font-bold">יום הדרכה מלא:</span>
+                                    <span class="font-extrabold text-indigo-900">47,400 ₪</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 bg-emerald-50 p-5 rounded-2xl text-xl border-r-4 border-emerald-500">
+                                <div class="flex justify-between w-full">
+                                    <span class="font-bold">חצי יום הדרכה:</span>
+                                    <span class="font-extrabold text-emerald-900">23,700 ₪</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 bg-purple-50 p-5 rounded-2xl text-xl border-r-4 border-purple-500">
+                                <div class="flex justify-between w-full">
+                                    <span class="font-bold">רבע יום הדרכה:</span>
+                                    <span class="font-extrabold text-purple-900">11,850 ₪</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4 bg-amber-50 p-5 rounded-2xl text-xl border-r-4 border-amber-500">
+                                <div class="flex justify-between w-full">
+                                    <span class="font-bold">שמינית יום הדרכה:</span>
+                                    <span class="font-extrabold text-amber-900">5,925 ₪</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="p-6 bg-white shadow-xl rounded-2xl border-b-4 border-[#460c91] text-center hover:scale-105 transition">
-                <h2 class="text-2xl font-bold mb-4">העיר ירושלים</h2>
-                <button onclick="openModal('city')" class="bg-[#460c91] text-white px-6 py-2 rounded-full font-bold">לדף המידע</button>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                <div class="category-card" onclick="showDistrict('jer_district')">
+                    <i class="fa-solid fa-map-location-dot text-5xl mb-5 text-[#460c91]"></i>
+                    <span class="text-2xl font-extrabold block text-center">הדרכה מחוז ירושלים</span>
+                </div>
+                <div class="category-card" onclick="showDistrict('jer_city')">
+                    <i class="fa-solid fa-city text-5xl mb-5 text-[#460c91]"></i>
+                    <span class="text-2xl font-extrabold block text-center">הדרכה העיר ירושלים (מערב)</span>
+                </div>
+                <div class="category-card" onclick="showDistrict('east_jer')">
+                    <i class="fa-solid fa-mosque text-5xl mb-5 text-[#460c91]"></i>
+                    <span class="text-2xl font-extrabold block text-center text-center">הדרכה מזרח ירושלים</span>
+                    <span class="text-xl font-bold block mt-1 opacity-70">إرشاد شرق القدس</span>
+                </div>
             </div>
 
-            <div class="p-6 bg-white shadow-xl rounded-2xl border-b-4 border-[#460c91] text-center hover:scale-105 transition">
-                <h2 class="text-2xl font-bold mb-4">מזרח ירושלים</h2>
-                <button onclick="openModal('east')" class="bg-[#460c91] text-white px-6 py-2 rounded-full font-bold">לדף המידע</button>
+            <footer class="bg-[#070543] text-white p-10 rounded-2xl brand-shadow text-center">
+                <p class="text-2xl md:text-3xl font-bold text-white mb-6">מוזמנים.ות להתרשם מתחומי ההדרכה המוצעים</p>
+                <p class="text-lg md:text-xl opacity-90 text-white font-semibold">לימור שטמן, המפקחת על ההדרכה ורכזות ההדרכה</p>
+                <p class="text-lg md:text-xl opacity-90 text-white mt-2">לבנת, עדי וארווה</p>
+            </footer>
+        </div>
+
+        <div id="subjectsView" class="view-section">
+            <div class="flex flex-col md:flex-row items-center justify-end mb-8 no-print text-center">
+                <button id="backToHomeBtn" onclick="goBackHome()" class="bg-gray-100 hover:bg-gray-200 text-[#070543] px-6 py-2 rounded-full font-bold transition-colors">
+                    <i class="fa-solid fa-arrow-right ml-2"></i> <span id="backToHomeText">חזרה לדף הבית</span>
+                </button>
             </div>
+            <div id="subjectsGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mb-20 text-center"></div>
+            <footer id="districtFooter" class="bg-[#070543] text-white p-10 rounded-2xl shadow-xl text-center">
+                <div id="footerCoordinatorContent"></div>
+            </footer>
         </div>
     </main>
 
-    <!-- Modal -->
-    <div id="infoModal" class="modal">
-        <div class="modal-content w-full max-w-2xl relative">
-            <button onclick="closeModal()" class="absolute top-4 left-4 text-2xl font-bold text-gray-500 hover:text-black">×</button>
-            <div id="modalContent">
-                <h2 id="modalTitle" class="text-3xl font-bold mb-4"></h2>
-                <p>תוכן ההדרכות המפורט יופיע כאן בהתאם למחוז שנבחר.</p>
+    <div id="infoModal" class="modal items-center justify-center p-4" onclick="closeModal()">
+        <div class="modal-wrapper bg-white rounded-2xl max-w-4xl w-full p-8 md:p-14 relative brand-shadow overflow-y-auto max-h-[95vh]" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6 no-print text-center">
+                <button onclick="closeModal()" class="text-gray-400 hover:text-[#070543]"><i class="fa-solid fa-xmark text-3xl"></i></button>
+                <div id="modalNavigation" class="flex gap-4"></div>
             </div>
-            <div id="modalNavigation" class="mt-6"></div>
+            <div id="modalContent" class="text-right"></div>
         </div>
     </div>
 
     <script>
-        function openModal(id) {
-            const modal = document.getElementById('infoModal');
-            const title = document.getElementById('modalTitle');
-            title.innerText = id === 'district' ? 'מחוז ירושלים' : id === 'city' ? 'העיר ירושלים' : 'מזרח ירושלים';
-            modal.classList.add('active');
+        const districtConfigs = {
+            'jer_district': {
+                displayTitle: "הדרכות מחוז ירושלים<br>לשנה\"ל תשפ\"ז",
+                coordinator: "עדי ביגמן", email: "adibi@education.gov.il", phone: "054-7712132",
+                allowedSubjects: ['ict', 'math_high', 'math_elem', 'english', 'science', 'roots', 'social', 'hashkafa', 'linguistics', 'amirim']
+            },
+            'jer_city': {
+                displayTitle: "הדרכות העיר ירושלים<br>לשנה\"ל תשפ\"ז",
+                coordinator: "לבנת גלמן", email: "livnatgel@education.gov.il", phone: "050-6283520",
+                allowedSubjects: ['ict', 'math_high', 'math_elem', 'english', 'science', 'roots', 'social', 'hashkafa', 'linguistics', 'amirim']
+            },
+            'east_jer': {
+                displayTitle: "הדרכות מזרח ירושלים<br>לשנה\"ל תשפ\"ז",
+                coordinator: "ארווה עבד אלקאדר", coordinatorAr: "أرووه عبد القادر",
+                email: "arwahj30@gmail.com", phone: "052-4066675", hasArabic: true,
+                allowedSubjects: ['ict', 'math_high', 'math_elem', 'english', 'arabic', 'hebrew', 'science', 'eval', 'social']
+            }
+        };
+
+        const subjectData = {
+            ict: {
+                title: "תקשוב ולמידה משולבת דיגיטל", titleAr: "تعزيز التعلم التكنو-بيداغوجي",
+                color: "#0d9488", icon: "fa-laptop-code",
+                content: `<h4 class='font-bold mb-2'>שדרוג הפדגוגיה הבית-ספרית:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>פיתוח מקצועי טכנו-פדגוגי והעצמת צוותי הוראה (גוגל קלאסרום, Canva, AI).</li>
+                        <li>למידה חווייתית דרך מיזמים מחוזיים: "מגלים אוצרות", "הקול שבשיר".</li>
+                        <li>ליווי בתוכנית "זינוק דיגיטלי" וקוד ורובוטיקה.</li>
+                    </ul>`,
+                contentAr: `<h4 class='font-bold mb-2'>تعزيز التعلم التكنو-بيداغوجي:</h4>
+                    <ul class='list-disc pr-6 text-right mb-4'>
+                        <li>تذويت برنامج الحوسبة والتعلم المدمج رقميًا (Google Classroom).</li>
+                        <li>الذكاء الاصطناعي والابتكار في العملية التعليمية.</li>
+                        <li>مرافقة المدارس في برنامج "القفزة الرقمية" (זינוק דיגיטלי).</li>
+                    </ul>`,
+                trainer: "אתי רוזן / צוות תקשוב מחוזי", trainerAr: "إيتي / طاقم إرشاد الحوسبة", phone: "050-2643132", email: "ict.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf"
+            },
+            math_high: {
+                title: "מתמטיקה לעל יסודי", titleAr: "إرشاد الرياضيات (فوق ابتدائي)",
+                color: "#2563eb", icon: "fa-calculator",
+                content: `<h4 class='font-bold mb-2'>הדרכה שמצמיחה הצלחות:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>רכז כמנהיג - רתימת מורים והובלת צוות ליעדים משותפים.</li>
+                        <li>הוראה להבנה - יצירת רצף שש-שנתי מהיסודי ועד תיכון.</li>
+                        <li>צוות מקצועי - עדכון תוכנית הלימודים ויישום בטוח.</li>
+                    </ul>`,
+                contentAr: `<h4 class='font-bold mb-2'>إرشاد الرياضيات للمرحلة فوق الابتدائية:</h4>
+                    <ul class='list-disc pr-6 text-right mb-4'>
+                        <li>بناء خطة عمل مدرسية شاملة لرفع التحصيل العلمي.</li>
+                        <li>تطوير التفكير الإبداعي والناقد لدى المعلم والطالب.</li>
+                        <li>الاستعداد لتقييمات راما وامتحانات البجروت.</li>
+                    </ul>`,
+                trainer: "איילת קריספין", trainerAr: "أيليت كريسبين", phone: "050-2721656", email: "ayeletk59@gmail.com",
+                fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה על יסודי -.pdf"
+            },
+            math_elem: {
+                title: "מתמטיקה ליסודי", titleAr: "إرشاد الرياضيات للمرحلة الابتدائية",
+                color: "#4f46e5", icon: "fa-abacus",
+                content: "פיתוח מנהיגות ביניים לרכזים, הטמעת יעדי המחוז, צמצום פערים ושילוב SEL להפחתת חרדת מתמטיקה.",
+                contentAr: "تحسين جودة التدريس والتعلم في الرياضيات للمرحلة الابتدائية.",
+                trainer: "תמי רזזוג / אור בן חמו", trainerAr: "تامي رززوق / أور بن חמו", phone: "בתיאום", email: "math.elem@jerusalem.edu.gov.il",
+                fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה יסודי -.jpg"
+            },
+            english: {
+                title: "אנגלית", titleAr: "إرشاد اللغة الإنجليزية",
+                color: "#3b82f6", icon: "fa-language",
+                content: `<h4 class='font-bold mb-2'>Empowering Teachers:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>תכנון שיעורים אפקטיביים מבוססי מיומנויות (הפקה, קליטה ואינטראקציה).</li>
+                        <li>תמיכה בכיתות הטרוגניות ומענים לשונות.</li>
+                        <li>ליווי צמוד של צוות מדריכות מיומן (דועא, רנא וננסי).</li>
+                    </ul>`,
+                contentAr: `<h4 class='font-bold mb-2'>إرشاد اللغة الإنجليزية:</h4>
+                    <ul class='list-disc pr-6 text-right mb-4'>
+                        <li>تمكين المعلمين وتعزيز أساليب التدريس الفعالة.</li>
+                        <li>دعم الصفوف غير المتجانسة وتخطيط حصص تعليمية.</li>
+                        <li>تطوير مهارات التفاعل والوساطة.</li>
+                    </ul>`,
+                trainer: "דועא, רנא וננסי | מפקחת: סימון דובל", trainerAr: "دُعاء، رنا، نانسي", phone: "054-5738086", email: "english.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/flyer- English.pdf"
+            },
+            science: {
+                title: "מדע וטכנולוגיה ליסודי", titleAr: "إرشاد العلوم والتكنولوجيا",
+                color: "#ea580c", icon: "fa-flask",
+                content: `<h4 class='font-bold mb-2'>הדרכה המייצרת שינוי:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>ליווי אישי ותמיכה שוטפת לרכז/ת ולצוות המדעים.</li>
+                        <li>פיתוח מיומנויות חקר, חשיבה ביקורתית ואוריינות מדעית.</li>
+                        <li>שיעורי מודלינג ושילוב STEM.</li>
+                    </ul>`,
+                contentAr: `<h4 class='font-bold mb-2'>إرشاد العلوم والتكنولوجيا:</h4>
+                    <ul class='list-disc pr-6 text-right mb-4'>
+                        <li>دمج الذكاء الاصطناعي ومنهجية STEM في العلوم.</li>
+                        <li>التعلم التجريبي والمختبرات وتنمية مهارات البحث.</li>
+                    </ul>`,
+                trainer: "מיכל כפיר הורביץ", trainerAr: "שרי רקובר / סנא אבו יוסף", phone: "054-7558717", email: "michalkfir100@gmail.com",
+                fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - הדרכת מדע וטכנולוגיה יסודי.pdf"
+            },
+            hebrew: {
+                title: "עברית (שפה שנייה)", titleAr: "إرشاد اللغة العبرية (لغة ثانية)",
+                color: "#16a34a", icon: "fa-language",
+                content: "חיזוק השפה העברית ככלי להצלחה, שיפור שטף הקריאה והדיבור, והכנה למבחני מפמ\"ר.",
+                contentAr: `<h4 class='font-bold mb-2'>إرشاد اللغة العبرية:</h4>
+                    <ul class='list-disc pr-6 text-right mb-4'>
+                        <li>تعزيز اللغة العبرية كأداة للنجاح للطلاب الذين يتحدثون العربية.</li>
+                        <li>تحسين مهارات القراءة، الكتابة والمحادثة والتحضير للميفمار.</li>
+                    </ul>`,
+                trainer: "צוות עברית מחוזי", trainerAr: "طاقم إرشاد اللغة العبرية", phone: "בתיאום", email: "hebrew.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf"
+            },
+            arabic: {
+                title: "ערבית (שפת אם)", titleAr: "إرشاد اللغة العربية (لغة الأم)",
+                color: "#7c3aed", icon: "fa-book-open",
+                content: "פיתוח מיומנויות הבנה והבעה, השקעה באיכות החינוך דרך פיתוח מיומנויות.",
+                contentAr: `<h4 class='font-bold mb-2'>إرشاد اللغة العربية:</h4>
+                    <ul class='list-disc pr-6 text-right mb-4'>
+                        <li>تطوير جودة تدريس اللغة العربية وتعزيز الفهم القرائي.</li>
+                        <li>تشخيص مستويات الأداء وتخطيط خطط علاجية مبنية على البيانات.</li>
+                    </ul>`,
+                trainer: "אמל כנעאן", trainerAr: "أمل كنعان / منتصر صيداوي", phone: "בתיאום", email: "aml.kn82@gmail.com",
+                fileUrl: "data/Files Jerusalem-east/הדרכת ערבית.pdf"
+            },
+            roots: {
+                title: "שורשי עמי", titleAr: "جذور شعبي",
+                color: "#d97706", icon: "fa-book-open-reader",
+                content: `<h4 class='font-bold mb-2'>"היהדות של כולנו" - סל מורשת וזהות יהודית 4%:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>כשתרבות יהודית-ישראלית יוצאת למוזיאון (72037).</li>
+                        <li>גינת שבעת המינים - חיבור לעבודת אדמה (58115).</li>
+                        <li>סיפורי מורשת ועבודת שורשים בשילוב AI (58140).</li>
+                    </ul>`,
+                contentAr: "التعرف على التراث والهوية اليهودية الإسرائيلية من خلال برامج إثرائية.",
+                trainer: "צוות תרבות יהודית", trainerAr: "طاقم إرشاد الثقافة اليهودية", phone: "בתיאום", email: "roots.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-dr/תרבות יהודית ישראלית - 1.jpeg"
+            },
+            social: {
+                title: "חינוך חברתי", titleAr: "التربية الاجتماعية",
+                color: "#db2777", icon: "fa-users-line",
+                content: `<h4 class='font-bold mb-2'>מערך הדרכה הוליסטי:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>בניית תוכנית חברתית שנתית המחוברת ליעדי המחוז.</li>
+                        <li>הטמעת שפה בית ספרית לקידום חוסן ומיומנויות רגשיות-חברתיות.</li>
+                        <li>עידוד יזמות ומנהיגות תלמידים (מסלול 6145).</li>
+                    </ul>`,
+                contentAr: "نظام إرشاد شامل يركز على المسار الابتدائي المعاصر وتعزيز القيادة الطلابية.",
+                trainer: "אופירה הירש קרוסני", trainerAr: "أوفيرا هيرش كروسني", phone: "054-7747276", email: "ofirahk@gmail.com",
+                fileUrl: "data/Files Jerusalem-dr/חינוך חברתי_ערכי יסודי ממלכתי.pdf"
+            },
+            hashkafa: {
+                title: "מהלך השקפה", titleAr: "مشروع 'هش كافا'",
+                color: "#7c3aed", icon: "fa-eye",
+                content: `<h4 class='font-bold mb-2'>4 מסלולים מוצעים בגפ"ן:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>01 - השקפה מורות מובילות: קהילות חוקרות פרקטיקה.</li>
+                        <li>02 - מהלך בית ספרי: הטמעת למידה צוותית כתרבות ארגונית.</li>
+                        <li>03 - השקפה ממוקדת שפה: שיפור הישגים באוריינות לשונית.</li>
+                    </ul>`,
+                contentAr: "خطوة لتحسين جودة التدريس من خلال خلق ثقافة تعلم للمعلمات.",
+                trainer: "נורית אבידן שרביט", trainerAr: "נורית أفيدان שארפית", phone: "-", email: "nuritavidav100@gmail.com",
+                fileUrl: "data/Files Jerusalem-dr/העיר ירושלים מהלך השקפה.pptx"
+            },
+            linguistics: {
+                title: "חינוך לשוני", titleAr: "التربية اللغوية",
+                color: "#16a34a", icon: "fa-language",
+                content: `<h4 class='font-bold mb-2'>6 נתיבי למידה:</h4>
+                    <ul class='list-disc pr-6 mb-4'>
+                        <li>01 "קריאה דיאלוגית" - שיח שוויוני בין מורים לתלמידים.</li>
+                        <li>02 "קריאה מהנה!" - מרחבי למידה חווייתיים.</li>
+                        <li>03 "תלקיט כתיבה" - גישת הערכה תהליכית והוליסטית.</li>
+                    </ul>`,
+                contentAr: "إرشاد يقدم 6 مسارات تعلم لتعزيز القراءة والكتابة واللغة.",
+                trainer: "עירית סוויל / לימור עסיס טל", trainerAr: "إيريت سفيل", phone: "בתיאום", email: "linguistics.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - חינוך לשוני - שפת אם יסודי לימור ועירית.jpeg"
+            },
+            amirim: {
+                title: "תוכנית אמירים", titleAr: "برنامج 'أميريم'",
+                color: "#0891b2", icon: "fa-star",
+                content: "טיפוח תלמידים מחוננים ומצטיינים והטמעת תרבות של מצוינות בתהליכי ההוראה.",
+                contentAr: "برنامج لرعاية الطلاب الموهوبين والمتفوقين.",
+                trainer: "אורלי דהאן", trainerAr: "أورلي دهان", phone: "054-4332216", email: "-",
+                fileUrl: "data/Files Jerusalem-dr/_הדרכת אמירים- תשפז.pdf"
+            },
+            eval: {
+                title: "מדידה והערכה", titleAr: "القياس والتقويم",
+                color: "#db2777", icon: "fa-chart-line",
+                content: "חינוך המבוסס על נתונים מדויקים, שיפור איכות הלמידה וההוראה דרך משוב מקדם והערכה חלופית.",
+                contentAr: `<h4 class='font-bold mb-2'>القياس والتقويم:</h4>
+                    <ul class='list-disc pr-6 text-right mb-4'>
+                        <li>تحسين جودة التعلم والتعليم من خلال بيانات دقيقة.</li>
+                        <li>تحليل نتائج الاختبارات الخارجية والداخلية.</li>
+                    </ul>`,
+                trainer: "צוות מדידה והערכה", trainerAr: "طاقم القياس والتقويم", phone: "בתיאום", email: "eval.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg"
+            }
+        };
+
+        let isArabicMode = false;
+        let currentSubjectId = null;
+
+        function showDistrict(id) {
+            const config = districtConfigs[id];
+            if (!config) return;
+            isArabicMode = !!config.hasArabic;
+            
+            document.getElementById('backToHomeText').innerText = isArabicMode ? "العودة إلى الصفحة الرئيسية" : "חזרה לדף הבית";
+            
+            const infoTextHe = "מידע למנהל.ת";
+            const infoTextAr = "معلومات للمدير/ة";
+            document.getElementById('blueBoxTitle').innerHTML = infoTextHe + (isArabicMode ? `<br><span class="text-xl md:text-2xl opacity-80">${infoTextAr}</span>` : "");
+            
+            document.getElementById('mainAppTitle').innerHTML = config.displayTitle;
+            document.getElementById('homeView').classList.remove('active');
+            document.getElementById('subjectsView').classList.add('active');
+            
+            const grid = document.getElementById('subjectsGrid');
+            grid.innerHTML = "";
+            let keysToShow = config.allowedSubjects || Object.keys(subjectData);
+            if (id === 'east_jer') keysToShow = ['ict', 'math_high', 'math_elem', 'english', 'arabic', 'hebrew', 'science', 'eval', 'social'];
+            keysToShow.forEach(key => {
+                const data = subjectData[key];
+                if (!data) return;
+                grid.innerHTML += `<div class="subject-card shadow-sm border-2" style="border-color:${data.color}22" onclick="openModal('${key}')">
+                    <i class="fa-solid ${data.icon} text-3xl mb-3" style="color:${data.color}"></i>
+                    <span class="text-lg font-bold">${isArabicMode ? data.titleAr : data.title}</span>
+                </div>`;
+            });
+            document.getElementById('footerCoordinatorContent').innerHTML = `
+                <h4 class="text-xl mb-4 font-bold opacity-80 text-white">${isArabicMode ? 'مركزة الإرشاد / פרטי רכזת ההדרכה' : 'פרטי רכזת ההדרכה'}</h4>
+                <p class="text-3xl mb-1 font-extrabold text-[#94d8ff] text-center">${isArabicMode ? config.coordinatorAr : config.coordinator}</p>
+                <p class="text-xl mb-1 font-semibold text-white underline text-center">${config.email}</p>
+                ${config.phone ? `<p class="text-xl font-semibold text-white text-center">${isArabicMode ? 'هاتف: ' : 'טלפון: '}${config.phone}</p>` : ''}
+            `;
+            window.scrollTo(0,0);
         }
 
-        function closeModal() {
-            document.getElementById('infoModal').classList.remove('active');
+        function goBackHome() { location.reload(); }
+
+        function openModal(id) {
+            currentSubjectId = id;
+            const data = subjectData[id];
+            const modal = document.getElementById('infoModal');
+            const content = document.getElementById('modalContent');
+            const nav = document.getElementById('modalNavigation');
+            nav.innerHTML = '';
+            content.innerHTML = `
+                <h3 class="text-3xl font-extrabold mb-8 text-center" style="color:${data.color}">${isArabicMode ? data.titleAr : data.title}</h3>
+                <div class="mb-10 text-xl text-right leading-relaxed" dir="rtl">${isArabicMode ? data.contentAr : data.content}</div>
+                <div class="contact-box">
+                    <h4 class="font-bold text-xl mb-4 text-[#070543]">${isArabicMode ? 'لأية أسئلة לא תהססו ליצור קשר' : 'לכל שאלה מוזמנים.ות לפנות'}</h4>
+                    <p class="text-xl font-extrabold text-center">${isArabicMode ? data.trainerAr : data.trainer}</p>
+                    <p class="text-lg text-center">${data.email}</p>
+                    <p class="text-lg text-center">${isArabicMode ? 'هاتف: ' : 'טל: '}${data.phone}</p>
+                </div>
+                <div class="mt-12 flex justify-center no-print">
+                    <button class="view-action-btn shadow-md text-xl" onclick="toggleFileView()"><span class="icon-circle"><i class="fa-solid fa-download text-xl"></i></span><span>${isArabicMode ? 'لصفحة المعلومات' : 'לדף המידע'}</span><i class="fa-solid fa-hand-pointer text-4xl mr-2"></i></button>
+                </div>
+            `;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function toggleFileView() {
+            const data = subjectData[currentSubjectId];
+            const content = document.getElementById('modalContent');
+            const nav = document.getElementById('modalNavigation');
+            nav.innerHTML = `<button onclick="openModal('${currentSubjectId}')" class="bg-[#070543] text-white px-5 py-2 rounded-full font-bold flex items-center gap-2"><i class="fa-solid fa-arrow-right"></i> חזרה</button>`;
+            const ext = data.fileUrl.split('.').pop().toLowerCase();
+            if (['jpg', 'jpeg', 'png'].includes(ext)) {
+                content.innerHTML = `<div class="file-preview-container"><img src="${data.fileUrl}" class="preview-img"></div>`;
+            } else {
+                content.innerHTML = `<div class="file-preview-container"><iframe src="${data.fileUrl}#toolbar=0" class="preview-iframe"></iframe></div>`;
+            }
+        }
+
+        function closeModal() { 
+            document.getElementById('infoModal').classList.remove('active'); 
+            document.body.style.overflow = 'auto';
         }
     </script>
 </body>
