@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תוכניות חינוכיות ומענים - איסוף מידע ומסמכים</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-blue: #070543;
+            --light-blue: #94d8ff;
+            --purple: #460c91;
+            --magenta: #ff00ff;
+            --bg-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-blue);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            border-top: 8px solid var(--dark-blue);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--dark-blue);
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: var(--purple);
+        }
+
+        .intro-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .highlight-magenta {
+            color: var(--magenta);
+            font-weight: bold;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn {
+            background-color: var(--dark-blue);
+            color: #ffffff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            font-family: 'Assistant', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: var(--purple);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--dark-blue);
+            border: 2px solid var(--dark-blue);
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            text-align: right;
+            margin-bottom: 10px;
+            font-family: 'Assistant', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+        }
+
+        .btn-secondary {
+            background-color: var(--light-blue);
+            color: var(--dark-blue);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+        
+        .btn-secondary:disabled {
+            background-color: #e0e0e0;
+            color: #888;
+            cursor: not-allowed;
+        }
+
+        .explainer-box {
+            background-color: #f8faff;
+            border-right: 4px solid var(--light-blue);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .explainer-box.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--dark-blue);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 14px;
+            border: 1px solid var(--dark-blue);
+            border-radius: 5px;
+            background-color: #ffffff;
+            color: var(--dark-blue);
+            font-family: 'Assistant', sans-serif;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: var(--purple);
+            box-shadow: 0 0 5px rgba(70, 12, 145, 0.2);
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            font-size: 16px;
+            display: inline-block;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        .sub-group {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-top: 10px;
+        }
+
+        .sub-group input {
+            margin-bottom: 10px;
+        }
+
+        .file-upload-container {
+            border: 2px dashed var(--dark-blue);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+            margin-bottom: 20px;
+        }
+        
+        .file-upload-container.disabled {
+            border-color: #ccc;
+            background-color: #f0f0f0;
+            color: #888;
+        }
+
+        .file-inputs-wrapper {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .file-input-row {
+            margin-bottom: 10px;
+        }
+        
+        input[type="file"] {
+            font-family: 'Assistant', sans-serif;
+            font-size: 14px;
+        }
+
+        .actions {
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .drive-notice {
+            font-size: 14px;
+            color: #666;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                margin: 0;
+                padding: 20px;
+                border-radius: 0;
+            }
+            .actions {
+                flex-direction: column-reverse;
+                gap: 15px;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- מסך שער -->
+        <div id="step-home" class="step active">
+            <div class="logo-container">
+                <img src="לוגו שקוף מחוז.png" alt="לוגו משרד החינוך | מחוז העיר ירושלים">
+                <div style="font-weight: bold; margin-top: 10px;">משרד החינוך | מחוז העיר ירושלים</div>
+            </div>
+
+            <h1>תוכנית החומש לחינוך במזרח ירושלים</h1>
+            <h2>תוכניות חינוכיות ומענים - איסוף מידע ומסמכים.</h2>
+
+            <div class="intro-text">
+                <p><strong>שותפים יקרים,</strong></p>
+                <p>לקראת הגשת תוכנית העבודה של החומש לשנה"ל תשפ"ז אנו נדרשים להעביר למטה משרד החינוך את כל המידע על תוכניות החומש שיופעלו בשנה הבאה; התוכן, פירוט עלויות (ובהמשך גם תוכנית שנתית).</p>
+                <p>לפניכם כלי לאסוף את המידע והמסמכים הנדרשים לצורך בחינתם ואישורם בתוכנית העבודה לתשפ"ז. הכלי מיועד לספקים ולמובילי התכניות.</p>
+                <p>לפניכם הסבר על המסמכים הנדרשים לכל תוכנית ותבנית אחידה להגשתם:</p>
+                <ul>
+                    <li>הורידו את התבניות ומלאו בתוכן הרלוונטי לכל תוכנית.</li>
+                    <li>בלחיצה על "המשך" מלאו את הפרטים הנדרשים והעלו את המסמכים המלאים.</li>
+                    <li>אנא הקפידו למלא את כל הסעיפים הנדרשים, עפ"י ההנחיות עד לתאריך <strong>12.5.26</strong>.</li>
+                </ul>
+                <p>לתשומת ליבכם; תוכניות השנתיות ולוחות זמנים יידרשו רק לאחר אישור סופי של התוכנית - <br>
+                תאריך סופי להגשה על התיבות: דף מידע ופירוט עלויות. <span class="highlight-magenta">בתיבה של תוכנית שנתית: כרגע לא רלוונטי - אפשר לדלג.</span></p>
+            </div>
+
+            <h3 style="margin-top: 40px;">להלן הסבר על המסמכים הנדרשים:</h3>
+            
+            <button class="btn-outline" onclick="toggleSection('info-1')">1. דף מידע על תוכנית</button>
+            <div id="info-1" class="explainer-box">
+                <p>תבנית מובנית לכתיבת דף מידע מפורט על התוכנית, מטרותיה וקהל היעד.</p>
+                <a href="תבנית לכתיבת דף מידע לתוכניות ומענים.docx" download class="btn-secondary">הורד תבנית לדף מידע</a>
+            </div>
+
+            <button class="btn-outline" onclick="toggleSection('info-2')">2. מסמך פירוט עלויות</button>
+            <div id="info-2" class="explainer-box">
+                <p>הנחיות מלאות לפירוט עלויות התוכנית עפ"י תעריפי משרד החינוך.</p>
+                <a href="הנחיות למסמך פירוט עלויות לתוכנית.pdf" download class="btn-secondary">הורד הנחיות למסמך עלויות</a>
+            </div>
+
+            <button class="btn-outline" onclick="toggleSection('info-3')">3. תוכנית עבודה שנתית</button>
+            <div id="info-3" class="explainer-box">
+                <p>תבנית לתוכנית עבודה ופריסה שנתית של הפעילות.</p>
+                <p class="highlight-magenta">הערה: כרגע לא רלוונטי - אפשר לדלג. אפשר דילוג לדף הבא מבלי להעלות קובץ.</p>
+                <a href="#" class="btn-secondary" style="pointer-events: none; opacity: 0.5;">הורד תבנית לתוכנית עבודה</a>
+            </div>
+
+            <div class="actions" style="justify-content: center; margin-top: 50px;">
+                <button class="btn" onclick="nextStep('step-form-1')">המשך למילוי הפרטים</button>
+            </div>
+        </div>
+
+        <!-- חלק ראשון: פרטי זהות -->
+        <div id="step-form-1" class="step">
+            <h2>חלק ראשון: פרטי זהות</h2>
+            
+            <div class="form-group">
+                <label for="fillerName">שם ממלא הטופס:</label>
+                <input type="text" id="fillerName" placeholder="הכנס שם מלא">
+            </div>
+
+            <div class="form-group">
+                <label for="fillerEmail">מייל:</label>
+                <input type="email" id="fillerEmail" placeholder="כתובת דוא''ל">
+            </div>
+
+            <div class="form-group">
+                <label for="programName">שם התוכנית/מענה:</label>
+                <input type="text" id="programName" placeholder="שם התוכנית">
+            </div>
+
+            <div class="form-group">
+                <label for="providerName">שם הספק:</label>
+                <input type="text" id="providerName" placeholder="שם ספק התוכנית">
+            </div>
+
+            <div class="form-group">
+                <label>התקנה (ערוץ ההתקשרות):</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="takana" value="מנח''י"> מנח"י</label><br>
+                    <label><input type="radio" name="takana" value="החברה להגנת הטבע"> החברה להגנת הטבע</label><br>
+                    <label><input type="radio" name="takana" value="החברה למתנס''ים"> החברה למתנס"ים</label><br>
+                    <label><input type="radio" name="takana" value="מינהל עובדי הוראה"> מינהל עובדי הוראה</label><br>
+                    <label><input type="radio" name="takana" value="אגף א לילדים ונוער בסיכון"> אגף א לילדים ונוער בסיכון</label><br>
+                    <label><input type="radio" name="takana" value="אגף א לחינוך על יסודי"> אגף א לחינוך על יסודי</label><br>
+                    <label><input type="radio" name="takana" value="מינהל חברה ונוער"> מינהל חברה ונוער</label><br>
+                    <label><input type="radio" name="takana" value="אחר"> אחר</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>איש הקשר בתקנה:</label>
+                <div class="sub-group">
+                    <input type="text" placeholder="שם איש הקשר">
+                    <input type="tel" placeholder="טלפון">
+                    <input type="email" placeholder="מייל">
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn" onclick="nextStep('step-form-2')">הבא</button>
+            </div>
+        </div>
+
+        <!-- חלק שני: איסוף מסמכים - 1. אודות -->
+        <div id="step-form-2" class="step">
+            <h2>חלק שני: איסוף מסמכים</h2>
+            <h3>1. אודות התוכנית</h3>
+            <p>העלה דף מידע על התוכנית (לפי התבנית בעמוד הבית).</p>
+            
+            <div class="file-upload-container">
+                <div id="docs-container-1" class="file-inputs-wrapper">
+                    <div class="file-input-row">
+                        <input type="file" class="file-upload">
+                    </div>
+                </div>
+                <button class="btn-secondary" onclick="addFileInput('docs-container-1')">הוסף קובץ נוסף +</button>
+            </div>
+
+            <div class="actions">
+                <button class="btn" onclick="nextStep('step-form-3')">הבא</button>
+            </div>
+        </div>
+
+        <!-- חלק שני: איסוף מסמכים - 2. עלויות -->
+        <div id="step-form-3" class="step">
+            <h2>חלק שני: איסוף מסמכים</h2>
+            <h3>2. מסמך פירוט עלויות</h3>
+            <p>העלה את מסמך פירוט העלויות של התוכנית לתשפ"ז (לפי התבנית בעמוד הבית).</p>
+            
+            <div class="file-upload-container">
+                <div id="docs-container-2" class="file-inputs-wrapper">
+                    <div class="file-input-row">
+                        <input type="file" class="file-upload">
+                    </div>
+                </div>
+                <button class="btn-secondary" onclick="addFileInput('docs-container-2')">הוסף קובץ נוסף +</button>
+            </div>
+
+            <div class="actions">
+                <button class="btn" onclick="nextStep('step-form-4')">הבא</button>
+            </div>
+        </div>
+
+        <!-- חלק שני: איסוף מסמכים - 3. תוכנית עבודה -->
+        <div id="step-form-4" class="step">
+            <h2>חלק שני: איסוף מסמכים</h2>
+            <h3>3. תוכנית עבודה שנתית / לתקופת פעילות התוכנית</h3>
+            <p>(עפ"י מסמך תבנית לתוכנית עבודה המצורף בעמוד הראשון)</p>
+            <p class="highlight-magenta">הערה: כרגע לא רלוונטי – יידרש בהמשך.</p>
+            
+            <div class="file-upload-container disabled">
+                <div id="docs-container-3" class="file-inputs-wrapper">
+                    <div class="file-input-row">
+                        <input type="file" disabled>
+                    </div>
+                </div>
+                <button class="btn-secondary" disabled>הוסף קובץ נוסף +</button>
+            </div>
+
+            <div class="actions">
+                <button class="btn" style="background-color: var(--purple);" onclick="submitForm()">שלח טופס</button>
+            </div>
+        </div>
+
+        <!-- סיכום -->
+        <div id="step-success" class="step">
+            <h1 style="color: var(--purple);">תודה רבה!</h1>
+            <div class="intro-text" style="text-align: center;">
+                <p>הפרטים והמסמכים שמילאת התקבלו אצלנו. צוות תוכנית החומש יעבור על המידע ויחזור אליך במידת הצורך.</p>
+                <br>
+                <div style="background-color: #f8faff; padding: 20px; border-radius: 8px; text-align: right; border-right: 4px solid var(--light-blue);">
+                    <p><strong>לידיעתכם,</strong></p>
+                    <p>המידע אודות התוכנית יעלה לפורטל תוכניות החומש.<br>
+                    מסמך העלויות יועבר לאישור מטה משרד החינוך.<br>
+                    תוכניות העבודה ולוחות הזמנים יועברו לאגף אכיפה ובקרה לצורכי בקרה.<br>
+                    נוהל העברת עדכוני לו"ז לתוכניות יפורסם לקראת פתיחת שנה"ל תשפ"ז.</p>
+                </div>
+                
+                <p style="margin-top: 30px;"><strong>בברכה,<br>צוות החומש</strong><br>מחוז העיר ירושלים — משרד החינוך</p>
+            </div>
+            
+            <div class="drive-notice">
+                * הקבצים נשמרים בתיקיית הדרייב המאובטחת של המחוז.
+            </div>
+
+            <div class="actions" style="justify-content: center;">
+                <button class="btn-secondary" onclick="window.location.reload()">חזרה לעמוד הראשי</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleSection(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('active')) {
+                el.classList.remove('active');
+            } else {
+                // Optional: close others
+                document.querySelectorAll('.explainer-box').forEach(box => box.classList.remove('active'));
+                el.classList.add('active');
+            }
+        }
+
+        function nextStep(stepId) {
+            window.scrollTo(0, 0);
+            document.querySelectorAll('.step').forEach(step => {
+                step.classList.remove('active');
+            });
+            document.getElementById(stepId).classList.add('active');
+        }
+
+        function addFileInput(containerId) {
+            const container = document.getElementById(containerId);
+            const row = document.createElement('div');
+            row.className = 'file-input-row';
+            
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.className = 'file-upload';
+            
+            row.appendChild(input);
+            container.appendChild(row);
+        }
+
+        function submitForm() {
+            // Here you would implement actual submission logic to your backend / Google Drive integration
+            // e.g. using Fetch API to send files to the designated endpoint.
+            nextStep('step-success');
+        }
+    </script>
+</body>
+</html>
