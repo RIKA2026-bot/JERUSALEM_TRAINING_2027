@@ -9,24 +9,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; color: #070543; margin: 0; }
-        .grid-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 40px 0; }
         
-        .card { 
-            border-radius: 12px; 
-            padding: 20px; 
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
-            transition: transform 0.2s, box-shadow 0.2s; 
-            text-align: center; 
+        .grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+            gap: 15px !important;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .grid .card {
+            margin: 0 !important;
+            padding: 20px 15px !important;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 200px;
+            min-height: 140px;
+            border-radius: 12px; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            text-align: center; 
             border: 1px solid #e2e8f0;
+        }
+        .grid .card h2 {
+            font-size: 20px !important;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-weight: 800;
+            line-height: 1.4;
+        }
+        .grid .card .btn {
+            font-size: 15px !important;
+            padding: 8px 15px !important;
+            background-color: #070543; 
+            color: white !important; 
+            border-radius: 20px; 
+            text-decoration: none; 
+            font-weight: 700; 
+            transition: background 0.3s; 
+            border: none; 
+            cursor: pointer;
         }
         
         .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
-        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; line-height: 1.4; }
 
         /* 12-Tone Soft Pastel Sequence */
         .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border-color: #FFCDD2 !important; }
@@ -42,16 +70,13 @@
         .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border-color: #B2DFDB !important; }
         .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border-color: #CFD8DC !important; }
 
-        .btn { background-color: #070543; color: white !important; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: background 0.3s; border: none; cursor: pointer; }
         .btn:hover { background-color: #460c91; }
         
         .header { background: white; padding: 30px; text-align: center; border-bottom: 1px solid #e2e8f0; }
         .footer { background: #070543; color: white; padding: 40px; text-align: center; margin-top: 40px; border-top: 4px solid #94d8ff; }
         .back-link { display: inline-block; margin-top: 20px; color: #070543; font-weight: 700; text-decoration: none; }
 
-        @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .grid { grid-template-columns: 1fr !important; } }
     </style>
 </head>
 <body>
@@ -64,25 +89,23 @@
         <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לדף הבית</a>
     </div>
 
-    <div class="grid-container">
-        <div class="grid">
-            <div class="card"><h2>מנהל ח"ן</h2><button onclick="openSummaryModal('מנהל ח\'ן', '../data/Files Jerusalem-district/מנהל חברה ונוער.jpeg')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>מתמטיקה יסודי</h2><button onclick="openSummaryModal('מתמטיקה יסודי', '../data/Files Jerusalem-district/מתמטיקה יסודי.png')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>מתמטיקה על יסודי</h2><button onclick="openSummaryModal('מתמטיקה על יסודי', '../data/Files Jerusalem-district/במתמטיקה על יסודי (2).pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>תרבות יהודית ישראלית</h2><button onclick="openSummaryModal('תרבות יהודית ישראלית', '../data/Files Jerusalem-district/תרבות יהודית ישראלית - 1.jpeg')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>תכנית עלמא</h2><button onclick="openSummaryModal('תכנית עלמא', '../data/Files Jerusalem-district/הדרכת עלמא לשנת הלימודים תשפז.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>מדע וטכנולוגיה יסודי</h2><button onclick="openSummaryModal('מדע וטכנולוגיה יסודי', '../data/Files Jerusalem-district/- הדרכת מדע וטכנולוגיה יסודי.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>מדע וטכנולוגיה חט"ב</h2><button onclick="openSummaryModal('מדע וטכנולוגיה חט\"ב', '../data/Files Jerusalem-district/מדע וטכנולוגיה חטיבות ביניים.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>תנ"ך – חמ"ד</h2><button onclick="openSummaryModal('תנ\'ך – חמ\'ד', '../data/Files Jerusalem-district/תנך חמד העיר ירושלים מעודכן.jpeg')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>שפ"י</h2><button onclick="openSummaryModal('שפ\'י', '../data/Files Jerusalem-district/שפי.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>מרום ריסטארט</h2><button onclick="openSummaryModal('מרום ריסטארט', '../data/Files Jerusalem-district/ברושור ריסטארט תשפז.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>חינוך לשוני ליסודי</h2><button onclick="openSummaryModal('חינוך לשוני ליסודי', '../data/Files Jerusalem-district/חינוך לשוני.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>חינוך לשוני יסודי בחמ"ד</h2><button onclick="openSummaryModal('חינוך לשוני יסודי בחמ\'ד', '../data/Files Jerusalem-district/חינוך לשוני בחמ_ד - למנהלים.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>תקשוב וטכנופדגוגיה</h2><button onclick="openSummaryModal('תקשוב וטכנופדגוגיה', '../data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>חינוך חברתי חמ"ד</h2><button onclick="openSummaryModal('חינוך חברתי חמ\'ד', '../data/Files Jerusalem-dr/חברתי ערכי יסודי חמד - עינב שרגא.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>חינוך חברתי ליסודי</h2><button onclick="openSummaryModal('חינוך חברתי ליסודי', '../data/Files Jerusalem-district/חינוך חברתי ערכי.pdf')" class="btn">דף מידע</button></div>
-            <div class="card"><h2>אמירים</h2><button onclick="openSummaryModal('אמירים', '../data/Files Jerusalem-district/_הדרכת אמירים- תשפז.pdf')" class="btn">דף מידע</button></div>
-        </div>
+    <div class="grid">
+        <div class="card"><h2><i class="fa-solid fa-users"></i>מנהל ח"ן</h2><button onclick="openSummaryModal('מנהל ח\'ן', '../data/Files Jerusalem-district/מנהל חברה ונוער.jpeg')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-plus-minus"></i>מתמטיקה יסודי</h2><button onclick="openSummaryModal('מתמטיקה יסודי', '../data/Files Jerusalem-district/מתמטיקה יסודי.png')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-calculator"></i>מתמטיקה על יסודי</h2><button onclick="openSummaryModal('מתמטיקה על יסודי', '../data/Files Jerusalem-district/במתמטיקה על יסודי (2).pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-book-open"></i>תרבות יהודית ישראלית</h2><button onclick="openSummaryModal('תרבות יהודית ישראלית', '../data/Files Jerusalem-district/תרבות יהודית ישראלית - 1.jpeg')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-graduation-cap"></i>תכנית עלמא</h2><button onclick="openSummaryModal('תכנית עלמא', '../data/Files Jerusalem-district/הדרכת עלמא לשנת הלימודים תשפז.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-flask"></i>מדע וטכנולוגיה יסודי</h2><button onclick="openSummaryModal('מדע וטכנולוגיה יסודי', '../data/Files Jerusalem-district/- הדרכת מדע וטכנולוגיה יסודי.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-microscope"></i>מדע וטכנולוגיה חט"ב</h2><button onclick="openSummaryModal('מדע וטכנולוגיה חט\"ב', '../data/Files Jerusalem-district/מדע וטכנולוגיה חטיבות ביניים.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-scroll"></i>תנ"ך – חמ"ד</h2><button onclick="openSummaryModal('תנ\'ך – חמ\'ד', '../data/Files Jerusalem-district/תנך חמד העיר ירושלים מעודכן.jpeg')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-heart-pulse"></i>שפ"י</h2><button onclick="openSummaryModal('שפ\'י', '../data/Files Jerusalem-district/שפי.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-arrows-rotate"></i>מרום ריסטארט</h2><button onclick="openSummaryModal('מרום ריסטארט', '../data/Files Jerusalem-district/ברושור ריסטארט תשפז.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-language"></i>חינוך לשוני ליסודי</h2><button onclick="openSummaryModal('חינוך לשוני ליסודי', '../data/Files Jerusalem-district/חינוך לשוני.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-book-tanakh"></i>חינוך לשוני יסודי בחמ"ד</h2><button onclick="openSummaryModal('חינוך לשוני יסודי בחמ\'ד', '../data/Files Jerusalem-district/חינוך לשוני בחמ_ד - למנהלים.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-laptop-code"></i>תקשוב וטכנופדגוגיה</h2><button onclick="openSummaryModal('תקשוב וטכנופדגוגיה', '../data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-users-rays"></i>חינוך חברתי חמ"ד</h2><button onclick="openSummaryModal('חינוך חברתי חמ\'ד', '../data/Files Jerusalem-dr/חברתי ערכי יסודי חמד - עינב שרגא.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-people-group"></i>חינוך חברתי ליסודי</h2><button onclick="openSummaryModal('חינוך חברתי ליסודי', '../data/Files Jerusalem-district/חינוך חברתי ערכי.pdf')" class="btn">דף מידע</button></div>
+        <div class="card"><h2><i class="fa-solid fa-star"></i>אמירים</h2><button onclick="openSummaryModal('אמירים', '../data/Files Jerusalem-district/_הדרכת אמירים- תשפז.pdf')" class="btn">דף מידע</button></div>
     </div>
 
     <div id="summaryModal" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(240, 244, 248, 0.95); z-index: 99999; align-items: center; justify-content: center; direction: rtl;">
@@ -93,15 +116,15 @@
             </div>
             
             <div style="padding: 30px 40px; overflow-y: auto; text-align: right;">
-                <span onclick="closeSummaryModal()" style="color: #070543; font-weight: bold; font-size: 16px; cursor: pointer; display: inline-block; margin-bottom: 25px;">&larr; חזרה לרשימת התחומים (العودة للقائمة)</span>
+                <span onclick="closeSummaryModal()" style="color: #070543; font-weight: bold; font-size: 16px; cursor: pointer; display: inline-block; margin-bottom: 25px;">&larr; חזרה לרשימת התחומים</span>
                 
                 <div style="background: #f8f9fa; border-right: 4px solid #94d8ff; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
-                    <h3 style="margin-top: 0; color: #070543; font-size: 18px; font-weight: bold; margin-bottom: 10px;">תמצית התוכנית (تثبيت البرنامج):</h3>
+                    <h3 style="margin-top: 0; color: #070543; font-size: 18px; font-weight: bold; margin-bottom: 10px;">תמצית התוכנית:</h3>
                     <p id="smSummaryText">תוכן ותמצית התוכנית יעודכנו בהקדם על ידי מערך ההדרכה המחוזי.</p>
                 </div>
                 
                 <div style="margin-bottom: 35px;">
-                    <h3 style="color: #070543; font-size: 18px; font-weight: bold; margin-bottom: 15px;">מטרות ההדרכה (أهداف التدريس):</h3>
+                    <h3 style="color: #070543; font-size: 18px; font-weight: bold; margin-bottom: 15px;">מטרות ההדרכה:</h3>
                     <ul style="list-style: none; padding: 0; margin: 0;">
                         <li style="position: relative; padding-right: 30px; margin-bottom: 12px; color: #444; font-size: 16px;"><span style="color: #059669; font-weight: bold; margin-left: 8px;">✔</span> פיתוח מקצועי ופדגוגי לצוותי ההוראה</li>
                         <li style="position: relative; padding-right: 30px; margin-bottom: 12px; color: #444; font-size: 16px;"><span style="color: #059669; font-weight: bold; margin-left: 8px;">✔</span> הטמעת כלי למידה דיגיטליים ופדגוגיה חדשנית</li>
@@ -110,8 +133,8 @@
                 </div>
                 
                 <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 10px; border-top: 1px solid #eee; padding-top: 25px;">
-                    <a id="smDownloadBtn" href="#" download style="background: #fff; color: #070543; padding: 12px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; border: 2px solid #070543; display: inline-flex; align-items: center; gap: 8px;">تحميل (Download)</a>
-                    <a id="smReadBtn" href="#" target="_blank" style="background: #070543; color: #fff; padding: 12px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; border: 2px solid #070543; display: inline-flex; align-items: center; gap: 8px;">عرض بطاقة المعلومات (PDF)</a>
+                    <a id="smDownloadBtn" href="#" download style="background: #fff; color: #070543; padding: 12px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; border: 2px solid #070543; display: inline-flex; align-items: center; gap: 8px;">הורדה (Download)</a>
+                    <a id="smReadBtn" href="#" target="_blank" style="background: #070543; color: #fff; padding: 12px 35px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; border: 2px solid #070543; display: inline-flex; align-items: center; gap: 8px;">צפייה בדף המידע (PDF)</a>
                 </div>
             </div>
         </div>

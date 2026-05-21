@@ -3,31 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מערך ההדרכה - מחוז ירושלים תשפ"ז</title>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>מחוז ירושלים והעיר ירושלים - מפת ההדרכה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Assistant', sans-serif; background-color: #f0f4f8; margin: 0; text-align: center; color: #070543; }
-        .logo-container { padding: 40px 0 20px; }
-        .logo-container img { max-height: 180px; }
-        .hero { background: linear-gradient(135deg, #070543 0%, #460c91 100%); color: white; padding: 50px 20px; }
-        .hero h1 { font-size: 36px; margin-bottom: 10px; }
-        .portal-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: -30px; padding: 20px; }
-        .portal-card { background: white; padding: 40px 30px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-decoration: none; color: #070543; font-weight: bold; font-size: 24px; min-width: 250px; border-bottom: 5px solid #460c91; transition: transform 0.2s; }
-        .portal-card:hover { transform: translateY(-10px); }
+        :root {
+            --primary-blue: #070543;
+            --accent-light-blue: #94d8ff;
+            --accent-purple: #460c91;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background-color: #ffffff;
+            color: var(--primary-blue);
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(148, 216, 255, 0.08) 0px, transparent 40%),
+                radial-gradient(at 100% 100%, rgba(70, 12, 145, 0.03) 0px, transparent 40%);
+        }
+
+        .category-card {
+            transition: all 0.3s ease;
+            background-color: #ffffff;
+            border: 2px solid var(--primary-blue);
+            border-radius: 1.5rem;
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-decoration: none;
+            display: block;
+            color: var(--primary-blue);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            background-color: var(--primary-blue);
+            color: white !important;
+            box-shadow: 0 15px 30px rgba(7, 5, 67, 0.2);
+        }
+
+        .category-card:hover span { color: white; }
+        .category-card:hover i { color: var(--accent-light-blue); }
+
+        .mobile-header-text { font-size: 2.5rem !important; }
+
+        @media (max-width: 640px) {
+            .mobile-header-text { font-size: 1.6rem !important; line-height: 1.2; }
+            .mobile-subtitle-text { font-size: 1.3rem !important; }
+            .category-card { padding: 2rem 1rem; }
+        }
     </style>
 </head>
-<body>
-    <div class="logo-container">
-        <img src="assets/logo.png" alt="לוגו משרד החינוך מחוז ירושלים">
-    </div>
-    <div class="hero">
-        <h1>ברוכים הבאים למרחב ההדרכה המחוזי</h1>
-        <p>שנת הלימודים תשפ"ז | בחרו את אזור ההדרכה שלכם:</p>
-    </div>
-    <div class="portal-grid">
-        <a href="pages/jerusalem_district.html" class="portal-card">מחוז ירושלים (כללי)</a>
-        <a href="pages/jerusalem_city.html" class="portal-card">העיר ירושלים (מערב)</a>
-        <a href="pages/east_jerusalem.html" class="portal-card">מזרח ירושלים (شرق القدس)</a>
-    </div>
+<body class="min-h-screen text-right">
+
+<div style="width: 100%; text-align: center; padding: 20px 0; clear: both; display: block;">
+    <img src="assets/logo.png" alt="Jerusalem District Logo" style="max-height: 130px; width: auto; display: block; margin: 0 auto;">
+</div>
+
+    <header class="bg-white border-b border-gray-50 py-10 px-4 no-print text-center">
+        <div class="max-w-6xl mx-auto flex flex-col items-center text-center">
+            <div class="space-y-1">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-[#070543] tracking-tight mobile-header-text">מחוז ירושלים והעיר ירושלים</h1>
+            </div>
+            <div class="mt-8 px-12 py-8 bg-[#070543] rounded-2xl shadow-xl border border-[#070543] w-full max-w-2xl">
+                <h3 class="text-2xl md:text-4xl font-bold text-white mobile-subtitle-text whitespace-nowrap leading-snug text-center">מערך ההדרכה לשנה"ל תשפ"ז</h3>     
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        
+        <section class="mb-12 text-center max-w-4xl mx-auto">
+            <h3 class="text-2xl font-bold mb-4 text-[#070543]">מנהלות ומנהלים יקרים,</h3>
+            <div class="text-xl md:text-2xl text-gray-700 leading-relaxed space-y-3 text-center font-medium">
+                <p class="font-extrabold text-[#070543]">מערכת הגפ"ן נפתחה לרכישת הדרכות.</p>
+                <p>
+                    רכזנו עבורכם.ן את תחומי ההדרכה המוצעים במסגרת המחוז ומידע אודות כל תחום. 
+                    זאת לטובת בחירה מושכלת ומותאמת לצרכי בית הספר והצוות החינוכי.
+                </p>
+            </div>
+        </section>
+
+        <div class="mb-20 bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
+            <div class="bg-gray-50 border-b p-6 text-center">
+                <h2 class="text-2xl md:text-3xl font-extrabold text-[#070543]">לוח זמנים ותעריפי ההדרכה לשנה"ל תשפ"ז</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-0 text-right">
+                <div class="p-8 border-l border-gray-100">
+                    <div class="flex items-center gap-3 mb-8">
+                        <h4 class="text-2xl font-bold text-[#070543] border-b-4 border-blue-400 pb-1">לוח זמנים לרכישות</h4>
+                    </div>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4 bg-blue-50 p-5 rounded-2xl text-xl">
+                            <i class="fa-solid fa-calendar-check mt-1 text-blue-600"></i>
+                            <div><span class="block font-bold">פתיחת הגפ"ן לרכישת הדרכה:</span><span class="text-blue-900">החל מ-4 במאי 2026</span></div>
+                        </li>
+                        <li class="flex items-start gap-4 bg-red-50 p-5 rounded-2xl text-xl">
+                            <i class="fa-solid fa-calendar-xmark mt-1 text-red-600"></i>
+                            <div><span class="block font-bold text-red-700">סגירת חלון הרכישה:</span><span class="font-bold">30 ביוני 2026</span></div>
+                        </li>
+                        <li class="flex items-start gap-4 bg-gray-50 p-5 rounded-2xl text-xl">
+                            <i class="fa-solid fa-calendar-day mt-1 text-gray-600"></i>
+                            <div><span class="block font-bold">מועד אחרון למחיקה:</span><span>עד 31 בדצמבר 2026</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-8">
+                    <div class="flex items-center gap-3 mb-8">
+                        <h4 class="text-2xl font-bold text-[#070543] border-b-4 border-teal-400 pb-1">עלויות הדרכה</h4>
+                    </div>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="flex items-center gap-4 bg-indigo-50 p-5 rounded-2xl text-xl border-r-4 border-indigo-500">
+                            <div class="flex justify-between w-full">
+                                <span class="font-bold">יום הדרכה מלא:</span>
+                                <span class="font-extrabold text-indigo-900">47,400 ₪</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-emerald-50 p-5 rounded-2xl text-xl border-r-4 border-emerald-500">
+                            <div class="flex justify-between w-full">
+                                <span class="font-bold">חצי יום הדרכה:</span>
+                                <span class="font-extrabold text-emerald-900">23,700 ₪</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-purple-50 p-5 rounded-2xl text-xl border-r-4 border-purple-500">
+                            <div class="flex justify-between w-full">
+                                <span class="font-bold">רבע יום הדרכה:</span>
+                                <span class="font-extrabold text-purple-900">11,850 ₪</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 bg-amber-50 p-5 rounded-2xl text-xl border-r-4 border-amber-500">
+                            <div class="flex justify-between w-full">
+                                <span class="font-bold">שמינית יום הדרכה:</span>
+                                <span class="font-extrabold text-amber-900">5,925 ₪</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+            <a href="pages/jerusalem_district.html" class="category-card">
+                <i class="fa-solid fa-map-location-dot text-5xl mb-5 text-[#460c91]"></i>
+                <span class="text-2xl font-extrabold block text-center">הדרכה מחוז ירושלים</span>
+            </a>
+            <a href="pages/jerusalem_city.html" class="category-card">
+                <i class="fa-solid fa-city text-5xl mb-5 text-[#460c91]"></i>
+                <span class="text-2xl font-extrabold block text-center">הדרכה העיר ירושלים (מערב)</span>
+            </a>
+            <a href="pages/east_jerusalem.html" class="category-card">
+                <i class="fa-solid fa-mosque text-5xl mb-5 text-[#460c91]"></i>
+                <span class="text-2xl font-extrabold block text-center text-center">הדרכה מזרח ירושלים</span>
+                <span class="text-xl font-bold block mt-1 opacity-70">إرشاد شرق القدس</span>
+            </a>
+        </div>
+
+        <footer class="bg-[#070543] text-white p-10 rounded-2xl brand-shadow text-center">
+            <p class="text-2xl md:text-3xl font-bold text-white mb-6">מוזמנים.ות להתרשם מתחומי ההדרכה המוצעים</p>
+            <p class="text-lg md:text-xl opacity-90 text-white font-semibold">לימור שטמן, המפקחת על ההדרכה ורכזות ההדרכה</p>
+            <p class="text-lg md:text-xl opacity-90 text-white mt-2">לבנת, עדי וארווה</p>
+        </footer>
+    </main>
 </body>
 </html>
