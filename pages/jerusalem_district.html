@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; color: #070543; }
+        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; color: #070543; margin: 0; }
         .grid-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 40px 0; }
         
@@ -20,34 +20,48 @@
             text-align: center; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 200px;
+            justify-content: center;
+            min-height: 180px;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
         }
         
         .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
-        
-        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; line-height: 1.4; }
+        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; line-height: 1.4; }
+        .card .more-info { font-size: 0.9rem; font-weight: 700; color: #070543; margin-top: 10px; opacity: 0.7; }
 
         /* 12-Tone Soft Pastel Sequence */
-        .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border: 1px solid #FFCDD2 !important; }
-        .grid .card:nth-child(12n+2) { background-color: #E3F2FD !important; border: 1px solid #BBDEFB !important; }
-        .grid .card:nth-child(12n+3) { background-color: #E8F5E9 !important; border: 1px solid #C8E6C9 !important; }
-        .grid .card:nth-child(12n+4) { background-color: #F3E5F5 !important; border: 1px solid #E1BEE7 !important; }
-        .grid .card:nth-child(12n+5) { background-color: #FFF3E0 !important; border: 1px solid #FFE0B2 !important; }
-        .grid .card:nth-child(12n+6) { background-color: #E0F7FA !important; border: 1px solid #B2EBF2 !important; }
-        .grid .card:nth-child(12n+7) { background-color: #FFFDE7 !important; border: 1px solid #FFF9C4 !important; }
-        .grid .card:nth-child(12n+8) { background-color: #FCE4EC !important; border: 1px solid #F8BBD0 !important; }
-        .grid .card:nth-child(12n+9) { background-color: #F1F8E9 !important; border: 1px solid #DCEDC8 !important; }
-        .grid .card:nth-child(12n+10) { background-color: #FFF8E1 !important; border: 1px solid #FFECB3 !important; }
-        .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border: 1px solid #B2DFDB !important; }
-        .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border: 1px solid #CFD8DC !important; }
+        .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border-color: #FFCDD2 !important; }
+        .grid .card:nth-child(12n+2) { background-color: #E3F2FD !important; border-color: #BBDEFB !important; }
+        .grid .card:nth-child(12n+3) { background-color: #E8F5E9 !important; border-color: #C8E6C9 !important; }
+        .grid .card:nth-child(12n+4) { background-color: #F3E5F5 !important; border-color: #E1BEE7 !important; }
+        .grid .card:nth-child(12n+5) { background-color: #FFF3E0 !important; border-color: #FFE0B2 !important; }
+        .grid .card:nth-child(12n+6) { background-color: #E0F7FA !important; border-color: #B2EBF2 !important; }
+        .grid .card:nth-child(12n+7) { background-color: #FFFDE7 !important; border-color: #FFF9C4 !important; }
+        .grid .card:nth-child(12n+8) { background-color: #FCE4EC !important; border-color: #F8BBD0 !important; }
+        .grid .card:nth-child(12n+9) { background-color: #F1F8E9 !important; border-color: #DCEDC8 !important; }
+        .grid .card:nth-child(12n+10) { background-color: #FFF8E1 !important; border-color: #FFECB3 !important; }
+        .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border-color: #B2DFDB !important; }
+        .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border-color: #CFD8DC !important; }
 
-        .btn { background-color: #070543; color: white !important; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: background 0.3s; }
-        .btn:hover { background-color: #460c91; }
+        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-view { background-color: #070543; color: white !important; }
+        .btn-view:hover { background-color: #460c91; transform: scale(1.05); }
+        .btn-download { background-color: #ffffff; color: #070543 !important; border: 2px solid #070543; }
+        .btn-download:hover { background-color: #f1f5f9; transform: scale(1.05); }
         
         .header { background: white; padding: 30px; text-align: center; border-bottom: 1px solid #e2e8f0; }
         .footer { background: #070543; color: white; padding: 40px; text-align: center; margin-top: 40px; border-top: 4px solid #94d8ff; }
-        .back-link { display: inline-block; margin-top: 20px; color: #070543; font-weight: 700; text-decoration: none; }
+        .back-link { display: inline-block; margin-top: 20px; color: #070543; font-weight: 700; text-decoration: none; cursor: pointer; }
+
+        #detailView { display: none; max-width: 900px; margin: 40px auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        .detail-header { background: #070543; color: white; padding: 40px; text-align: center; }
+        .detail-body { padding: 40px; }
+        .summary-box { background: #f8fafc; border-right: 5px solid #94d8ff; padding: 25px; border-radius: 0 10px 10px 0; margin-bottom: 30px; }
+        .summary-text { font-size: 1.25rem; line-height: 1.8; color: #334155; }
+        .highlight-list { list-style: none; padding: 0; margin: 30px 0; }
+        .highlight-list li { position: relative; padding-right: 35px; margin-bottom: 15px; font-size: 1.1rem; color: #475569; }
+        .highlight-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 0; color: #0d9488; }
 
         @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
@@ -59,36 +73,259 @@
         <img src="../assets/logo.png" alt="Logo" style="max-height: 100px; display: block; margin: 0 auto;">
     </div>
 
-    <div class="header">
-        <h1 class="text-3xl font-extrabold">הדרכה מחוז ירושלים</h1>
-        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לדף הבית</a>
+    <div id="listView">
+        <div class="header">
+            <h1 class="text-3xl font-extrabold">הדרכה מחוז ירושלים</h1>
+            <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לדף הבית</a>
+        </div>
+
+        <div class="grid-container">
+            <div class="grid">
+                <div class="card" onclick="showDetail('math_elem')"><h2>מתמטיקה יסודי</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('math_high')"><h2>מתמטיקה על יסודי</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('science_elem')"><h2>מדע וטכנולוגיה יסודי</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('science_mid')"><h2>מדע וטכנולוגיה חטיבות ביניים</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('linguistics')"><h2>חינוך לשוני</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('linguistics_hemed')"><h2>חינוך לשוני בחמ"ד</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('social')"><h2>חינוך חברתי ערכי</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('youth')"><h2>מנהל חברה ונוער</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('hashkafa')"><h2>מהלך השקפה</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('amirim')"><h2>תוכנית אמירים</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('roots')"><h2>תרבות יהודית ישראלית</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('bible')"><h2>תנ"ך חמד</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('shefi')"><h2>הדרכות שפי</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('alma')"><h2>הדרכת עלמא</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('restart')"><h2>ברושור ריסטארט</h2><div class="more-info">למידע נוסף</div></div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="text-2xl font-bold mb-4">לשאלות והתייעצות מוזמנים ליצור קשר:</p>
+            <p class="text-3xl font-extrabold text-[#94d8ff] mb-2">עדי ביגמן</p>
+            <p class="text-xl">טל: 054-7712132</p>
+            <p class="text-xl">מייל: adibi@education.gov.il</p>
+        </footer>
     </div>
 
-    <div class="grid-container">
-        <div class="grid">
-            <div class="card"><h2>מתמטיקה יסודי</h2><a href="../data/Files Jerusalem-district/מתמטיקה יסודי.png" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>מתמטיקה על יסודי</h2><a href="../data/Files Jerusalem-district/במתמטיקה על יסודי (2).pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>מדע וטכנולוגיה יסודי</h2><a href="../data/Files Jerusalem-district/- הדרכת מדע וטכנולוגיה יסודי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>מדע וטכנולוגיה חטיבות ביניים</h2><a href="../data/Files Jerusalem-district/מדע וטכנולוגיה חטיבות ביניים.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>חינוך לשוני</h2><a href="../data/Files Jerusalem-district/חינוך לשוני.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>חינוך לשוני בחמ"ד</h2><a href="../data/Files Jerusalem-district/חינוך לשוני בחמ_ד - למנהלים.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>חינוך חברתי ערכי</h2><a href="../data/Files Jerusalem-district/חינוך חברתי ערכי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>מנהל חברה ונוער</h2><a href="../data/Files Jerusalem-district/מנהל חברה ונוער.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>מהלך השקפה</h2><a href="../data/Files Jerusalem-district/מהלך השקפה -  גפן תשפ_ז  - תהילה.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>תוכנית אמירים</h2><a href="../data/Files Jerusalem-district/_הדרכת אמירים- תשפז.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>תרבות יהודית ישראלית</h2><a href="../data/Files Jerusalem-district/תרבות יהודית ישראלית - 1.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>תנ"ך חמד</h2><a href="../data/Files Jerusalem-district/תנך חמד העיר ירושלים מעודכן.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>הדרכות שפי</h2><a href="../data/Files Jerusalem-district/שפי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>הדרכת עלמא</h2><a href="../data/Files Jerusalem-district/הדרכת עלמא לשנת הלימודים תשפז.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>ברושור ריסטארט</h2><a href="../data/Files Jerusalem-district/ברושור ריסטארט תשפז.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+    <div id="detailView">
+        <div class="detail-header">
+            <h1 id="detailTitle" class="text-4xl font-extrabold mb-4"></h1>
+            <p class="text-xl opacity-90">מרחב המידע המקצועי למנהלים</p>
+        </div>
+        <div class="detail-body">
+            <button onclick="hideDetail()" class="back-link mb-8 text-[#070543] hover:underline"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לרשימת התחומים</button>
+            
+            <div class="summary-box">
+                <h3 class="text-xl font-bold mb-3 text-[#070543]">תמצית התוכנית:</h3>
+                <p id="detailSummary" class="summary-text"></p>
+            </div>
+
+            <h3 class="text-xl font-bold mb-4 text-[#070543]">נקודות מפתח והתערבות:</h3>
+            <ul id="detailHighlights" class="highlight-list"></ul>
+
+            <div class="flex flex-col md:flex-row justify-center gap-6 mt-12 pt-8 border-t border-gray-100">
+                <a id="viewBtn" href="#" target="_blank" class="btn btn-view"><i class="fa-solid fa-file-pdf"></i> צפייה בדף המידע המלא</a>
+                <a id="downloadBtn" href="#" download class="btn btn-download"><i class="fa-solid fa-download"></i> הורדה למחשב</a>
+            </div>
         </div>
     </div>
 
-    <footer class="footer">
-        <p class="text-2xl font-bold mb-4">לשאלות והתייעצות מוזמנים ליצור קשר:</p>
-        <p class="text-3xl font-extrabold text-[#94d8ff] mb-2">עדי ביגמן</p>
-        <p class="text-xl">טל: 054-7712132</p>
-        <p class="text-xl">מייל: adibi@education.gov.il</p>
-    </footer>
+    <script>
+        const subjectData = {
+            math_elem: { 
+                title: "מתמטיקה יסודי", 
+                summary: "קידום הישגים לימודיים וצמצום פערים במקצוע המתמטיקה בשלב החינוך היסודי, תוך שימוש בפרקטיקות הוראה חדשניות.", 
+                highlights: [
+                    "פיתוח מנהיגות ביניים של רכזי מתמטיקה",
+                    "הטמעת יעדי המחוז והמשרד בתחומי האוריינות",
+                    "צמצום פערים לימודיים והתאמה לשונות בכיתה",
+                    "שילוב למידה רגשית-חברתית (SEL) להפחתת חרדת מתמטיקה"
+                ],
+                file: "../data/Files Jerusalem-district/מתמטיקה יסודי.png" 
+            },
+            math_high: { 
+                title: "מתמטיקה על יסודי", 
+                summary: "יצירת רצף שש-שנתי איכותי והכנה מיטבית לבחינות הבגרות תוך פיתוח חשיבה מתמטית ברמה גבוהה.", 
+                highlights: [
+                    "ליווי צוותי הוראה ורכזי מקצוע בחטיבה העליונה",
+                    "עדכון תוכנית הלימודים ויישום דרכי הערכה חלופיות",
+                    "חיזוק מיומנויות פתרון בעיות מורכבות",
+                    "הכנה ממוקדת לבחינות הבגרות ב-4 ו-5 יחידות לימוד"
+                ],
+                file: "../data/Files Jerusalem-district/במתמטיקה על יסודי (2).pdf" 
+            },
+            science_elem: { 
+                title: "מדע וטכנולוגיה יסודי", 
+                summary: "טיפוח אוריינות מדעית וטכנולוגית בקרב תלמידי היסודי ועידוד סקרנות וחקר.", 
+                highlights: [
+                    "פיתוח מיומנויות חקר, חשיבה ביקורתית ואוריינות מדעית",
+                    "ליווי אישי ותמיכה שוטפת לרכז/ת ולצוות המדעים",
+                    "שיעורי מודלינג ושילוב STEM בלמידה",
+                    "הטמעת תוכנית הלימודים החדשה מדע וטכנולוגיה"
+                ],
+                file: "../data/Files Jerusalem-district/- הדרכת מדע וטכנולוגיה יסודי.pdf" 
+            },
+            science_mid: { 
+                title: "מדע וטכנולוגיה חטיבות ביניים", 
+                summary: "חיזוק תחומי המדעים והטכנולוגיה בחטיבות הביניים כגשר לתיכון וללימודי המשך.", 
+                highlights: [
+                    "העמקת תהליכי הוראה-למידה-הערכה במקצועות המדעיים",
+                    "הכנה למבחני רמה ארציים ובינלאומיים",
+                    "למידה מבוססת פרויקטים ומעבדות",
+                    "פיתוח מקצועי ייעודי למורי המדעים בחט\"ב"
+                ],
+                file: "../data/Files Jerusalem-district/מדע וטכנולוגיה חטיבות ביניים.pdf" 
+            },
+            linguistics: { 
+                title: "חינוך לשוני", 
+                summary: "שיפור הישגי התלמידים בקריאה, כתיבה והבנה תוך יצירת סביבה אוריינית עשירה.", 
+                highlights: [
+                    "יישום נתיבי למידה מגוונים לאוריינות",
+                    "קריאה דיאלוגית ושיח שוויוני בכיתה",
+                    "פיתוח תלקיט כתיבה ככלי להערכה תהליכית",
+                    "קידום 'קריאה מהנה' ומרחבי למידה חווייתיים"
+                ],
+                file: "../data/Files Jerusalem-district/חינוך לשוני.pdf" 
+            },
+            linguistics_hemed: { 
+                title: "חינוך לשוני בחמ\"ד", 
+                summary: "דגשים מיוחדים בחינוך הלשוני למנהלי וצוותי החינוך הממלכתי-דתי.", 
+                highlights: [
+                    "שילוב מקורות חז\"ל בחינוך הלשוני",
+                    "הטמעת תוכנית 'ללמוד וללמד' בחמ\"ד",
+                    "ליווי רכזים בתהליכי שיפור כתיבה והבנה",
+                    "התאמת תוכני ההדרכה לעולם הערכים של החמ\"ד"
+                ],
+                file: "../data/Files Jerusalem-district/חינוך לשוני בחמ_ד - למנהלים.pdf" 
+            },
+            social: { 
+                title: "חינוך חברתי ערכי", 
+                summary: "בניית תשתית חברתית-ערכית איתנה בבית הספר וקידום מעורבות חברתית.", 
+                highlights: [
+                    "בניית תוכנית חברתית שנתית המחוברת ליעדי המחוז",
+                    "הטמעת שפה בית ספרית לקידום חוסן ומיומנויות SEL",
+                    "עידוד יזמות ומנהיגות תלמידים",
+                    "ליווי רכזים חברתיים בניהול אירועי שיא וטקסים"
+                ],
+                file: "../data/Files Jerusalem-district/חינוך חברתי ערכי.pdf" 
+            },
+            youth: { 
+                title: "מנהל חברה ונוער", 
+                summary: "פעילות חוץ-בית ספרית, תנועות נוער וטיולים כחלק מהחינוך המשלים.", 
+                highlights: [
+                    "חיזוק הקשר עם תנועות וארגוני הנוער",
+                    "ניהול והדרכה של מערך הטיולים והשל"ח",
+                    "הפעלת מרכזי מנהיגות יישוביים",
+                    "קידום פנאי משמעותי לבני הנוער במחוז"
+                ],
+                file: "../data/Files Jerusalem-district/מנהל חברה ונוער.jpeg" 
+            },
+            hashkafa: { 
+                title: "מהלך השקפה", 
+                summary: "קהילות מורות מובילות לשיפור ההוראה מתוך בית הספר.", 
+                highlights: [
+                    "הכשרת מורות מובילות לחקר פרקטיקה",
+                    "הטמעת למידה צוותית כתרבות ארגונית",
+                    "שימוש בנתונים לשיפור איכות ההוראה",
+                    "השקפה ממוקדת שפה ואוריינות לשונית"
+                ],
+                file: "../data/Files Jerusalem-district/מהלך השקפה -  גפן תשפ_ז  - תהילה.pdf" 
+            },
+            amirim: { 
+                title: "תוכנית אמירים", 
+                summary: "טיפוח מצוינות ותלמידים מחוננים כחלק מתרבות בית ספרית.", 
+                highlights: [
+                    "איתור וטיפוח תלמידים בעלי פוטנציאל גבוה",
+                    "הוראה מבדלת ומענה לשונות בכיתה",
+                    "פיתוח תהליכי חשיבה מסדר גבוה",
+                    "יצירת מסלולי למידה מואצים ומעשירים"
+                ],
+                file: "../data/Files Jerusalem-district/_הדרכת אמירים- תשפז.pdf" 
+            },
+            roots: { 
+                title: "תרבות יהודית ישראלית", 
+                summary: "חיבור למקורות, לשורשים ולזהות היהודית-ישראלית המשותפת.", 
+                highlights: [
+                    "סל מורשת וזהות יהודית 4%",
+                    "יציאה למוזיאונים ומרחבי מורשת",
+                    "גינת שבעת המינים - חיבור לעבודת אדמה",
+                    "סיפורי מורשת ועבודת שורשים בשילוב AI"
+                ],
+                file: "../data/Files Jerusalem-district/תרבות יהודית ישראלית - 1.jpeg" 
+            },
+            bible: { 
+                title: "תנ\"ך חמד", 
+                summary: "לימוד התנ\"ך בגישה דתית-אמונית המחוברת לחיי היום-יום.", 
+                highlights: [
+                    "פיתוח אהבת התנ\"ך בקרב התלמידים",
+                    "שימוש בשיטות הוראה מגוונות להוראת המקרא",
+                    "חיזוק הקשר לארץ ישראל דרך פסוקי התנ\"ך",
+                    "הכנה למבחני בגרות וחידוני תנ\"ך"
+                ],
+                file: "../data/Files Jerusalem-district/תנך חמד העיר ירושלים מעודכן.jpeg" 
+            },
+            shefi: { 
+                title: "הדרכות שפי", 
+                summary: "מענה רגשי וייעוצי לצוותי חינוך ותלמידים במצבי לחץ ושגרה.", 
+                highlights: [
+                    "פיתוח חוסן נפשי ומיומנויות התמודדות",
+                    "מניעת התנהגויות סיכון בקרב נוער",
+                    "הכשרת יועצים ומורים בפרקטיקות טיפוליות",
+                    "מענה למצבי משבר וחירום מחוזיים"
+                ],
+                file: "../data/Files Jerusalem-district/שפי.pdf" 
+            },
+            alma: { 
+                title: "הדרכת עלמא", 
+                summary: "תוכנית הדרכה ייחודית הממוקדת בחדשנות פדגוגית ובניית מרחבי למידה.", 
+                highlights: [
+                    "בניית אקו-סיסטם חינוכי רב-תחומי",
+                    "עיצוב מרחבי למידה מותאמי המאה ה-21",
+                    "הטמעת טכנולוגיות מתקדמות בהוראה",
+                    "יצירת קהילות למידה בין-בית ספריות"
+                ],
+                file: "../data/Files Jerusalem-district/הדרכת עלמא לשנת הלימודים תשפז.pdf" 
+            },
+            restart: { 
+                title: "ברושור ריסטארט", 
+                summary: "הנחיות ומידע לחידוש ורענון מערך ההדרכה הבית-ספרי.", 
+                highlights: [
+                    "שלבים לבניית תוכנית הדרכה חדשה",
+                    "בחירה מושכלת של רכיבי גפ\"ן",
+                    "תהליכי בקרה ומדידה שוטפים",
+                    "עדכון פרטי התקשרות וגורמי מקצוע"
+                ],
+                file: "../data/Files Jerusalem-district/ברושור ריסטארט תשפז.pdf" 
+            }
+        };
+
+        function showDetail(id) {
+            const data = subjectData[id];
+            if (!data) return;
+            
+            document.getElementById('detailTitle').innerText = data.title;
+            document.getElementById('detailSummary').innerText = data.summary;
+            document.getElementById('viewBtn').href = data.file;
+            document.getElementById('downloadBtn').href = data.file;
+            
+            const highlightsList = document.getElementById('detailHighlights');
+            highlightsList.innerHTML = '';
+            data.highlights.forEach(text => {
+                const li = document.createElement('li');
+                li.innerText = text;
+                highlightsList.appendChild(li);
+            });
+            
+            document.getElementById('listView').style.display = 'none';
+            document.getElementById('detailView').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function hideDetail() {
+            document.getElementById('detailView').style.display = 'none';
+            document.getElementById('listView').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
