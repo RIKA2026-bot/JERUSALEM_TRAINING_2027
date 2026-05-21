@@ -20,35 +20,44 @@
             text-align: center; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 220px;
+            justify-content: center;
+            min-height: 180px;
+            cursor: pointer;
+            border: 1px solid #e2e8f0;
         }
         
         .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
         
-        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; line-height: 1.4; }
+        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; line-height: 1.4; }
         .card h2 span { display: block; font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
+        .card .more-info { font-size: 0.9rem; font-weight: 700; color: #070543; margin-top: 10px; opacity: 0.7; }
 
         /* 12-Tone Soft Pastel Sequence */
-        .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border: 1px solid #FFCDD2 !important; }
-        .grid .card:nth-child(12n+2) { background-color: #E3F2FD !important; border: 1px solid #BBDEFB !important; }
-        .grid .card:nth-child(12n+3) { background-color: #E8F5E9 !important; border: 1px solid #C8E6C9 !important; }
-        .grid .card:nth-child(12n+4) { background-color: #F3E5F5 !important; border: 1px solid #E1BEE7 !important; }
-        .grid .card:nth-child(12n+5) { background-color: #FFF3E0 !important; border: 1px solid #FFE0B2 !important; }
-        .grid .card:nth-child(12n+6) { background-color: #E0F7FA !important; border: 1px solid #B2EBF2 !important; }
-        .grid .card:nth-child(12n+7) { background-color: #FFFDE7 !important; border: 1px solid #FFF9C4 !important; }
-        .grid .card:nth-child(12n+8) { background-color: #FCE4EC !important; border: 1px solid #F8BBD0 !important; }
-        .grid .card:nth-child(12n+9) { background-color: #F1F8E9 !important; border: 1px solid #DCEDC8 !important; }
-        .grid .card:nth-child(12n+10) { background-color: #FFF8E1 !important; border: 1px solid #FFECB3 !important; }
-        .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border: 1px solid #B2DFDB !important; }
-        .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border: 1px solid #CFD8DC !important; }
+        .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border-color: #FFCDD2 !important; }
+        .grid .card:nth-child(12n+2) { background-color: #E3F2FD !important; border-color: #BBDEFB !important; }
+        .grid .card:nth-child(12n+3) { background-color: #E8F5E9 !important; border-color: #C8E6C9 !important; }
+        .grid .card:nth-child(12n+4) { background-color: #F3E5F5 !important; border-color: #E1BEE7 !important; }
+        .grid .card:nth-child(12n+5) { background-color: #FFF3E0 !important; border-color: #FFE0B2 !important; }
+        .grid .card:nth-child(12n+6) { background-color: #E0F7FA !important; border-color: #B2EBF2 !important; }
+        .grid .card:nth-child(12n+7) { background-color: #FFFDE7 !important; border-color: #FFF9C4 !important; }
+        .grid .card:nth-child(12n+8) { background-color: #FCE4EC !important; border-color: #F8BBD0 !important; }
+        .grid .card:nth-child(12n+9) { background-color: #F1F8E9 !important; border-color: #DCEDC8 !important; }
+        .grid .card:nth-child(12n+10) { background-color: #FFF8E1 !important; border-color: #FFECB3 !important; }
+        .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border-color: #B2DFDB !important; }
+        .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border-color: #CFD8DC !important; }
 
-        .btn { background-color: #070543; color: white !important; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: background 0.3s; }
-        .btn:hover { background-color: #460c91; }
+        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn-view { background-color: #070543; color: white !important; }
+        .btn-view:hover { background-color: #460c91; transform: scale(1.05); }
+        .btn-download { background-color: #ffffff; color: #070543 !important; border: 2px solid #070543; }
+        .btn-download:hover { background-color: #f1f5f9; transform: scale(1.05); }
         
         .header { background: white; padding: 30px; text-align: center; border-bottom: 1px solid #e2e8f0; }
         .footer { background: #070543; color: white; padding: 40px; text-align: center; margin-top: 40px; border-top: 4px solid #94d8ff; }
-        .back-link { display: inline-block; margin-top: 20px; color: #070543; font-weight: 700; text-decoration: none; }
+        .back-link { display: inline-block; margin-top: 20px; color: #070543; font-weight: 700; text-decoration: none; cursor: pointer; }
+
+        #detailView { display: none; max-width: 800px; margin: 40px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        .detail-summary { font-size: 1.3rem; line-height: 1.8; color: #475569; margin-bottom: 40px; }
 
         @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
         @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
@@ -60,32 +69,81 @@
         <img src="../assets/logo.png" alt="Logo" style="max-height: 100px; display: block; margin: 0 auto;">
     </div>
 
-    <div class="header">
-        <h1 class="text-3xl font-extrabold">הדרכה מזרח ירושלים (إرشاد شرق القدس)</h1>
-        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לדף הבית</a>
+    <div id="listView">
+        <div class="header">
+            <h1 class="text-3xl font-extrabold">הדרכה מזרח ירושלים (إرشاد شرق القدس)</h1>
+            <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לדף הבית</a>
+        </div>
+
+        <div class="grid-container">
+            <div class="grid">
+                <!-- Data is injected via JS to handle clicks -->
+                <div class="card" onclick="showDetail('english')"><h2>لغة إنجليزية<span>(אנגלית)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('math')"><h2>رياضيات<span>(מתמטיקה)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('eval')"><h2>القياس والتقييم<span>(מדידה והערכה)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('arabic')"><h2>لغة عربية<span>(ערבית)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('hebrew')"><h2>لغة عبرية للناطقين بالعربية<span>(עברית לדוברי ערבית)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('science')"><h2>علوم<span>(מדעים)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('ict')"><h2>حوسبة وتكنولوجيا<span>(תקשוב)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('social_comm')"><h2>تربية اجتماعية وجماهيرية<span>(חינוך חברתי קהילתי)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('social_val')"><h2>تربية اجتماعية وقيمية<span>(חינוך חברתי ערכי - SEL)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('inclusion')"><h2>الاحتواء والدمג<span>(הכלה והשתלבות)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail('hashkafa')"><h2>استشراف<span>(השקפה)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p class="text-2xl font-bold mb-4">לשאלות והתייעצות מוזמנים ליצור קשר:</p>
+            <p class="text-3xl font-extrabold text-[#94d8ff] mb-2">ארווה עבד אלקאדר (أروى عبد القادر)</p>
+            <p class="text-xl">טל: 052-4066675</p>
+            <p class="text-xl">מייל: arwahj30@gmail.com</p>
+        </footer>
     </div>
 
-    <div class="grid-container">
-        <div class="grid">
-            <div class="card"><h2>لغة إنجليزية<span>(אנגלית)</span></h2><a href="../data/Files Jerusalem-east/flyer- English.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>رياضيات<span>(מתמטיקה)</span></h2><a href="../data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>القياس والتقييم<span>(מדידה והערכה)</span></h2><a href="../data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>لغة عربية<span>(ערבית)</span></h2><a href="../data/Files Jerusalem-east/הדרכת ערבית.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>لغة عبرية للناطقين بالعربية<span>(עברית לדוברי ערבית)</span></h2><a href="../data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>علوم<span>(מדעים)</span></h2><a href="../data/Files Jerusalem-east/מדעים العلوم.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>حوسبة وتكنولوجيا<span>(תקשוב)</span></h2><a href="../data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>تربية اجتماعية وجماهيرية<span>(חינוך חברתי קהילתי)</span></h2><a href="../data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>تربية اجتماعية وقيمية<span>(חינוך חברתי ערכי - SEL)</span></h2><a href="../data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>الاحتواء والدمج<span>(הכלה והשתלבות)</span></h2><a href="../data/Files Jerusalem-east/הכלה והשתלבות (1).pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-            <div class="card"><h2>استشراف<span>(השקפה)</span></h2><a href="../data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+    <div id="detailView" class="grid-container">
+        <button onclick="hideDetail()" class="back-link mb-8"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לרשימת התחומים</button>
+        <h1 id="detailTitle" class="text-4xl font-extrabold mb-8 text-center text-[#070543]"></h1>
+        <div id="detailSummary" class="detail-summary text-right"></div>
+        <div class="flex flex-col md:flex-row justify-center gap-6 mt-12">
+            <a id="viewBtn" href="#" target="_blank" class="btn btn-view"><i class="fa-solid fa-file-pdf"></i> דף מידע (إلى المعلومات)</a>
+            <a id="downloadBtn" href="#" download class="btn btn-download"><i class="fa-solid fa-download"></i> הורדה (Donloud)</a>
         </div>
     </div>
 
-    <footer class="footer">
-        <p class="text-2xl font-bold mb-4">לשאלות והתייעצות מוזמנים ליצור קשר:</p>
-        <p class="text-3xl font-extrabold text-[#94d8ff] mb-2">ארווה עבד אלקאדר (أروى عبد القادر)</p>
-        <p class="text-xl">טל: 052-4066675</p>
-        <p class="text-xl">מייל: arwahj30@gmail.com</p>
-    </footer>
+    <script>
+        const subjectData = {
+            english: { title: "لغة إنجليزية (אנגלית)", summary: "تطوير مهارات اللغة الإنجليزية لدى الطلاب، بما يشمل الفهم القرائي، التعبير الكتابي، والمحادثة، مع التركيز على المناهج الدراسية المحدثة.", file: "../data/Files Jerusalem-east/flyer- English.pdf" },
+            math: { title: "رياضيات (מתמטיקה)", summary: "تعزيز القدرات التحليلية والرياضية وتطوير استراتيجيات حل المشكلات في مواضيع الجبر، الهندسة، والإحصاء للمراحل المختلفة.", file: "../data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf" },
+            eval: { title: "القياس والتقييم (מדידה והערכה)", summary: "بناء أدوات تقييم دقيقة وفعالة لمتابعة تقدم الطلاب الأكاديمي وتحسين جودة التدريس بناءً على البيانات المستخلصة.", file: "../data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg" },
+            arabic: { title: "لغة عربية (ערבית)", summary: "تقوية مهارات لغة الأم، القراءة والتحليل الأدبي، وتطوير القدرة على التعبير البليغ باللغة العربية الفصحى.", file: "../data/Files Jerusalem-east/הדרכת ערבית.pdf" },
+            hebrew: { title: "لغة عبرية للناطقين بالعربية (עברית לדוברי ערבית)", summary: "تعلم اللغة العبرية كشبه ثانية لتمكين الطلاب من الاندماج الأكاديمي والمهني وتحسين مهارات التواصل اليومي.", file: "../data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf" },
+            science: { title: "علوم (מדעים)", summary: "استكشاف عالم المדע من خلال البحث والتجربة، وتطوير التفكير العلمي النقدي في مجالات الأحياء، الكيمياء والفيزياء.", file: "../data/Files Jerusalem-east/מדעים العلوم.pdf" },
+            ict: { title: "حوسبة وتكنولوجيا (תקשוב)", summary: "دمج الأدوات الرقمية في العملية التعليمية، تعلم البرمجة، والذكاء الاصطناعي لتهيئة الطلاب لعصر التكنولوجيا.", file: "../data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg" },
+            social_comm: { title: "تربية اجتماعية وجماهيرية (חינוך חברתי קהילתי)", summary: "تعزيز القيم المجتمعية، القيادة الطلابية، والمبادرات الجماهيرية التي تخدم المدرسة والمجتمع المحيط.", file: "../data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg" },
+            social_val: { title: "تربية اجتماعية وقيمية - SEL (חינוך חברתי ערכי)", summary: "التركيز على المهارات العاطفية والاجتماعية (SEL)، وبناء شخصية الطالب المتوازنة والقادرة على التعامل مع التحديات.", file: "../data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg" },
+            inclusion: { title: "الاحتواء والدمج (הכלה והשתלבות)", summary: "توفير الدعم التعليمي والاجتماعي للطلاب ذوي الاحتياجات الخاصة وضمان اندماجهم الكامل في البيئة المدرسية العادية.", file: "../data/Files Jerusalem-east/הכלה והשתלבות (1).pdf" },
+            hashkafa: { title: "استشراف (השקפה)", summary: "تطوير مهني للمعلمين يركز على البحث في الممارسة الصفية وبناء مجتمعات تعلم مهنية داخل المدرسة.", file: "../data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf" }
+        };
+
+        function showDetail(id) {
+            const data = subjectData[id];
+            if (!data) return;
+            
+            document.getElementById('detailTitle').innerText = data.title;
+            document.getElementById('detailSummary').innerText = data.summary;
+            document.getElementById('viewBtn').href = data.file;
+            document.getElementById('downloadBtn').href = data.file;
+            
+            document.getElementById('listView').style.display = 'none';
+            document.getElementById('detailView').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function hideDetail() {
+            document.getElementById('detailView').style.display = 'none';
+            document.getElementById('listView').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
