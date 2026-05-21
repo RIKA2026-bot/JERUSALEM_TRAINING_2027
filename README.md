@@ -34,4 +34,8 @@ The website serves as a central hub for school principals in the Jerusalem Distr
 
 ## 7. Language
 - **Primary:** Hebrew (Professional/Formal).
-- **Secondary:** English (for code comments and documentation if needed).
+## 8. Template & Blueprint
+For building more websites based on this design, please refer to the **[WEBSITE_BLUEPRINT.md](./WEBSITE_BLUEPRINT.md)** file. It contains the complete architectural and styling guide used for this project.
+
+---
+*Created by Gemini CLI for RIKA2026-bot | May 2026*
