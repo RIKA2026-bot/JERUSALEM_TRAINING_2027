@@ -10,25 +10,30 @@
     <style>
         body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; color: #070543; margin: 0; }
         .grid-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 40px 0; }
+        
+        .grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+            gap: 15px !important;
+            padding: 40px 0;
+        }
         
         .card { 
             border-radius: 12px; 
-            padding: 20px; 
+            padding: 15px !important; 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
             transition: transform 0.2s, box-shadow 0.2s; 
             text-align: center; 
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            min-height: 180px;
+            justify-content: space-between;
+            min-height: 140px;
             cursor: pointer;
             border: 1px solid #e2e8f0;
         }
         
         .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
-        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; line-height: 1.4; }
-        .card .more-info { font-size: 0.9rem; font-weight: 700; color: #070543; margin-top: 10px; opacity: 0.7; }
+        .card h2 { font-size: 18px !important; font-weight: 800; margin-bottom: 10px; line-height: 1.4; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         /* 12-Tone Soft Pastel Sequence */
         .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border-color: #FFCDD2 !important; }
@@ -44,7 +49,7 @@
         .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border-color: #B2DFDB !important; }
         .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border-color: #CFD8DC !important; }
 
-        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn { background-color: #070543; color: white !important; padding: 6px 12px !important; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 14px !important; transition: background 0.3s; display: inline-flex; align-items: center; gap: 8px; border: none; cursor: pointer; }
         .btn-view { background-color: #070543; color: white !important; }
         .btn-view:hover { background-color: #460c91; transform: scale(1.05); }
         .btn-download { background-color: #ffffff; color: #070543 !important; border: 2px solid #070543; }
@@ -63,9 +68,7 @@
         .highlight-list li { position: relative; padding-right: 35px; margin-bottom: 15px; font-size: 1.1rem; color: #475569; }
         .highlight-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 0; color: #0d9488; }
 
-        @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .grid { grid-template-columns: 1fr !important; } }
     </style>
 </head>
 <body>
@@ -81,24 +84,24 @@
 
         <div class="grid-container">
             <div class="grid">
-                <div class="card" onclick="showDetail('ict')"><h2>תקשוב</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('math_elem')"><h2>מתמטיקה יסודי</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('math_high')"><h2>מתמטיקה על יסודי</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('english')"><h2>אנגלית</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('science_elem')"><h2>מדע וטכנולוגיה יסודי</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('science_mid')"><h2>מדע וטכנולוגיה חטיבות ביניים</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('linguistics')"><h2>חינוך לשוני</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('social')"><h2>חינוך חברתי ערכי</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('social_hemed')"><h2>חינוך חברתי ערכי חמד</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('inclusion_elem')"><h2>הכלה והשתלבות יסודי</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('inclusion_high')"><h2>הכלה והשתלבות על יסודי</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('hashkafa')"><h2>מהלך השקפה</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('amirim')"><h2>תוכנית אמירים</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('roots')"><h2>תרבות יהודית ישראלית</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('bible')"><h2>תנ"ך חמד</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('shefi')"><h2>הדרכות שפי</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('alma')"><h2>הדרכת עלמא</h2><div class="more-info">למידע נוסף</div></div>
-                <div class="card" onclick="showDetail('restart')"><h2>ברושור ריסטארט</h2><div class="more-info">למידע נוסף</div></div>
+                <div class="card" onclick="showDetail('ict')"><h2><i class="fa-solid fa-laptop-code"></i>תקשוב</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('math_elem')"><h2><i class="fa-solid fa-plus-minus"></i>מתמטיקה יסודי</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('math_high')"><h2><i class="fa-solid fa-calculator"></i>מתמטיקה על יסודי</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('english')"><h2><i class="fa-solid fa-language"></i>אנגלית</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('science_elem')"><h2><i class="fa-solid fa-flask"></i>מדע וטכנולוגיה יסודי</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('science_mid')"><h2><i class="fa-solid fa-microscope"></i>מדע וטכנולוגיה חטיבות ביניים</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('linguistics')"><h2><i class="fa-solid fa-pen-nib"></i>חינוך לשוני</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('social')"><h2><i class="fa-solid fa-people-group"></i>חינוך חברתי ערכי</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('social_hemed')"><h2><i class="fa-solid fa-users-rays"></i>חינוך חברתי ערכי חמד</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('inclusion_elem')"><h2><i class="fa-solid fa-hands-holding"></i>הכלה והשתלבות יסודי</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('inclusion_high')"><h2><i class="fa-solid fa-person-walking-arrow-right"></i>הכלה והשתלבות על יסודי</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('hashkafa')"><h2><i class="fa-solid fa-eye"></i>מהלך השקפה</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('amirim')"><h2><i class="fa-solid fa-star"></i>תוכנית אמירים</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('roots')"><h2><i class="fa-solid fa-book-open"></i>תרבות יהודית ישראלית</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('bible')"><h2><i class="fa-solid fa-scroll"></i>תנ"ך חמד</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('shefi')"><h2><i class="fa-solid fa-heart-pulse"></i>הדרכות שפי</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('alma')"><h2><i class="fa-solid fa-graduation-cap"></i>הדרכת עלמא</h2><button class="btn">לחץ למידע</button></div>
+                <div class="card" onclick="showDetail('restart')"><h2><i class="fa-solid fa-arrows-rotate"></i>ברושור ריסטארט</h2><button class="btn">לחץ למידע</button></div>
             </div>
         </div>
 
