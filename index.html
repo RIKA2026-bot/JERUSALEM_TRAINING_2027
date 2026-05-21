@@ -89,7 +89,7 @@
 
         .view-action-btn {
             background-color: var(--primary-blue);
-            color: white;
+            color: white !important;
             padding: 1rem 2.5rem;
             border-radius: 3.5rem;
             font-weight: 800;
@@ -102,46 +102,12 @@
             border: none;
             box-shadow: 0 6px 15px rgba(0,0,0,0.15);
             white-space: nowrap;
+            text-decoration: none;
         }
 
-        .file-preview-container {
-            width: 100%;
-            height: 75vh;
-            background: #f1f5f9;
-            border-radius: 1rem;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #e2e8f0;
-        }
-
-        .preview-img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .preview-iframe { width: 100%; height: 100%; border: none; }
-
-        /* Full-Screen High-Readability PDF Viewer */
-        .pdf-modal-container {
-            width: 95vw !important;
-            max-width: 1450px !important;
-            height: 92vh !important;
-            margin: 15px auto !important;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-        }
-
-        .pdf-modal-content {
-            width: 100% !important;
-            height: 100% !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-        .pdf-modal-iframe {
-            width: 100% !important;
-            height: 100% !important;
-            border: none !important;
-            display: block;
+        .view-action-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         @media (max-width: 640px) {
@@ -149,7 +115,6 @@
             .mobile-subtitle-text { font-size: 1.3rem !important; }
             .category-card { padding: 2rem 1rem; }
             .subject-card { min-height: 150px; padding: 1rem; }
-            .file-preview-container { height: 60vh; }
         }
 
         .view-section { display: none; }
@@ -314,7 +279,7 @@
 
         const subjectData = {
             ict: {
-                title: "תקשוב ולמידה משולבת דיגיטל", titleAr: "تعزيز التعلم التكنו-בيداغוגي",
+                title: "תקשוב ולמידה משולבת דיגיטל", titleAr: "تعزيز التعلم התקשוב",
                 color: "#0d9488", icon: "fa-laptop-code",
                 content: `<h4 class='font-bold mb-2'>שדרוג הפדגוגיה הבית-ספרית:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -322,7 +287,7 @@
                         <li>למידה חווייתית דרך מיזמים מחוזיים: "מגלים אוצרות", "הקול שבשיר".</li>
                         <li>ליווי בתוכנית "זינוק דיגיטלי" וקוד ורובוטיקה.</li>
                     </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>تعزيز التعلم التكنו-בيداغוגي:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>تعزيز التعلم התקשוב:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
                         <li>תזווית ברהנאמג' אלחוסבה ואלתעלום אלמודמדג' רקמייאן (Google Classroom).</li>
                         <li>אלד'כאא' אלאסחטנאעיי ואלאבתכאר פי אלעמלייה אלתעלמייה.</li>
@@ -472,7 +437,7 @@
                 title: "תוכנית אמירים", titleAr: "ברהנאמג' 'אמיריים'",
                 color: "#0891b2", icon: "fa-star",
                 content: "טיפוח תלמידים מחוננים ומצטיינים והטמעת תרבות של מצוינות בתהליכי ההוראה.",
-                contentAr: "ברהנאמג' לריעאייה אלטלאב אלמוהובין ואלמתפוקין.",
+                contentAr: "ברהנאמג' لריעאייה אלטלאב אלמוהובין ואלמתפוקין.",
                 trainer: "אורלי דהאן", trainerAr: "אורלי דהאן", phone: "054-4332216", email: "-",
                 fileUrl: "data/Files Jerusalem-dr/amirim.pdf"
             },
@@ -537,10 +502,6 @@
             const modal = document.getElementById('infoModal');
             const content = document.getElementById('modalContent');
             const nav = document.getElementById('modalNavigation');
-            const wrapper = document.getElementById('modalWrapper');
-            
-            // Reset wrapper classes
-            wrapper.className = "modal-wrapper bg-white rounded-2xl max-w-4xl w-full p-8 md:p-14 relative brand-shadow overflow-y-auto max-h-[95vh]";
             
             nav.innerHTML = '';
             content.innerHTML = `
@@ -553,29 +514,15 @@
                     <p class="text-lg text-center">${isArabicMode ? 'האתף: ' : 'טל: '}${data.phone}</p>
                 </div>
                 <div class="mt-12 flex justify-center no-print">
-                    <button class="view-action-btn shadow-md text-xl" onclick="toggleFileView()"><span class="icon-circle"><i class="fa-solid fa-download text-xl"></i></span><span>${isArabicMode ? 'לספחת אלמעלומאת' : 'לדף המידע'}</span><i class="fa-solid fa-hand-pointer text-4xl mr-2"></i></button>
+                    <a href="${data.fileUrl}" target="_blank" class="view-action-btn shadow-md text-xl">
+                        <span class="icon-circle"><i class="fa-solid fa-file-pdf text-xl"></i></span>
+                        <span>${isArabicMode ? 'אלספחת אלמעלומאת' : 'לדף המידע'}</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-2xl mr-2"></i>
+                    </a>
                 </div>
             `;
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-        }
-
-        function toggleFileView() {
-            const data = subjectData[currentSubjectId];
-            const content = document.getElementById('modalContent');
-            const nav = document.getElementById('modalNavigation');
-            const wrapper = document.getElementById('modalWrapper');
-            
-            nav.innerHTML = `<button onclick="openModal('${currentSubjectId}')" class="bg-[#070543] text-white px-5 py-2 rounded-full font-bold flex items-center gap-2"><i class="fa-solid fa-arrow-right"></i> חזרה</button>`;
-            
-            const ext = data.fileUrl.split('.').pop().toLowerCase();
-            if (['jpg', 'jpeg', 'png'].includes(ext)) {
-                content.innerHTML = `<div class="file-preview-container"><img src="${data.fileUrl}" class="preview-img"></div>`;
-            } else {
-                // Apply dynamic PDF classes
-                wrapper.classList.add('pdf-modal-container');
-                content.innerHTML = `<div class="file-preview-container"><iframe src="${data.fileUrl}#toolbar=0" class="preview-iframe pdf-modal-iframe"></iframe></div>`;
-            }
         }
 
         function closeModal() { 
