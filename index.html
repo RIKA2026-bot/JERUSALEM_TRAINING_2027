@@ -223,7 +223,7 @@
                 <div class="category-card" onclick="showDistrict('east_jer')">
                     <i class="fa-solid fa-mosque text-5xl mb-5 text-[#460c91]"></i>
                     <span class="text-2xl font-extrabold block text-center text-center">הדרכה מזרח ירושלים</span>
-                    <span class="text-xl font-bold block mt-1 opacity-70">إרشاد شرق القدס</span>
+                    <span class="text-xl font-bold block mt-1 opacity-70">إرشاد شرق القدس</span>
                 </div>
             </div>
 
@@ -270,16 +270,74 @@
                 allowedSubjects: ['ict', 'math_high', 'math_elem', 'english', 'science', 'roots', 'social', 'hashkafa', 'linguistics', 'amirim']
             },
             'east_jer': {
-                displayTitle: "הדרכות מזרח ירושלים<br>לשנה\"ל תשפ\"ז",
-                coordinator: "ארווה עבד אלקאדר", coordinatorAr: "أרווה עבד אלקאדר",
+                displayTitle: "إرشادات شرق القدس<br>للعام الدراسي 2027",
+                coordinator: "أروى عبد القادر", coordinatorAr: "أروى عبد القادر",
                 email: "arwahj30@gmail.com", phone: "052-4066675", hasArabic: true,
-                allowedSubjects: ['ict', 'math_high', 'math_elem', 'english', 'arabic', 'hebrew', 'science', 'eval', 'social']
+                allowedSubjects: ['english_east', 'math_east', 'eval_east', 'arabic_east', 'hebrew_east', 'science_east', 'ict_east', 'social_comm_east', 'social_val_east', 'inclusion_east', 'hashkafa_east']
             }
         };
 
         const subjectData = {
+            // East Jerusalem Subjects
+            english_east: {
+                title: "לغة إنجليزية", titleAr: "لغة إنجليزية", color: "#3b82f6", icon: "fa-language",
+                trainer: "طاقم اللغة الإنجليزية", phone: "054-5738086", email: "english.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/flyer- English.pdf"
+            },
+            math_east: {
+                title: "رياضيات", titleAr: "رياضيات", color: "#2563eb", icon: "fa-calculator",
+                trainer: "طاقم الرياضيات", phone: "בתיאום", email: "math.elem@jerusalem.edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf"
+            },
+            eval_east: {
+                title: "القياس والتقييم", titleAr: "القياس والتقييم", color: "#db2777", icon: "fa-chart-line",
+                trainer: "طاقم القياس والتقويم", phone: "בתיאום", email: "eval.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg"
+            },
+            arabic_east: {
+                title: "لغة عربية", titleAr: "لغة عربية", color: "#7c3aed", icon: "fa-book-open",
+                trainer: "أمل كنعان", phone: "בתיאום", email: "aml.kn82@gmail.com",
+                fileUrl: "data/Files Jerusalem-east/הדרכת ערבית.pdf"
+            },
+            hebrew_east: {
+                title: "لغة عبرية للناطقين بالعربية", titleAr: "لغة عبرية للناطقين بالعربية", color: "#16a34a", icon: "fa-language",
+                trainer: "طاقم اللغة العبرية", phone: "בתיאום", email: "hebrew.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf"
+            },
+            science_east: {
+                title: "علوم", titleAr: "علوم", color: "#ea580c", icon: "fa-flask",
+                trainer: "طاقم العلوم", phone: "054-7558717", email: "michalkfir100@gmail.com",
+                fileUrl: "data/Files Jerusalem-east/מדעים العلوم.pdf"
+            },
+            ict_east: {
+                title: "حوسبة وتكنولوجيا", titleAr: "حوسبة وتكنولوجيا", color: "#0d9488", icon: "fa-laptop-code",
+                trainer: "طاقم الحوسبة", phone: "050-2643132", email: "ict.jer@edu.gov.il",
+                fileUrl: "data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg"
+            },
+            social_comm_east: {
+                title: "تربية اجتماعية وجماهيرية", titleAr: "تربية اجتماعية وجماهيرية", color: "#db2777", icon: "fa-users-line",
+                trainer: "أوفيرا هيرش", phone: "054-7747276", email: "ofirahk@gmail.com",
+                fileUrl: "data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg"
+            },
+            social_val_east: {
+                title: "تربية اجتماعية وقيمية - SEL", titleAr: "تربية اجتماعية وقيمية - SEL", color: "#db2777", icon: "fa-heart",
+                trainer: "أوفيرا هيرش", phone: "054-7747276", email: "ofirahk@gmail.com",
+                fileUrl: "data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg"
+            },
+            inclusion_east: {
+                title: "الاحتواء والدمج", titleAr: "الاحتواء والدمج", color: "#0891b2", icon: "fa-hands-holding",
+                trainer: "طاقم الاحتواء", phone: "בתיאום", email: "-",
+                fileUrl: "data/Files Jerusalem-east/הכלה והשתלבות (1).pdf"
+            },
+            hashkafa_east: {
+                title: "برنامج \"استشراف\" (השקפה)", titleAr: "برنامج \"استشراف\" (השקפה)", color: "#7c3aed", icon: "fa-eye",
+                trainer: "نوريت أفيدان", phone: "-", email: "nuritavidav100@gmail.com",
+                fileUrl: "data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf"
+            },
+
+            // Standard Subjects
             ict: {
-                title: "תקשוב ולמידה משולבת דיגיטל", titleAr: "تعزيز التعلم התקשוב",
+                title: "תקשוב ולמידה משולבת דיגיטל", titleAr: "تعزيز التعلم التكنו-בيداגוגי",
                 color: "#0d9488", icon: "fa-laptop-code",
                 content: `<h4 class='font-bold mb-2'>שדרוג הפדגוגיה הבית-ספרית:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -287,171 +345,67 @@
                         <li>למידה חווייתית דרך מיזמים מחוזיים: "מגלים אוצרות", "הקול שבשיר".</li>
                         <li>ליווי בתוכנית "זינוק דיגיטלי" וקוד ורובוטיקה.</li>
                     </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>تعزيز التعلم התקשוב:</h4>
-                    <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>תזווית ברהנאמג' אלחוסבה ואלתעלום אלמודמדג' רקמייאן (Google Classroom).</li>
-                        <li>אלד'כאא' אלאסחטנאעיי ואלאבתכאר פי אלעמלייה אלתעלמייה.</li>
-                        <li>מראפקה אלמדארס פי ברהנאמג' "אלקפזה אלרקמייה" (זינוק דיגיטלי).</li>
-                    </ul>`,
-                trainer: "אתי רוזן / צוות תקשוב מחוזי", trainerAr: "إيتي / טאקם אירשאד אלחוסבה", phone: "050-2643132", email: "ict.jer@edu.gov.il",
+                trainer: "אתי רוזן / צוות תקשוב מחוזי", phone: "050-2643132", email: "ict.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf"
             },
             math_high: {
-                title: "מתמטיקה לעל יסודי", titleAr: "אירשאד אלריאד'ייאת (פוק אבתדאא'י)",
+                title: "מתמטיקה לעל יסודי", titleAr: "إרשאד אלריאד'ייאת",
                 color: "#2563eb", icon: "fa-calculator",
                 content: `<h4 class='font-bold mb-2'>הדרכה שמצמיחה הצלחות:</h4>
                     <ul class='list-disc pr-6 mb-4'>
                         <li>רכז כמנהיג - רתימת מורים והובלת צוות ליעדים משותפים.</li>
                         <li>הוראה להבנה - יצירת רצף שש-שנתי מהיסודי ועד תיכון.</li>
-                        <li>צוות מקצועי - עדכון תוכנית הלימודים ויישום בטוח.</li>
                     </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>אירשאד אלריאד'ייאת ללמרהלה פוק אלאבתדאא'ייה:</h4>
-                    <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>בנאא' ח'טה עמל מדראסייה שאמלה לרפע אלתחסיאל אלעלמיי.</li>
-                        <li>תטויר אלתפכיר אלאבדאעיי ואלנאקד לדא אלמעלם ואלטאלב.</li>
-                        <li>אלאסתעדאד לתקימאת ראמה ואמתחאנאת אלבג'רואת.</li>
-                    </ul>`,
-                trainer: "איילת קריספין", trainerAr: "איילת קריספין", phone: "050-2721656", email: "ayeletk59@gmail.com",
+                trainer: "איילת קריספין", phone: "050-2721656", email: "ayeletk59@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה על יסודי -.pdf"
             },
             math_elem: {
-                title: "מתמטיקה ליסודי", titleAr: "אירשאד אלריאד'ייאת ללמרהלה אלאבתדאא'ייה",
-                color: "#4f46e5", icon: "fa-abacus",
+                title: "מתמטיקה ליסודי", color: "#4f46e5", icon: "fa-abacus",
                 content: "פיתוח מנהיגות ביניים לרכזים, הטמעת יעדי המחוז, צמצום פערים ושילוב SEL להפחתת חרדת מתמטיקה.",
-                contentAr: "תחסין ג'ודה אלתדריס ואלתעלום פי אלריאד'ייאת ללמרהלה אלאבתדאא'ייה.",
-                trainer: "תמי רזזוג / אור בן חמו", trainerAr: "תמי רזזוק / אור בן חמו", phone: "בתיאום", email: "math.elem@jerusalem.edu.gov.il",
+                trainer: "תמי רזזוג / אור בן חמו", phone: "בתיאום", email: "math.elem@jerusalem.edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה יסודי -.jpg"
             },
             english: {
-                title: "אנגלית", titleAr: "אירשאד אללוג'ה אלאנג'ליזייה",
-                color: "#3b82f6", icon: "fa-language",
-                content: `<h4 class='font-bold mb-2'>Empowering Teachers:</h4>
-                    <ul class='list-disc pr-6 mb-4'>
-                        <li>תכנון שיעורים אפקטיביים מבוססי מיומנויות (הפקה, קליטה ואינטראקציה).</li>
-                        <li>תמיכה בכיתות הטרוגניות ומענים לשונות.</li>
-                        <li>ליווי צמוד של צוות מדריכות מיומן (דועא, רנא וננסי).</li>
-                    </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>אירשאד אללוג'ה אלאנג'ליזייה:</h4>
-                    <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>תמכין אלמעלמין ותעזיז אסאליב אלתדריס אלפעאלה.</li>
-                        <li>דעם אלספוף ג'יר אלמתג'אנסה ותכנון חסס תעלמייה.</li>
-                        <li>תטויר מיומנויות אלתפאעל ואלוסאטה.</li>
-                    </ul>`,
-                trainer: "דועא, רנא וננסי | מפקחת: סימון דובל", trainerAr: "דועא, רנא, ננסי", phone: "054-5738086", email: "english.jer@edu.gov.il",
+                title: "אנגלית", color: "#3b82f6", icon: "fa-language",
+                content: "תכנון שיעורים אפקטיביים מבוססי מיומנויות ותמיכה בכיתות הטרוגניות.",
+                trainer: "דועא, רנא וננסי", phone: "054-5738086", email: "english.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-east/flyer- English.pdf"
             },
             science: {
-                title: "מדע וטכנולוגיה ליסודי", titleAr: "אירשאד אלעלום ואלתכנולוג'יא",
-                color: "#ea580c", icon: "fa-flask",
-                content: `<h4 class='font-bold mb-2'>הדרכה המייצרת שינוי:</h4>
-                    <ul class='list-disc pr-6 mb-4'>
-                        <li>ליווי אישי ותמיכה שוטפת לרכז/ת ולצוות המדעים.</li>
-                        <li>פיתוח מיומנויות חקר, חשיבה ביקורתית ואוריינות מדעית.</li>
-                        <li>שיעורי מודלינג ושילוב STEM.</li>
-                    </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>אירשאד אלעלום ואלתכנולוג'יא:</h4>
-                    <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>דמדג' אלד'כאא' אלאסחטנאעיי ומנהג'ייה STEM פי אלעלום.</li>
-                        <li>אלתעלום אלתג'ריביי ואלמחתברות ותנמייה מיומנויות אלבחת'.</li>
-                    </ul>`,
-                trainer: "מיכל כפיר הורביץ", trainerAr: "שרי רקובר / סנא אבו יוסף", phone: "054-7558717", email: "michalkfir100@gmail.com",
+                title: "מדע וטכנולוגיה ליסודי", color: "#ea580c", icon: "fa-flask",
+                content: "פיתוח מיומנויות חקר, חשיבה ביקורתית ואוריינות מדעית.",
+                trainer: "מיכל כפיר הורביץ", phone: "054-7558717", email: "michalkfir100@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - הדרכת מדע וטכנולוגיה יסודי.pdf"
             },
-            hebrew: {
-                title: "עברית (שפה שנייה)", titleAr: "אירשאד אללוג'ה אלעברייה (לוג'ה תאנייה)",
-                color: "#16a34a", icon: "fa-language",
-                content: "חיזוק השפה העברית ככלי להצלחה, שיפור שטף הקריאה והדיבור, והכנה למבחני מפמ\"ר.",
-                contentAr: `<h4 class='font-bold mb-2'>אירשאד אללוג'ה אלעברייה:</h4>
-                    <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>תעזיז אללוג'ה אלעברייה ככלי ללנג'אח ללטלאב אלד'ין יתחדת'ון אלערבייה.</li>
-                        <li>תחסין מיומנויות אלקיארה, אלכתאבה ואלמחאדדת'ה ואלתחדיר ללמפמ"ר.</li>
-                    </ul>`,
-                trainer: "צוות עברית מחוזי", trainerAr: "טאקם אירשאד אללוג'ה אלעברייה", phone: "בתיאום", email: "hebrew.jer@edu.gov.il",
-                fileUrl: "data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf"
-            },
-            arabic: {
-                title: "ערבית (שפת אם)", titleAr: "אירשאד אללוג'ה אלערבייה (לוג'ת אלאם)",
-                color: "#7c3aed", icon: "fa-book-open",
-                content: "פיתוח מיומנויות הבנה והבעה, השקעה באיכות החינוך דרך פיתוח מיומנויות.",
-                contentAr: `<h4 class='font-bold mb-2'>אירשאד אללוג'ה אלערבייה:</h4>
-                    <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>תטויר ג'ודה תדריס אללוג'ה אלערבייה ותעזיז אלפהם אלקיאראא'י.</li>
-                        <li>תשח'יס מסתויאת אלאדאא' ותכנון תוכניות עלאג'ייה מבינייה עלא אלביאנאת.</li>
-                    </ul>`,
-                trainer: "אמל כנעאן", trainerAr: "אמל כנעאן / מונתסר צידאוי", phone: "בתיאום", email: "aml.kn82@gmail.com",
-                fileUrl: "data/Files Jerusalem-east/הדרכת ערבית.pdf"
-            },
             roots: {
-                title: "שורשי עמי", titleAr: "ג'ד'ור שעבי",
-                color: "#d97706", icon: "fa-book-open-reader",
-                content: `<h4 class='font-bold mb-2'>"היהדות של כולנו" - סל מורשת וזהות יהודית 4%:</h4>
-                    <ul class='list-disc pr-6 mb-4'>
-                        <li>כשתרבות יהודית-ישראלית יוצאת למוזיאון (72037).</li>
-                        <li>גינת שבעת המינים - חיבור לעבודת אדמה (58115).</li>
-                        <li>סיפורי מורשת ועבודת שורשים בשילוב AI (58140).</li>
-                    </ul>`,
-                contentAr: "אלתערף עלא אלתראת' ואלהוייה אליהודייה אלאסראא'ילייה מן ח'לאל בראמג' אית'ראא'ייה.",
-                trainer: "צוות תרבות יהודית", trainerAr: "טאקם אירשאד אלת'קאפה אליהודייה", phone: "בתיאום", email: "roots.jer@edu.gov.il",
+                title: "שורשי עמי", color: "#d97706", icon: "fa-book-open-reader",
+                content: "סל מורשת וזהות יהודית, סיפורי מורשת ועבודת שורשים בשילוב AI.",
+                trainer: "צוות תרבות יהודית", phone: "בתיאום", email: "roots.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/תרבות יהודית ישראלית - 1.jpeg"
             },
             social: {
-                title: "חינוך חברתי", titleAr: "אלתרבייה אלאג'תמאעייה",
-                color: "#db2777", icon: "fa-users-line",
-                content: `<h4 class='font-bold mb-2'>מערך הדרכה הוליסטי:</h4>
-                    <ul class='list-disc pr-6 mb-4'>
-                        <li>בניית תוכנית חברתית שנתית המחוברת ליעדי המחוז.</li>
-                        <li>הטמעת שפה בית ספרית לקידום חוסן ומיומנויות רגשיות-חברתיות.</li>
-                        <li>עידוד יזמות ומנהיגות תלמידים (מסלול 6145).</li>
-                    </ul>`,
-                contentAr: "נז'אם אירשאד שאמל ירכז עלא אלמסאר אלאבתדאא'י אלמעאסר ותעזיז אלקיאדה אלטלאבייה.",
-                trainer: "אופירה הירש קרוסני", trainerAr: "אופירה הירש", phone: "054-7747276", email: "ofirahk@gmail.com",
+                title: "חינוך חברתי", color: "#db2777", icon: "fa-users-line",
+                content: "קידום חוסן ומיומנויות רגשיות-חברתיות ועידוד מנהיגות תלמידים.",
+                trainer: "אופירה הירש קרוסני", phone: "054-7747276", email: "ofirahk@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/חינוך חברתי_ערכי יסודי ממלכתי.pdf"
             },
             hashkafa: {
-                title: "מהלך השקפה", titleAr: "משרוע 'השכאפא'",
-                color: "#7c3aed", icon: "fa-eye",
-                content: `<h4 class='font-bold mb-2'>4 מסלולים מוצעים בגפ"ן:</h4>
-                    <ul class='list-disc pr-6 mb-4'>
-                        <li>01 - השקפה מורות מובילות: קהילות חוקרות פרקטיקה.</li>
-                        <li>02 - מהלך בית ספרי: הטמעת למידה צוותית כתרבות ארגונית.</li>
-                        <li>03 - השקפה ממוקדת שפה: שיפור הישגים באוריינות לשונית.</li>
-                    </ul>`,
-                contentAr: "ח'טווה לתחסין ג'ודה אלתדריס מן ח'לאל ח'לק ת'קאפה תעלם ללמעלמאת.",
-                trainer: "נורית אבידן שרביט", trainerAr: "נורית אבידן", phone: "-", email: "nuritavidav100@gmail.com",
+                title: "מהלך השקפה", color: "#7c3aed", icon: "fa-eye",
+                content: "שיפור איכות ההוראה דרך קהילות חוקרות פרקטיקה ולמידה צוותית.",
+                trainer: "נורית אבידן שרביט", phone: "-", email: "nuritavidav100@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/hashkafa_info.pdf"
             },
             linguistics: {
-                title: "חינוך לשוני", titleAr: "אלתרבייה אללוג'וייה",
-                color: "#16a34a", icon: "fa-language",
-                content: `<h4 class='font-bold mb-2'>6 נתיבי למידה:</h4>
-                    <ul class='list-disc pr-6 mb-4'>
-                        <li>01 "קריאה דיאלוגית" - שיח שוויוני בין מורים לתלמידים.</li>
-                        <li>02 "קריאה מהנה!" - מרחבי למידה חווייתיים.</li>
-                        <li>03 "תלקיט כתיבה" - גישת הערכה תהליכית והוליסטית.</li>
-                    </ul>`,
-                contentAr: "אירשאד יקדם 6 מסאראת תעלם לתעזיז אלקיאראא'ה ואלכתאבה ואללוג'ה.",
-                trainer: "עירית סוויל / לימור עסיס טל", trainerAr: "עירית סוויל", phone: "בתיאום", email: "linguistics.jer@edu.gov.il",
+                title: "חינוך לשוני", color: "#16a34a", icon: "fa-language",
+                content: "קידום אוריינות לשונית, קריאה דיאלוגית ותלקיט כתיבה.",
+                trainer: "עירית סוויל / לימור עסיס טל", phone: "בתיאום", email: "linguistics.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - חינוך לשוני - שפת אם יסודי לימור ועירית.jpeg"
             },
             amirim: {
-                title: "תוכנית אמירים", titleAr: "ברהנאמג' 'אמיריים'",
-                color: "#0891b2", icon: "fa-star",
-                content: "טיפוח תלמידים מחוננים ומצטיינים והטמעת תרבות של מצוינות בתהליכי ההוראה.",
-                contentAr: "ברהנאמג' لריעאייה אלטלאב אלמוהובין ואלמתפוקין.",
-                trainer: "אורלי דהאן", trainerAr: "אורלי דהאן", phone: "054-4332216", email: "-",
+                title: "תוכנית אמירים", color: "#0891b2", icon: "fa-star",
+                content: "טיפוח תלמידים מחוננים ומצטיינים והטמעת תרבות של מצוינות.",
+                trainer: "אורלי דהאן", phone: "054-4332216", email: "-",
                 fileUrl: "data/Files Jerusalem-dr/amirim.pdf"
-            },
-            eval: {
-                title: "מדידה והערכה", titleAr: "אלקיאס ואלתקוים",
-                color: "#db2777", icon: "fa-chart-line",
-                content: "חינוך המבוסס על נתונים מדויקים, שיפור איכות הלמידה וההוראה דרך משוב מקדם והערכה חלופית.",
-                contentAr: `<h4 class='font-bold mb-2'>אלקיאס ואלתקוים:</h4>
-                    <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>תחסין ג'ודה אלתעלום ואלתעליים מן ח'לאל ביאנאת דקיקה.</li>
-                        <li>תחליל נתאא'ג' אלאח'תבאראת אלח'ארג'ייה ואלדאח'לייה.</li>
-                    </ul>`,
-                trainer: "צוות מדידה והערכה", trainerAr: "טאקם אלקיאס ואלתקוים", phone: "בתיאום", email: "eval.jer@edu.gov.il",
-                fileUrl: "data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg"
             }
         };
 
@@ -463,10 +417,10 @@
             if (!config) return;
             isArabicMode = !!config.hasArabic;
             
-            document.getElementById('backToHomeText').innerText = isArabicMode ? "אלעוודה אילא אלספחה אלאסאסייה" : "חזרה לדף הבית";
+            document.getElementById('backToHomeText').innerText = isArabicMode ? "العودة إلى الصفحة الرئيسية" : "חזרה לדף הבית";
             
             const infoTextHe = "מידע למנהל.ת";
-            const infoTextAr = "מעלומאת ללמדיר/ה";
+            const infoTextAr = "معلومات للمدير/ة";
             document.getElementById('blueBoxTitle').innerHTML = infoTextHe + (isArabicMode ? `<br><span class="text-xl md:text-2xl opacity-80">${infoTextAr}</span>` : "");
             
             document.getElementById('mainAppTitle').innerHTML = config.displayTitle;
@@ -476,7 +430,6 @@
             const grid = document.getElementById('subjectsGrid');
             grid.innerHTML = "";
             let keysToShow = config.allowedSubjects || Object.keys(subjectData);
-            if (id === 'east_jer') keysToShow = ['ict', 'math_high', 'math_elem', 'english', 'arabic', 'hebrew', 'science', 'eval', 'social'];
             keysToShow.forEach(key => {
                 const data = subjectData[key];
                 if (!data) return;
@@ -486,10 +439,10 @@
                 </div>`;
             });
             document.getElementById('footerCoordinatorContent').innerHTML = `
-                <h4 class="text-xl mb-4 font-bold opacity-80 text-white">${isArabicMode ? 'מרכזת אלאירשאד / פרטי רכזת ההדרכה' : 'פרטי רכזת ההדרכה'}</h4>
+                <h4 class="text-xl mb-4 font-bold opacity-80 text-white">${isArabicMode ? 'مركزة الإرشاد / פרטי רכזת ההדרכה' : 'פרטי רכזת ההדרכה'}</h4>
                 <p class="text-3xl mb-1 font-extrabold text-[#94d8ff] text-center">${isArabicMode ? config.coordinatorAr : config.coordinator}</p>
                 <p class="text-xl mb-1 font-semibold text-white underline text-center">${config.email}</p>
-                ${config.phone ? `<p class="text-xl font-semibold text-white text-center">${isArabicMode ? 'האתף: ' : 'טלפון: '}${config.phone}</p>` : ''}
+                ${config.phone ? `<p class="text-xl font-semibold text-white text-center">${isArabicMode ? 'هاتف: ' : 'טלפון: '}${config.phone}</p>` : ''}
             `;
             window.scrollTo(0,0);
         }
@@ -506,17 +459,17 @@
             nav.innerHTML = '';
             content.innerHTML = `
                 <h3 class="text-3xl font-extrabold mb-8 text-center" style="color:${data.color}">${isArabicMode ? data.titleAr : data.title}</h3>
-                <div class="mb-10 text-xl text-right leading-relaxed" dir="rtl">${isArabicMode ? data.contentAr : data.content}</div>
+                <div class="mb-10 text-xl text-right leading-relaxed" dir="rtl">${isArabicMode ? (data.contentAr || data.content || "") : (data.content || "")}</div>
                 <div class="contact-box">
-                    <h4 class="font-bold text-xl mb-4 text-[#070543]">${isArabicMode ? 'לכל שאלה מוזמנים.ות לפנות' : 'לכל שאלה מוזמנים.ות לפנות'}</h4>
-                    <p class="text-xl font-extrabold text-center">${isArabicMode ? data.trainerAr : data.trainer}</p>
+                    <h4 class="font-bold text-xl mb-4 text-[#070543]">${isArabicMode ? 'لأي سؤال لا تترددوا في الاتصال' : 'לכל שאלה מוזמנים.ות לפנות'}</h4>
+                    <p class="text-xl font-extrabold text-center">${isArabicMode ? (data.trainerAr || data.trainer) : data.trainer}</p>
                     <p class="text-lg text-center">${data.email}</p>
-                    <p class="text-lg text-center">${isArabicMode ? 'האתף: ' : 'טל: '}${data.phone}</p>
+                    <p class="text-lg text-center">${isArabicMode ? 'هاتف: ' : 'טל: '}${data.phone}</p>
                 </div>
                 <div class="mt-12 flex justify-center no-print">
-                    <a href="${data.fileUrl}" target="_blank" class="view-action-btn shadow-md text-xl">
+                    <a href="${data.fileUrl}" target="_blank" rel="noopener noreferrer" class="view-action-btn shadow-md text-xl">
                         <span class="icon-circle"><i class="fa-solid fa-file-pdf text-xl"></i></span>
-                        <span>${isArabicMode ? 'אלספחת אלמעלומאת' : 'לדף המידע'}</span>
+                        <span>${isArabicMode ? 'عرض بطاقة معلومات البرنامج (PDF)' : 'לדף המידע'}</span>
                         <i class="fa-solid fa-arrow-up-right-from-square text-2xl mr-2"></i>
                     </a>
                 </div>
