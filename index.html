@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מחוז ירושלים והעיר ירושלים - מפת ההדרכה</title>
+    <title>מערך ההדרכה - מחוז ירושלים תשפ"ז</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -55,11 +55,34 @@
             .mobile-subtitle-text { font-size: 1.3rem !important; }
             .category-card { padding: 2rem 1rem; }
         }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: var(--primary-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background-color: var(--accent-purple);
+        }
     </style>
 </head>
 <body class="min-h-screen text-right">
 
-<div style="width: 100%; text-align: center; padding: 20px 0; clear: both; display: block;">
+<div id="top" style="width: 100%; text-align: center; padding: 20px 0; clear: both; display: block;">
     <img src="assets/logo.png" alt="Jerusalem District Logo" style="max-height: 130px; width: auto; display: block; margin: 0 auto;">
 </div>
 
@@ -87,7 +110,6 @@
             </div>
         </section>
 
-        <!-- Districts moved here, before the rates section -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
             <a href="pages/jerusalem_district.html" class="category-card">
                 <i class="fa-solid fa-map-location-dot text-5xl mb-5 text-[#460c91]"></i>
@@ -168,5 +190,9 @@
             <p class="text-lg md:text-xl opacity-90 text-white mt-2">לבנת, עדי וארווה</p>
         </footer>
     </main>
+
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
+    </div>
 </body>
 </html>

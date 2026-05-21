@@ -20,21 +20,24 @@
         
         .card { 
             border-radius: 12px; 
-            padding: 20px 15px !important; 
+            padding: 25px 15px !important; 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
             transition: transform 0.2s, box-shadow 0.2s; 
             text-align: center; 
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            min-height: 140px;
+            align-items: center;
+            justify-content: center;
+            min-height: 160px;
             cursor: pointer;
             border: 1px solid #e2e8f0;
         }
         
         .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
         
-        .card h2 { font-size: 20px !important; font-weight: 800; margin-bottom: 15px; line-height: 1.4; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .card .icon-wrapper { font-size: 2.5rem; margin-bottom: 15px; }
+        .card h2 { font-size: 1.2rem !important; font-weight: 800; margin-bottom: 8px; line-height: 1.4; }
+        .card .click-info { font-size: 0.95rem; font-weight: 700; color: #070543; opacity: 0.8; }
 
         /* 12-Tone Soft Pastel Sequence */
         .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border-color: #FFCDD2 !important; }
@@ -50,7 +53,7 @@
         .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border-color: #B2DFDB !important; }
         .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border-color: #CFD8DC !important; }
 
-        .btn { background-color: #070543; color: white !important; padding: 8px 15px !important; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 15px !important; transition: background 0.3s; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
+        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
         .btn-view { background-color: #070543; color: white !important; }
         .btn-view:hover { background-color: #460c91; transform: scale(1.05); }
         .btn-download { background-color: #ffffff; color: #070543 !important; border: 2px solid #070543; }
@@ -69,6 +72,29 @@
         .highlight-list li { position: relative; padding-right: 35px; margin-bottom: 15px; font-size: 1.1rem; color: #475569; }
         .highlight-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 0; color: #0d9488; }
 
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background-color: #070543;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background-color: #460c91;
+        }
+
         @media (max-width: 480px) { .grid { grid-template-columns: 1fr !important; } }
     </style>
 </head>
@@ -85,17 +111,17 @@
 
         <div class="grid-container">
             <div class="grid">
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/flyer- English.pdf')" data-summary="تطوير مهارات اللغة الإنجليزية لدى الطلاب، بما يشمل الفهم القرائي، التعبير الكتابي، والمحادثة." data-goals="تمكين المعلمين وتعزيز أساليب التدريس الفعالة|دعم الصفوف غير המתג'אנסה وتخطيط حصص تعليمية|تطوير مهارات التفاعل والوساطة"><h2>🔠 لغة إنجليزية</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf')" data-summary="تحسين جودة التدريس والتعلم في الرياضيات للمرحلة الابتدائية." data-goals="بناء خطة عمل مدرسية شاملة لرفع التحصيل العلمي|تطوير التفكير الإبداعي والناقد لدى المعلم والطالب|الاستعداد للتقييمات وامتحانات النجاعة"><h2>📐 رياضيات</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg')" data-summary="تحسين جودة التعلم والتعليم من خلال بيانات دقيقة." data-goals="تحليل نتائج الاختبارات الخارجية والداخلية|بناء أدوات تقييم مدرسية فعالة|تحسين جودة التدريس بناءً על البيانات"><h2>📊 القياس والتقييم</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת ערבית.pdf')" data-summary="تطوير جودة تدريس اللغة العربية وتعزيز الفهم القرائي." data-goals="تشخيص مستويات الأداء وتخطيط خطط علاجية|تطوير مهارات الفهم والإنتاج اللغوي|الاستثمار في جودة التعليم من خلال تطوير المهارات"><h2>🕌 لغة عربية</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf')" data-summary="تعزيز اللغة العبرية كأداة للنجاح للطلاب الذين يتحدثون العربية." data-goals="تحسين مهارات القراءة والكتابة والمحادثة|التحضير لامتحانات الميفمار والنهائية|تعزيز الطلاقة اللغوية في الحياة اليومية"><h2>✍️ لغة عبرية للناطقين بالعربية</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מדעים العلوم.pdf')" data-summary="التعرف على العالم من خلال البحث والتجربة العلمية." data-goals="دمج الذكاء الاصطناعي ومنهجية STEM في العلوم|التعلم التجريبي والمختبرات وتنمية مهارات البحث|تطوير مهارات التفكير العلمي والناقد"><h2>🔬 علوم</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg')" data-summary="تذويت برنامج الحوسبة والتعلم المدمج رقمياً." data-goals="الذكاء الاصطناعي والابتكار في العملية التعليمية|مرافقة المدارس في برنامج 'القفزة الرقمية'|تطوير مهارات المعلمين التكنو-بيداغوجية"><h2>💻 حوسبة وتكنولوجيا</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg')" data-summary="نظام إرشاد شامل يركز على القيادة الطلابية والعمل الجماعي." data-goals="تعزيز القيم المجتمعية والمسؤولية|تطوير مهارات القيادة لدى الطلاب|بناء جسور بين المدرسة والمجتمع"><h2>🫂 تربية اجتماعية وجماهيرية</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg')" data-summary="تعزيز الأجواء المدرسية الإيجابية والقيم الاجتماعية." data-goals="تذويت لغة مدرسية لتعزيز الحصانة ومهارات SEL|بناء خطة اجتماعية سنوية تتماشى مع الأهداف|تعزيز الانتماء والقيم الإنسانية"><h2>🫂 تربية اجتماعية وقيمية - SEL</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הכלה והשתלבות (1).pdf')" data-summary="توفير الدعم التعليمي والاجتماعي للطلاب ذوي الاحتياجات الخاصة." data-goals="الإرشاد حول الملاءمات التعليمية وطرق التدريس|مرافقة الطواقم في العمل مع الطلاب المدمجين|تطوير مهارات احتواء الفروق الفردية"><h2>🤝 الاحتواء والدمج</h2><button class="btn">اضغط للتفاصيل</button></div>
-                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf')" data-summary="برنامج وطني شامل لتحسين جودة التدريس والتعلم، من خلال خلق ثقافة تعليمية مثلى للمعلمين." data-goals="تطوير مهني داخل المدرسة في مجتمعات الممارسة|تذويت التعلم الجماعي كثقافة تنظيمية|تعزيز الاحتواء والانتماء في المدرسة"><h2>👁️ استشراف (هشكافا)</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/flyer- English.pdf')" data-summary="تطوير مهارات اللغة الإنجليزية لدى الطلاب، بما يشمل الفهم القرائي، التعبير الكتابي، والمحادثة." data-goals="تمكين المعلمين وتعزيز أساليب التدريس الفعالة|دعم الصفوف غير المتجانسة وتخطيط حصص تعليمية|تطوير مهارات التفاعل والوساطة"><div class="icon-wrapper">🔠</div><h2>لغة إنجليزية</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf')" data-summary="تحسين جودة التدريس والتعلم في الرياضيات للمرحلة الابتدائية." data-goals="بناء خطة عمل مدرسية شاملة لرفع التحصيل العلمي|تطوير التفكير الإبداعي والناقد لدى المعلم والطالب|الاستعداد للتقييمات وامتحانات النجاعة"><div class="icon-wrapper">📐</div><h2>رياضيات</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg')" data-summary="تحسين جودة التعلم والتعليم من خلال بيانات دقيقة." data-goals="تحليل نتائج الاختبارات الخارجية والداخلية|بناء أدوات تقييم مدرسية فعالة|تحسين جودة التدريس بناءً على البيانات"><div class="icon-wrapper">📊</div><h2>القياس والتقييم</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת ערבית.pdf')" data-summary="تطوير جودة تدريس اللغة العربية وتعزيز الفهم القرائي." data-goals="تشخيص مستويات الأداء وتخطيط خطط علاجية|تطوير مهارات الفهم والإنتاج اللغوي|الاستثمار في جودة التعليم من خلال تطوير المهارات"><div class="icon-wrapper">🕌</div><h2>لغة عربية</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf')" data-summary="تعزيز اللغة العبرية كأداة للنجاح للطلاب الذين يتحدثون العربية." data-goals="تحسين مهارات القراءة والكتابة والمحادثة|التحضير لامتحانات الميفمار والنهائية|تعزيز الطلاقة اللغوية في الحياة اليومية"><div class="icon-wrapper">✍️</div><h2>لغة عبرية للناطقين بالعربية</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מדעים العلوم.pdf')" data-summary="التعرف على العالم من خلال البحث والتجربة العلمية." data-goals="دمك الذكاء الاصطناعي ومنهجية STEM في العلوم|التعلم التجريبي والمختبرات وتنمية مهارات البحث|تطوير مهارات التفكير العلمي والناقد"><div class="icon-wrapper">🔬</div><h2>علوم</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg')" data-summary="تذويت برنامج الحوسبة والتعلم المدمج رقمياً." data-goals="الذكاء الاصطناعي والابتكار في العملية التعليمية|مرافقة المدارس في برنامج 'القفزة الرقمية'|تطوير مهارات المعلمين التكنو-بيداغوجية"><div class="icon-wrapper">💻</div><h2>حوسبة وتكنولوجيا</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg')" data-summary="نظام إرشاد شامل يركز على القيادة الطلابية والعمل الجماعي." data-goals="تعزيز القيم المجتمعية والمسؤولية|تطوير مهارات القيادة لدى الطلاب|بناء جسور بين المدرسة والمجتمع"><div class="icon-wrapper">🫂</div><h2>تربية اجتماعية وجماهيرية</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg')" data-summary="تعزيز الأجواء المدرسية الإيجابية والقيم الاجتماعية." data-goals="تذويت لغة مدرسية لتعزيز الحصانة ومهارات SEL|بناء خطة اجتماعية سنوية تتماشى مع الأهداف|تعزيز الانتماء والقيم الإنسانية"><div class="icon-wrapper">🫂</div><h2>تربية اجتماعية وقيمية - SEL</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הכלה והשתלבות (1).pdf')" data-summary="توفير الدعم التعليمي والاجتماعي للطلاب ذوي الاحتياجات الخاصة." data-goals="الإرشاد حول الملاءمات التعليمية وطرق التدريس|مرافقة الطواقم في العمل مع الطلاب المدمجين|تطوير مهارات احتواء الفروق الفردية"><div class="icon-wrapper">🤝</div><h2>الاحتواء والدمج</h2><div class="click-info">اضغط للتفاصيل</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf')" data-summary="برنامج وطني شامل لتحسين جودة التدريس والتعلم، من خلال خلق ثقافة تعليمية مثلى للمعلمين." data-goals="تطوير مهني داخل المدرسة في مجتمعات الممارسة|تذويت التعلم الجماعي كثقافة تنظيمية|تعزيز الاحتواء والانتماء في المدرسة"><div class="icon-wrapper">👁️</div><h2>استشراف (هشكافا)</h2><div class="click-info">اضغط للتفاصيل</div></div>
             </div>
         </div>
 
@@ -128,6 +154,10 @@
                 <a id="downloadBtn" href="#" download class="btn btn-download"><i class="fa-solid fa-download"></i> تحميل الملف</a>
             </div>
         </div>
+    </div>
+
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
     </div>
 
     <script>
