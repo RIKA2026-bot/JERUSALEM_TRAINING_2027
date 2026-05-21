@@ -9,72 +9,89 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; color: #070543; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 40px; }
-        /* Custom Gentle Pastel Palette for Resource Cards */
-        .grid .card {
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-align: center;
-            display: block;
-            /* Remove any static top border */
-            border-top: none !important; 
+        .grid-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 40px 0; }
+        
+        .card { 
+            border-radius: 12px; 
+            padding: 20px; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            text-align: center; 
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
         }
+        
+        .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
+        
+        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 15px; line-height: 1.4; }
 
-        .grid .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        }
+        /* 12-Tone Soft Pastel Sequence */
+        .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border: 1px solid #FFCDD2 !important; }
+        .grid .card:nth-child(12n+2) { background-color: #E3F2FD !important; border: 1px solid #BBDEFB !important; }
+        .grid .card:nth-child(12n+3) { background-color: #E8F5E9 !important; border: 1px solid #C8E6C9 !important; }
+        .grid .card:nth-child(12n+4) { background-color: #F3E5F5 !important; border: 1px solid #E1BEE7 !important; }
+        .grid .card:nth-child(12n+5) { background-color: #FFF3E0 !important; border: 1px solid #FFE0B2 !important; }
+        .grid .card:nth-child(12n+6) { background-color: #E0F7FA !important; border: 1px solid #B2EBF2 !important; }
+        .grid .card:nth-child(12n+7) { background-color: #FFFDE7 !important; border: 1px solid #FFF9C4 !important; }
+        .grid .card:nth-child(12n+8) { background-color: #FCE4EC !important; border: 1px solid #F8BBD0 !important; }
+        .grid .card:nth-child(12n+9) { background-color: #F1F8E9 !important; border: 1px solid #DCEDC8 !important; }
+        .grid .card:nth-child(12n+10) { background-color: #FFF8E1 !important; border: 1px solid #FFECB3 !important; }
+        .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border: 1px solid #B2DFDB !important; }
+        .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border: 1px solid #CFD8DC !important; }
 
-        /* 12-Tone Soft Pastel Sequence with Subtle Outlines */
-        .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border: 1px solid #FFCDD2 !important; }   /* Soft Rose */
-        .grid .card:nth-child(12n+2) { background-color: #E3F2FD !important; border: 1px solid #BBDEFB !important; }   /* Light Sky Blue */
-        .grid .card:nth-child(12n+3) { background-color: #E8F5E9 !important; border: 1px solid #C8E6C9 !important; }   /* Mint/Soft Green */
-        .grid .card:nth-child(12n+4) { background-color: #F3E5F5 !important; border: 1px solid #E1BEE7 !important; }   /* Pale Lavender */
-        .grid .card:nth-child(12n+5) { background-color: #FFF3E0 !important; border: 1px solid #FFE0B2 !important; }   /* Gentle Peach */
-        .grid .card:nth-child(12n+6) { background-color: #E0F7FA !important; border: 1px solid #B2EBF2 !important; }   /* Soft Cyan */
-        .grid .card:nth-child(12n+7) { background-color: #FFFDE7 !important; border: 1px solid #FFF9C4 !important; }   /* Delicate Cream */
-        .grid .card:nth-child(12n+8) { background-color: #FCE4EC !important; border: 1px solid #F8BBD0 !important; }   /* Light Coral Pink */
-        .grid .card:nth-child(12n+9) { background-color: #F1F8E9 !important; border: 1px solid #DCEDC8 !important; }   /* Soft Lime */
-        .grid .card:nth-child(12n+10) { background-color: #FFF8E1 !important; border: 1px solid #FFECB3 !important; }  /* Light Amber */
-        .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border: 1px solid #B2DFDB !important; }  /* Pale Teal */
-        .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border: 1px solid #CFD8DC !important; }  /* Soft Slate Grey */
-
-        .card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; height: 3.5rem; display: flex; align-items: center; justify-content: center; }
-        .btn { background-color: #070543; color: white !important; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-block; transition: background 0.3s; }
+        .btn { background-color: #070543; color: white !important; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 0.9rem; transition: background 0.3s; }
         .btn:hover { background-color: #460c91; }
+        
         .header { background: white; padding: 30px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .footer { background: #070543; color: white; padding: 40px; text-align: center; margin-top: 40px; border-top: 4px solid #94d8ff; }
         .back-link { display: inline-block; margin-top: 20px; color: #070543; font-weight: 700; text-decoration: none; }
+
+        @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
+    <div style="width: 100%; text-align: center; padding: 20px 0; clear: both; display: block;">
+        <img src="../assets/logo.png" alt="Logo" style="max-height: 100px; display: block; margin: 0 auto;">
+    </div>
+
     <div class="header">
-        <img src="../assets/logo.png" alt="Logo" style="max-height: 100px; margin-bottom: 20px;">
         <h1 class="text-3xl font-extrabold">הדרכה העיר ירושלים (מערב)</h1>
-        <p class="text-xl font-bold mt-2">רכזת הדרכה: לבנת גלמן</p>
         <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לדף הבית</a>
     </div>
 
-    <div class="grid">
-        <div class="card"><h2>תקשוב</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>מתמטיקה יסודי</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה יסודי -.jpg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>מתמטיקה על יסודי</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה על יסודי -.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>אנגלית</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - אנגלית.mp4" target="_blank" class="btn">צפה בסרטון (MP4)</a></div>
-        <div class="card"><h2>מדע וטכנולוגיה יסודי</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - הדרכת מדע וטכנולוגיה יסודי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>מדע וטכנולוגיה חטיבות ביניים</h2><a href="../data/Files Jerusalem-dr/מדע וטכנולוגיה חטיבות ביניים - העיר ירושלים.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>חינוך לשוני</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - חינוך לשוני - שפת אם יסודי לימור ועירית.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>חינוך חברתי ערכי</h2><a href="../data/Files Jerusalem-dr/חינוך חברתי_ערכי יסודי ממלכתי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>חינוך חברתי ערכי חמד</h2><a href="../data/Files Jerusalem-dr/חברתי ערכי יסודי חמד - עינב שרגא.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>הכלה והשתלבות יסודי</h2><a href="../data/Files Jerusalem-dr/הכלה יסודי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>הכלה והשתלבות על יסודי</h2><a href="../data/Files Jerusalem-dr/על יסודי מעני הכלה אלה.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>מהלך השקפה</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים מהלך השקפה.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>תוכנית אמירים</h2><a href="../data/Files Jerusalem-dr/amirim.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>תרבות יהודית ישראלית</h2><a href="../data/Files Jerusalem-dr/תרבות יהודית ישראלית - 1.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>תנ"ך חמד</h2><a href="../data/Files Jerusalem-dr/תנך חמד העיר ירושלים מעודכן.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>הדרכות שפי</h2><a href="../data/Files Jerusalem-dr/הדרכות שפי בגפן.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>הדרכת עלמא</h2><a href="../data/Files Jerusalem-dr/הדרכת עלמא לשנת הלימודים תשפז.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
-        <div class="card"><h2>ברושור ריסטארט</h2><a href="../data/Files Jerusalem-dr/ברושור ריסטארט תשפז.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+    <div class="grid-container">
+        <div class="grid">
+            <div class="card"><h2>תקשוב</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>מתמטיקה יסודי</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה יסודי -.jpg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>מתמטיקה על יסודי</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה על יסודי -.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>אנגלית</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - אנגלית.mp4" target="_blank" class="btn">צפה בסרטון (MP4)</a></div>
+            <div class="card"><h2>מדע וטכנולוגיה יסודי</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - הדרכת מדע וטכנולוגיה יסודי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>מדע וטכנולוגיה חטיבות ביניים</h2><a href="../data/Files Jerusalem-dr/מדע וטכנולוגיה חטיבות ביניים - העיר ירושלים.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>חינוך לשוני</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים - חינוך לשוני - שפת אם יסודי לימור ועירית.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>חינוך חברתי ערכי</h2><a href="../data/Files Jerusalem-dr/חינוך חברתי_ערכי יסודי ממלכתי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>חינוך חברתי ערכי חמד</h2><a href="../data/Files Jerusalem-dr/חברתי ערכי יסודי חמד - עינב שרגא.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>הכלה והשתלבות יסודי</h2><a href="../data/Files Jerusalem-dr/הכלה יסודי.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>הכלה והשתלבות על יסודי</h2><a href="../data/Files Jerusalem-dr/על יסודי מעני הכלה אלה.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>מהלך השקפה</h2><a href="../data/Files Jerusalem-dr/העיר ירושלים מהלך השקפה.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>תוכנית אמירים</h2><a href="../data/Files Jerusalem-dr/amirim.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>תרבות יהודית ישראלית</h2><a href="../data/Files Jerusalem-dr/תרבות יהודית ישראלית - 1.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>תנ"ך חמד</h2><a href="../data/Files Jerusalem-dr/תנך חמד העיר ירושלים מעודכן.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>הדרכות שפי</h2><a href="../data/Files Jerusalem-dr/הדרכות שפי בגפן.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>הדרכת עלמא</h2><a href="../data/Files Jerusalem-dr/הדרכת עלמא לשנת הלימודים תשפז.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+            <div class="card"><h2>ברושור ריסטארט</h2><a href="../data/Files Jerusalem-dr/ברושור ריסטארט תשפז.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        </div>
     </div>
+
+    <footer class="footer">
+        <p class="text-2xl font-bold mb-4">לשאלות והתייעצות מוזמנים ליצור קשר:</p>
+        <p class="text-3xl font-extrabold text-[#94d8ff] mb-2">לבנת גלמן</p>
+        <p class="text-xl">טל: 050-6283520</p>
+        <p class="text-xl">מייל: livnatgel@education.gov.il</p>
+    </footer>
 </body>
 </html>
