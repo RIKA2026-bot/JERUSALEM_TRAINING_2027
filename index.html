@@ -119,6 +119,20 @@
         .preview-img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .preview-iframe { width: 100%; height: 100%; border: none; }
 
+        /* Dynamic PDF Modal Sizing */
+        .pdf-modal-container {
+            max-width: 95vw !important; /* 95% of the viewport width */
+            width: 1200px !important;
+            margin: 2vh auto !important; /* Center with slight top margin */
+        }
+
+        .pdf-modal-iframe {
+            width: 100% !important;
+            height: 85vh !important; /* 85% of the viewport height */
+            border: none;
+            display: block;
+        }
+
         @media (max-width: 640px) {
             .mobile-header-text { font-size: 1.6rem !important; line-height: 1.2; }
             .mobile-subtitle-text { font-size: 1.3rem !important; }
@@ -258,7 +272,7 @@
     </main>
 
     <div id="infoModal" class="modal items-center justify-center p-4" onclick="closeModal()">
-        <div class="modal-wrapper bg-white rounded-2xl max-w-4xl w-full p-8 md:p-14 relative brand-shadow overflow-y-auto max-h-[95vh]" onclick="event.stopPropagation()">
+        <div id="modalWrapper" class="modal-wrapper bg-white rounded-2xl max-w-4xl w-full p-8 md:p-14 relative brand-shadow overflow-y-auto max-h-[95vh]" onclick="event.stopPropagation()">
             <div class="flex justify-between items-center mb-6 no-print text-center">
                 <button onclick="closeModal()" class="text-gray-400 hover:text-[#070543]"><i class="fa-solid fa-xmark text-3xl"></i></button>
                 <div id="modalNavigation" class="flex gap-4"></div>
@@ -289,7 +303,7 @@
 
         const subjectData = {
             ict: {
-                title: "תקשוב ולמידה משולבת דיגיטל", titleAr: "تعزيز التعلم التكنو-بيداغوجي",
+                title: "תקשוב ולמידה משולבת דיגיטל", titleAr: "تعزيز التعلم التكنו-בيداغוגي",
                 color: "#0d9488", icon: "fa-laptop-code",
                 content: `<h4 class='font-bold mb-2'>שדרוג הפדגוגיה הבית-ספרית:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -297,17 +311,17 @@
                         <li>למידה חווייתית דרך מיזמים מחוזיים: "מגלים אוצרות", "הקול שבשיר".</li>
                         <li>ליווי בתוכנית "זינוק דיגיטלי" וקוד ורובוטיקה.</li>
                     </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>تعزيز التعلم التكنו-بيداغוגي:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>تعزيز التعلم التكنו-בيداغוגي:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>تذويت برنامج الحוסבה والتعلم המدمג رقميًا (Google Classroom).</li>
-                        <li>الذكاء الاصטנאעי والابتكار في العملية التعليمية.</li>
-                        <li>مرافقة המדארס في برنامج "القفزة الرقمية" (זינוק דיגיטלי).</li>
+                        <li>תזווית ברהנאמג' אלחוסבה ואלתעלום אלמודמדג' רקמייאן (Google Classroom).</li>
+                        <li>אלד'כאא' אלאסחטנאעיי ואלאבתכאר פי אלעמלייה אלתעלמייה.</li>
+                        <li>מראפקה אלמדארס פי ברהנאמג' "אלקפזה אלרקמייה" (זינוק דיגיטלי).</li>
                     </ul>`,
-                trainer: "אתי רוזן / צוות תקשוב מחוזי", trainerAr: "إيتي / טאقم إرشاد الحוסבה", phone: "050-2643132", email: "ict.jer@edu.gov.il",
+                trainer: "אתי רוזן / צוות תקשוב מחוזי", trainerAr: "إيتي / טאקם אירשאד אלחוסבה", phone: "050-2643132", email: "ict.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf"
             },
             math_high: {
-                title: "מתמטיקה לעל יסודי", titleAr: "إרشاد الرياضيات (فوق ابتدائي)",
+                title: "מתמטיקה לעל יסודי", titleAr: "אירשאד אלריאד'ייאת (פוק אבתדאא'י)",
                 color: "#2563eb", icon: "fa-calculator",
                 content: `<h4 class='font-bold mb-2'>הדרכה שמצמיחה הצלחות:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -315,25 +329,25 @@
                         <li>הוראה להבנה - יצירת רצף שש-שנתי מהיסודי ועד תיכון.</li>
                         <li>צוות מקצועי - עדכון תוכנית הלימודים ויישום בטוח.</li>
                     </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>إرشاد الرياضيات للمرحلة فوق الابتدائية:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>אירשאד אלריאד'ייאת ללמרהלה פוק אלאבתדאא'ייה:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>بناء خطة عمل مدرسية شاملة لرفع التحصيل العلمي.</li>
-                        <li>تطوير التفكير الإبداعي والناقد لدى المعلم والطالب.</li>
-                        <li>الاستعداد لتقיימאת רמה وامتحانات البגרואת.</li>
+                        <li>בנאא' ח'טה עמל מדראסייה שאמלה לרפע אלתחסיאל אלעלמיי.</li>
+                        <li>תטויר אלתפכיר אלאבדאעיי ואלנאקד לדא אלמעלם ואלטאלב.</li>
+                        <li>אלאסתעדאד לתקימאת ראמה ואמתחאנאת אלבג'רואת.</li>
                     </ul>`,
                 trainer: "איילת קריספין", trainerAr: "איילת קריספין", phone: "050-2721656", email: "ayeletk59@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה על יסודי -.pdf"
             },
             math_elem: {
-                title: "מתמטיקה ליסודי", titleAr: "إرشاد الرياضيات للمرحلة الابتدائية",
+                title: "מתמטיקה ליסודי", titleAr: "אירשאד אלריאד'ייאת ללמרהלה אלאבתדאא'ייה",
                 color: "#4f46e5", icon: "fa-abacus",
                 content: "פיתוח מנהיגות ביניים לרכזים, הטמעת יעדי המחוז, צמצום פערים ושילוב SEL להפחתת חרדת מתמטיקה.",
-                contentAr: "تحسين جودة التدريس والتعلم في الرياضيات للمرحلة الابتدائية.",
+                contentAr: "תחסין ג'ודה אלתדריס ואלתעלום פי אלריאד'ייאת ללמרהלה אלאבתדאא'ייה.",
                 trainer: "תמי רזזוג / אור בן חמו", trainerAr: "תמי רזזוק / אור בן חמו", phone: "בתיאום", email: "math.elem@jerusalem.edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - מתמטיקה יסודי -.jpg"
             },
             english: {
-                title: "אנגלית", titleAr: "إرشاد اللغة الإنجليزية",
+                title: "אנגלית", titleAr: "אירשאד אללוג'ה אלאנג'ליזייה",
                 color: "#3b82f6", icon: "fa-language",
                 content: `<h4 class='font-bold mb-2'>Empowering Teachers:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -341,17 +355,17 @@
                         <li>תמיכה בכיתות הטרוגניות ומענים לשונות.</li>
                         <li>ליווי צמוד של צוות מדריכות מיומן (דועא, רנא וננסי).</li>
                     </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>إרشاد اللغة الإنجليزية:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>אירשאד אללוג'ה אלאנג'ליזייה:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>تمكين المعلمين وتعزيز أساليب التدريس الفعالة.</li>
-                        <li>دعم الصفوف غير المتجانسة وتخطيط حصص تعليمية.</li>
-                        <li>تطوير مهارات التفاعل والוסאטה.</li>
+                        <li>תמכין אלמעלמין ותעזיז אסאליב אלתדריס אלפעאלה.</li>
+                        <li>דעם אלספוף ג'יר אלמתג'אנסה ותכנון חסס תעלמייה.</li>
+                        <li>תטויר מיומנויות אלתפאעל ואלוסאטה.</li>
                     </ul>`,
                 trainer: "דועא, רנא וננסי | מפקחת: סימון דובל", trainerAr: "דועא, רנא, ננסי", phone: "054-5738086", email: "english.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-east/flyer- English.pdf"
             },
             science: {
-                title: "מדע וטכנולוגיה ליסודי", titleAr: "إرشاد العلوم والتكنولوجيا",
+                title: "מדע וטכנולוגיה ליסודי", titleAr: "אירשאד אלעלום ואלתכנולוג'יא",
                 color: "#ea580c", icon: "fa-flask",
                 content: `<h4 class='font-bold mb-2'>הדרכה המייצרת שינוי:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -359,40 +373,40 @@
                         <li>פיתוח מיומנויות חקר, חשיבה ביקורתית ואוריינות מדעית.</li>
                         <li>שיעורי מודלינג ושילוב STEM.</li>
                     </ul>`,
-                contentAr: `<h4 class='font-bold mb-2'>إرشاد العلوم والتكنولوجيا:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>אירשאד אלעלום ואלתכנולוג'יא:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>دمج الذكاء الاصطناعي ومنهجية STEM في العلوم.</li>
-                        <li>التعلم التجريبي والمختברות وتنمية مهارات البحث.</li>
+                        <li>דמדג' אלד'כאא' אלאסחטנאעיי ומנהג'ייה STEM פי אלעלום.</li>
+                        <li>אלתעלום אלתג'ריביי ואלמחתברות ותנמייה מיומנויות אלבחת'.</li>
                     </ul>`,
                 trainer: "מיכל כפיר הורביץ", trainerAr: "שרי רקובר / סנא אבו יוסף", phone: "054-7558717", email: "michalkfir100@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - הדרכת מדע וטכנולוגיה יסודי.pdf"
             },
             hebrew: {
-                title: "עברית (שפה שנייה)", titleAr: "إרشاد اللغة العبرية (לغة ثانية)",
+                title: "עברית (שפה שנייה)", titleAr: "אירשאד אללוג'ה אלעברייה (לוג'ה תאנייה)",
                 color: "#16a34a", icon: "fa-language",
                 content: "חיזוק השפה העברית ככלי להצלחה, שיפור שטף הקריאה והדיבור, והכנה למבחני מפמ\"ר.",
-                contentAr: `<h4 class='font-bold mb-2'>إرشاد اللغة العبرية:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>אירשאד אללוג'ה אלעברייה:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>تعزيز اللغة العبرية ככלי ללהצלחה לסטודנטים המדברים ערבית.</li>
-                        <li>تحسين مهارات הקריאה, הכתיבה והשיחה والتحضير למבחני מפמ"ר.</li>
+                        <li>תעזיז אללוג'ה אלעברייה ככלי ללנג'אח ללטלאב אלד'ין יתחדת'ון אלערבייה.</li>
+                        <li>תחסין מיומנויות אלקיארה, אלכתאבה ואלמחאדדת'ה ואלתחדיר ללמפמ"ר.</li>
                     </ul>`,
-                trainer: "צוות עברית מחוזי", trainerAr: "טאقم إרشاد اللغة العبرية", phone: "בתיאום", email: "hebrew.jer@edu.gov.il",
+                trainer: "צוות עברית מחוזי", trainerAr: "טאקם אירשאד אללוג'ה אלעברייה", phone: "בתיאום", email: "hebrew.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf"
             },
             arabic: {
-                title: "ערבית (שפת אם)", titleAr: "إرشاد اللغة العربية (לغة الأم)",
+                title: "ערבית (שפת אם)", titleAr: "אירשאד אללוג'ה אלערבייה (לוג'ת אלאם)",
                 color: "#7c3aed", icon: "fa-book-open",
                 content: "פיתוח מיומנויות הבנה והבעה, השקעה באיכות החינוך דרך פיתוח מיומנויות.",
-                contentAr: `<h4 class='font-bold mb-2'>إرشاد اللغة العربية:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>אירשאד אללוג'ה אלערבייה:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>تطوير جودة تدريس اللغة العربية وتعزيز الفهم القرائي.</li>
-                        <li>تشخيص مستويات האדאא ותכנון תוכניות علاجية مبنية على البيانات.</li>
+                        <li>תטויר ג'ודה תדריס אללוג'ה אלערבייה ותעזיז אלפהם אלקיאראא'י.</li>
+                        <li>תשח'יס מסתויאת אלאדאא' ותכנון תוכניות עלאג'ייה מבינייה עלא אלביאנאת.</li>
                     </ul>`,
                 trainer: "אמל כנעאן", trainerAr: "אמל כנעאן / מונתסר צידאוי", phone: "בתיאום", email: "aml.kn82@gmail.com",
                 fileUrl: "data/Files Jerusalem-east/הדרכת ערבית.pdf"
             },
             roots: {
-                title: "שורשי עמי", titleAr: "جذور شعبي",
+                title: "שורשי עמי", titleAr: "ג'ד'ור שעבי",
                 color: "#d97706", icon: "fa-book-open-reader",
                 content: `<h4 class='font-bold mb-2'>"היהדות של כולנו" - סל מורשת וזהות יהודית 4%:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -400,12 +414,12 @@
                         <li>גינת שבעת המינים - חיבור לעבודת אדמה (58115).</li>
                         <li>סיפורי מורשת ועבודת שורשים בשילוב AI (58140).</li>
                     </ul>`,
-                contentAr: "היכרות עם המורשת והזהות היהודית הישראלית דרך תוכניות העשרה.",
-                trainer: "צוות תרבות יהודית", trainerAr: "טאقم إרشاد الثقافة اليهودية", phone: "בתיאום", email: "roots.jer@edu.gov.il",
+                contentAr: "אלתערף עלא אלתראת' ואלהוייה אליהודייה אלאסראא'ילייה מן ח'לאל בראמג' אית'ראא'ייה.",
+                trainer: "צוות תרבות יהודית", trainerAr: "טאקם אירשאד אלת'קאפה אליהודייה", phone: "בתיאום", email: "roots.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/תרבות יהודית ישראלית - 1.jpeg"
             },
             social: {
-                title: "חינוך חברתי", titleAr: "التربية الاجتماعية",
+                title: "חינוך חברתי", titleAr: "אלתרבייה אלאג'תמאעייה",
                 color: "#db2777", icon: "fa-users-line",
                 content: `<h4 class='font-bold mb-2'>מערך הדרכה הוליסטי:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -413,12 +427,12 @@
                         <li>הטמעת שפה בית ספרית לקידום חוסן ומיומנויות רגשיות-חברתיות.</li>
                         <li>עידוד יזמות ומנהיגות תלמידים (מסלול 6145).</li>
                     </ul>`,
-                contentAr: "מערך הדרכה מקיף המתמקד במסלול היסודי המודרני וקידום מנהיגות תלמידים.",
+                contentAr: "נז'אם אירשאד שאמל ירכז עלא אלמסאר אלאבתדאא'י אלמעאסר ותעזיז אלקיאדה אלטלאבייה.",
                 trainer: "אופירה הירש קרוסני", trainerAr: "אופירה הירש", phone: "054-7747276", email: "ofirahk@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/חינוך חברתי_ערכי יסודי ממלכתי.pdf"
             },
             hashkafa: {
-                title: "מהלך השקפה", titleAr: "مشروع 'هش كافا'",
+                title: "מהלך השקפה", titleAr: "משרוע 'השכאפא'",
                 color: "#7c3aed", icon: "fa-eye",
                 content: `<h4 class='font-bold mb-2'>4 מסלולים מוצעים בגפ"ן:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -426,12 +440,12 @@
                         <li>02 - מהלך בית ספרי: הטמעת למידה צוותית כתרבות ארגונית.</li>
                         <li>03 - השקפה ממוקדת שפה: שיפור הישגים באוריינות לשונית.</li>
                     </ul>`,
-                contentAr: "צעד לשיפור איכות ההוראה דרך יצירת תרבות למידה למורות.",
+                contentAr: "ח'טווה לתחסין ג'ודה אלתדריס מן ח'לאל ח'לק ת'קאפה תעלם ללמעלמאת.",
                 trainer: "נורית אבידן שרביט", trainerAr: "נורית אבידן", phone: "-", email: "nuritavidav100@gmail.com",
                 fileUrl: "data/Files Jerusalem-dr/hashkafa_info.pdf"
             },
             linguistics: {
-                title: "חינוך לשוני", titleAr: "التربية اللغوية",
+                title: "חינוך לשוני", titleAr: "אלתרבייה אללוג'וייה",
                 color: "#16a34a", icon: "fa-language",
                 content: `<h4 class='font-bold mb-2'>6 נתיבי למידה:</h4>
                     <ul class='list-disc pr-6 mb-4'>
@@ -439,28 +453,28 @@
                         <li>02 "קריאה מהנה!" - מרחבי למידה חווייתיים.</li>
                         <li>03 "תלקיט כתיבה" - גישת הערכה תהליכית והוליסטית.</li>
                     </ul>`,
-                contentAr: "הדרכה המציעה 6 נתיבי למידה לקידום קריאה, כתיבה ושפה.",
+                contentAr: "אירשאד יקדם 6 מסאראת תעלם לתעזיז אלקיאראא'ה ואלכתאבה ואללוג'ה.",
                 trainer: "עירית סוויל / לימור עסיס טל", trainerAr: "עירית סוויל", phone: "בתיאום", email: "linguistics.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-dr/העיר ירושלים - חינוך לשוני - שפת אם יסודי לימור ועירית.jpeg"
             },
             amirim: {
-                title: "תוכנית אמירים", titleAr: "برنامج 'أميريم'",
+                title: "תוכנית אמירים", titleAr: "ברהנאמג' 'אמיריים'",
                 color: "#0891b2", icon: "fa-star",
                 content: "טיפוח תלמידים מחוננים ומצטיינים והטמעת תרבות של מצוינות בתהליכי ההוראה.",
-                contentAr: "برنامج لرعاية الطلاب الموهوبين والمتفوقين.",
+                contentAr: "ברהנאמג' לריעאייה אלטלאב אלמוהובין ואלמתפוקין.",
                 trainer: "אורלי דהאן", trainerAr: "אורלי דהאן", phone: "054-4332216", email: "-",
                 fileUrl: "data/Files Jerusalem-dr/amirim.pdf"
             },
             eval: {
-                title: "מדידה והערכה", titleAr: "القياس والتقويم",
+                title: "מדידה והערכה", titleAr: "אלקיאס ואלתקוים",
                 color: "#db2777", icon: "fa-chart-line",
                 content: "חינוך המבוסס על נתונים מדויקים, שיפור איכות הלמידה וההוראה דרך משוב מקדם והערכה חלופית.",
-                contentAr: `<h4 class='font-bold mb-2'>القياس والتقويم:</h4>
+                contentAr: `<h4 class='font-bold mb-2'>אלקיאס ואלתקוים:</h4>
                     <ul class='list-disc pr-6 text-right mb-4'>
-                        <li>تحسين جودة التعلم والتعليم من خلال بيانات دقيقة.</li>
-                        <li>تحليل نتائج الاختبارات الخارجية والداخلية.</li>
+                        <li>תחסין ג'ודה אלתעלום ואלתעליים מן ח'לאל ביאנאת דקיקה.</li>
+                        <li>תחליל נתאא'ג' אלאח'תבאראת אלח'ארג'ייה ואלדאח'לייה.</li>
                     </ul>`,
-                trainer: "צוות מדידה והערכה", trainerAr: "טאقم القياس والتقويم", phone: "בתיאום", email: "eval.jer@edu.gov.il",
+                trainer: "צוות מדידה והערכה", trainerAr: "טאקם אלקיאס ואלתקוים", phone: "בתיאום", email: "eval.jer@edu.gov.il",
                 fileUrl: "data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg"
             }
         };
@@ -473,10 +487,10 @@
             if (!config) return;
             isArabicMode = !!config.hasArabic;
             
-            document.getElementById('backToHomeText').innerText = isArabicMode ? "العودة إلى الصفحة الرئيسية" : "חזרה לדף הבית";
+            document.getElementById('backToHomeText').innerText = isArabicMode ? "אלעוודה אילא אלספחה אלאסאסייה" : "חזרה לדף הבית";
             
             const infoTextHe = "מידע למנהל.ת";
-            const infoTextAr = "معلومات للمدير/ة";
+            const infoTextAr = "מעלומאת ללמדיר/ה";
             document.getElementById('blueBoxTitle').innerHTML = infoTextHe + (isArabicMode ? `<br><span class="text-xl md:text-2xl opacity-80">${infoTextAr}</span>` : "");
             
             document.getElementById('mainAppTitle').innerHTML = config.displayTitle;
@@ -496,10 +510,10 @@
                 </div>`;
             });
             document.getElementById('footerCoordinatorContent').innerHTML = `
-                <h4 class="text-xl mb-4 font-bold opacity-80 text-white">${isArabicMode ? 'مركزة الإرشاد / פרטי רכזת ההדרכה' : 'פרטי רכזת ההדרכה'}</h4>
+                <h4 class="text-xl mb-4 font-bold opacity-80 text-white">${isArabicMode ? 'מרכזת אלאירשאד / פרטי רכזת ההדרכה' : 'פרטי רכזת ההדרכה'}</h4>
                 <p class="text-3xl mb-1 font-extrabold text-[#94d8ff] text-center">${isArabicMode ? config.coordinatorAr : config.coordinator}</p>
                 <p class="text-xl mb-1 font-semibold text-white underline text-center">${config.email}</p>
-                ${config.phone ? `<p class="text-xl font-semibold text-white text-center">${isArabicMode ? 'هاتف: ' : 'טלפון: '}${config.phone}</p>` : ''}
+                ${config.phone ? `<p class="text-xl font-semibold text-white text-center">${isArabicMode ? 'האתף: ' : 'טלפון: '}${config.phone}</p>` : ''}
             `;
             window.scrollTo(0,0);
         }
@@ -512,6 +526,11 @@
             const modal = document.getElementById('infoModal');
             const content = document.getElementById('modalContent');
             const nav = document.getElementById('modalNavigation');
+            const wrapper = document.getElementById('modalWrapper');
+            
+            // Reset wrapper classes
+            wrapper.className = "modal-wrapper bg-white rounded-2xl max-w-4xl w-full p-8 md:p-14 relative brand-shadow overflow-y-auto max-h-[95vh]";
+            
             nav.innerHTML = '';
             content.innerHTML = `
                 <h3 class="text-3xl font-extrabold mb-8 text-center" style="color:${data.color}">${isArabicMode ? data.titleAr : data.title}</h3>
@@ -520,10 +539,10 @@
                     <h4 class="font-bold text-xl mb-4 text-[#070543]">${isArabicMode ? 'לכל שאלה מוזמנים.ות לפנות' : 'לכל שאלה מוזמנים.ות לפנות'}</h4>
                     <p class="text-xl font-extrabold text-center">${isArabicMode ? data.trainerAr : data.trainer}</p>
                     <p class="text-lg text-center">${data.email}</p>
-                    <p class="text-lg text-center">${isArabicMode ? 'هاتف: ' : 'טל: '}${data.phone}</p>
+                    <p class="text-lg text-center">${isArabicMode ? 'האתף: ' : 'טל: '}${data.phone}</p>
                 </div>
                 <div class="mt-12 flex justify-center no-print">
-                    <button class="view-action-btn shadow-md text-xl" onclick="toggleFileView()"><span class="icon-circle"><i class="fa-solid fa-download text-xl"></i></span><span>${isArabicMode ? 'לصفحة المعلومات' : 'לדף המידע'}</span><i class="fa-solid fa-hand-pointer text-4xl mr-2"></i></button>
+                    <button class="view-action-btn shadow-md text-xl" onclick="toggleFileView()"><span class="icon-circle"><i class="fa-solid fa-download text-xl"></i></span><span>${isArabicMode ? 'לספחת אלמעלומאת' : 'לדף המידע'}</span><i class="fa-solid fa-hand-pointer text-4xl mr-2"></i></button>
                 </div>
             `;
             modal.classList.add('active');
@@ -534,12 +553,17 @@
             const data = subjectData[currentSubjectId];
             const content = document.getElementById('modalContent');
             const nav = document.getElementById('modalNavigation');
+            const wrapper = document.getElementById('modalWrapper');
+            
             nav.innerHTML = `<button onclick="openModal('${currentSubjectId}')" class="bg-[#070543] text-white px-5 py-2 rounded-full font-bold flex items-center gap-2"><i class="fa-solid fa-arrow-right"></i> חזרה</button>`;
+            
             const ext = data.fileUrl.split('.').pop().toLowerCase();
             if (['jpg', 'jpeg', 'png'].includes(ext)) {
                 content.innerHTML = `<div class="file-preview-container"><img src="${data.fileUrl}" class="preview-img"></div>`;
             } else {
-                content.innerHTML = `<div class="file-preview-container"><iframe src="${data.fileUrl}#toolbar=0" class="preview-iframe"></iframe></div>`;
+                // Apply dynamic PDF classes
+                wrapper.classList.add('pdf-modal-container');
+                content.innerHTML = `<div class="file-preview-container"><iframe src="${data.fileUrl}#toolbar=0" class="preview-iframe pdf-modal-iframe"></iframe></div>`;
             }
         }
 
