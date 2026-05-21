@@ -155,7 +155,7 @@
 
             <div id="costsSectionContainer" class="mb-20 bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
                 <div class="bg-gray-50 border-b p-6 text-center">
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-[#070543]">לוח זמנים ותעריפי ההדרכה לשנה"ל תשפ\"ז</h2>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-[#070543]">לוח זמנים ותעריפי ההדרכה לשנה"ל תשפ"ז</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-0 text-right">
                     <div class="p-8 border-l border-gray-100">
@@ -257,6 +257,13 @@
         </div>
     </div>
 
+    <div id="pdfOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); z-index: 99999; flex-direction: column;">
+        <div style="width: 100%; text-align: left; padding: 15px 30px; box-sizing: border-box; background: #070543;">
+            <span onclick="closePdfOverlay()" style="color: white; font-size: 35px; font-weight: bold; cursor: pointer; display: inline-block;">&times; סגור דף מידע / إغلاق</span>
+        </div>
+        <iframe id="pdfIframe" src="" style="width: 100%; flex-grow: 1; border: none;"></iframe>
+    </div>
+
     <script>
         const districtConfigs = {
             'jer_district': {
@@ -312,17 +319,17 @@
             ict_east: {
                 title: "حوسبة وتكنولوجيا", titleAr: "حوسبة وتكنولوجيا", color: "#0d9488", icon: "fa-laptop-code",
                 trainer: "طاقم الحوسبة", phone: "050-2643132", email: "ict.jer@edu.gov.il",
-                fileUrl: "data/Files Jerusalem-east/تקשוב מזרח העיר .jpeg"
+                fileUrl: "data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg"
             },
             social_comm_east: {
                 title: "تربية اجتماعية وجماهيرية", titleAr: "تربية اجتماعية وجماهيرية", color: "#db2777", icon: "fa-users-line",
                 trainer: "أوفيرا هيرش", phone: "054-7747276", email: "ofirahk@gmail.com",
-                fileUrl: "data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg"
+                fileUrl: "data/Files Jerusalem-east/חינוך חברتی קהילתי כאורח חיים.jpeg"
             },
             social_val_east: {
                 title: "تربية اجتماعية وقيمية - SEL", titleAr: "تربية اجتماعية وقيمية - SEL", color: "#db2777", icon: "fa-heart",
                 trainer: "أوفيرا هيرش", phone: "054-7747276", email: "ofirahk@gmail.com",
-                fileUrl: "data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg"
+                fileUrl: "data/Files Jerusalem-east/חינוך חברਤੀ ערכי מזרח ירושלים .jpeg"
             },
             inclusion_east: {
                 title: "الاحتواء والدمج", titleAr: "الاحتواء والدمج", color: "#0891b2", icon: "fa-hands-holding",
@@ -330,7 +337,7 @@
                 fileUrl: "data/Files Jerusalem-east/הכלה והשתלבות (1).pdf"
             },
             hashkafa_east: {
-                title: "برنامج \"استشراف\" (השקפה)", titleAr: "برنامج \"استشراف\" (השקפה)", color: "#7c3aed", icon: "fa-eye",
+                title: "برنامج \"استشراف\" (השקפה)", titleAr: "برنامج \"استشراف\" (הشקפה)", color: "#7c3aed", icon: "fa-eye",
                 trainer: "نوريت أفيدان", phone: "-", email: "nuritavidav100@gmail.com",
                 fileUrl: "data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf"
             },
@@ -445,11 +452,11 @@
                     <p class="text-lg text-center">${isArabicMode ? 'هاتف: ' : 'טל: '}${data.phone}</p>
                 </div>
                 <div class="mt-12 flex justify-center no-print">
-                    <a href="${data.fileUrl}" target="_blank" rel="noopener noreferrer" class="view-action-btn shadow-md text-xl">
+                    <button onclick="openPdfOverlay('${data.fileUrl}')" class="view-action-btn shadow-md text-xl">
                         <span class="icon-circle"><i class="fa-solid fa-file-pdf text-xl"></i></span>
                         <span>${isArabicMode ? 'عرض بطاقة معلومات البرنامج (PDF)' : 'לדף המידע'}</span>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-2xl mr-2"></i>
-                    </a>
+                        <i class="fa-solid fa-expand text-2xl mr-2"></i>
+                    </button>
                 </div>
             `;
             modal.classList.add('active');
@@ -459,6 +466,15 @@
         function closeModal() { 
             document.getElementById('infoModal').classList.remove('active'); 
             document.body.style.overflow = 'auto';
+        }
+
+        function openPdfOverlay(url) {
+            document.getElementById('pdfIframe').src = url;
+            document.getElementById('pdfOverlay').style.display = 'flex';
+        }
+        function closePdfOverlay() {
+            document.getElementById('pdfOverlay').style.display = 'none';
+            document.getElementById('pdfIframe').src = '';
         }
     </script>
 </body>
