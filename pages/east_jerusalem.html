@@ -10,26 +10,31 @@
     <style>
         body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; color: #070543; margin: 0; }
         .grid-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 40px 0; }
+        
+        .grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)) !important;
+            gap: 15px !important;
+            padding: 40px 0;
+        }
         
         .card { 
             border-radius: 12px; 
-            padding: 20px; 
+            padding: 20px 15px !important; 
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); 
             transition: transform 0.2s, box-shadow 0.2s; 
             text-align: center; 
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            min-height: 180px;
+            justify-content: space-between;
+            min-height: 140px;
             cursor: pointer;
             border: 1px solid #e2e8f0;
         }
         
         .card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); }
-        .card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 10px; line-height: 1.4; }
-        .card h2 span { display: block; font-size: 0.9rem; opacity: 0.8; margin-top: 5px; }
-        .card .more-info { font-size: 0.9rem; font-weight: 700; color: #070543; margin-top: 10px; opacity: 0.7; }
+        
+        .card h2 { font-size: 20px !important; font-weight: 800; margin-bottom: 15px; line-height: 1.4; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
         /* 12-Tone Soft Pastel Sequence */
         .grid .card:nth-child(12n+1) { background-color: #FFEBEE !important; border-color: #FFCDD2 !important; }
@@ -45,7 +50,7 @@
         .grid .card:nth-child(12n+11) { background-color: #E0F2F1 !important; border-color: #B2DFDB !important; }
         .grid .card:nth-child(12n+12) { background-color: #ECEFF1 !important; border-color: #CFD8DC !important; }
 
-        .btn { padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; font-size: 1rem; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
+        .btn { background-color: #070543; color: white !important; padding: 8px 15px !important; border-radius: 20px; text-decoration: none; font-weight: 700; font-size: 15px !important; transition: background 0.3s; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
         .btn-view { background-color: #070543; color: white !important; }
         .btn-view:hover { background-color: #460c91; transform: scale(1.05); }
         .btn-download { background-color: #ffffff; color: #070543 !important; border: 2px solid #070543; }
@@ -64,9 +69,7 @@
         .highlight-list li { position: relative; padding-right: 35px; margin-bottom: 15px; font-size: 1.1rem; color: #475569; }
         .highlight-list li::before { content: "\f00c"; font-family: "Font Awesome 6 Free"; font-weight: 900; position: absolute; right: 0; color: #0d9488; }
 
-        @media (max-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 480px) { .grid { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) { .grid { grid-template-columns: 1fr !important; } }
     </style>
 </head>
 <body>
@@ -82,17 +85,17 @@
 
         <div class="grid-container">
             <div class="grid">
-                <div class="card" onclick="showDetail('english')"><h2>لغة إنجليزية<span>(אנגלית)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('math')"><h2>رياضيات<span>(מתמטיקה)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('eval')"><h2>القياس والتقييم<span>(מדידה והערכה)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('arabic')"><h2>لغة عربية<span>(ערבית)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('hebrew')"><h2>لغة عبرية للناطقين بالعربية<span>(עברית לדוברי ערבית)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('science')"><h2>علوم<span>(מדעים)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('ict')"><h2>حوسبة وتكنولوجيا<span>(תקשוב)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('social_comm')"><h2>تربية اجتماعية وجماهيرية<span>(חינוך חברתי קהילתי)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('social_val')"><h2>تربية اجتماعية وقيمية<span>(חינוך חברתי ערכי - SEL)</span></h2><div class="more-info">למידע נוסף (إילא אלמעלומאת)</div></div>
-                <div class="card" onclick="showDetail('inclusion')"><h2>الاحتواء والدمج<span>(הכלה והשתלבות)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
-                <div class="card" onclick="showDetail('hashkafa')"><h2>استשראף<span>(השקפה)</span></h2><div class="more-info">למידע נוסף (إلى المعلومات)</div></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/flyer- English.pdf')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>🔠 لغة إنجليزية</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>📐 رياضيات</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>📊 القياس والتقييم</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת ערבית.pdf')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>🕌 لغة عربية</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>✍️ لغة عبرية للناطقين بالعربية</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מדעים العلوم.pdf')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>🔬 علوم</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>💻 حوسبة وتكنولوجيا</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>🫂 تربية اجتماعية وجماهيرية</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>🫂 تربية اجتماعية وقيمية - SEL</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/הכלה והשתלבות (1).pdf')" data-summary="سيتم تحديث محتوى وملخص البرنامج قريباً." data-goals="التطوير المهني والتربوي لفرق التدريس|دمج أدوات التدريس والتعلم المبتكرة|تحسين المناخ التعليمي"><h2>🤝 الاحتواء والدمج</h2><button class="btn">اضغط للتفاصيل</button></div>
+                <div class="card" onclick="showDetail(this, '../data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf')" data-summary="برنامج وطني شامل لتحسين جودة التدريس والتعلم، من خلال خلق ثقافة تعليمية مثلى للمعلمين الذين يبحثون في ممارساتهم التدريسية." data-goals="تطوير مهني داخل المدرسة في مجتمعات الممارسة|تذويت التعلم الجماعي كثقافة تنظيمية|تعزيز الاحتواء والانتماء في المدرسة"><h2>👁️ استشراف (השקפה)</h2><button class="btn">اضغط للتفاصيل</button></div>
             </div>
         </div>
 
@@ -107,163 +110,40 @@
     <div id="detailView">
         <div class="detail-header">
             <h1 id="detailTitle" class="text-4xl font-extrabold mb-4"></h1>
-            <p class="text-xl opacity-90">מרחב המידע המקצועי למנהלים - מזרח ירושלים</p>
+            <p class="text-xl opacity-90">مساحة المعلومات المهنية للمديرين - شرق القدس</p>
         </div>
         <div class="detail-body">
-            <button onclick="hideDetail()" class="back-link mb-8 text-[#070543] hover:underline"><i class="fa-solid fa-arrow-right ml-2"></i>حזרה לרשימת התחומים (العودة للقائمة)</button>
+            <button onclick="hideDetail()" class="back-link mb-8 text-[#070543] hover:underline"><i class="fa-solid fa-arrow-right ml-2"></i>العودة للقائمة (חזרה לרשימה)</button>
             
             <div class="summary-box">
-                <h3 class="text-xl font-bold mb-3 text-[#070543]">تثبيت البرنامج (תמצית התוכנית):</h3>
-                <p id="detailSummary" class="summary-text"></p>
+                <h3 class="text-xl font-bold mb-3 text-[#070543]">ملخص البرنامج:</h3>
+                <p id="detailSummary" class="summary-text" dir="rtl"></p>
             </div>
 
-            <h3 class="text-xl font-bold mb-4 text-[#070543]">أهداف التدريس (מטרות ההדרכה):</h3>
-            <ul id="detailHighlights" class="highlight-list"></ul>
+            <h3 class="text-xl font-bold mb-4 text-[#070543]">أهداف البرنامج:</h3>
+            <ul id="detailHighlights" class="highlight-list" dir="rtl"></ul>
 
             <div class="flex flex-col md:flex-row justify-center gap-6 mt-12 pt-8 border-t border-gray-100">
                 <a id="viewBtn" href="#" target="_blank" class="btn btn-view"><i class="fa-solid fa-file-pdf"></i> عرض بطاقة المعلومات (PDF)</a>
-                <a id="downloadBtn" href="#" download class="btn btn-download"><i class="fa-solid fa-download"></i> تحميل (Donloud)</a>
+                <a id="downloadBtn" href="#" download class="btn btn-download"><i class="fa-solid fa-download"></i> تحميل (Download)</a>
             </div>
         </div>
     </div>
 
     <script>
-        const subjectData = {
-            english: { 
-                title: "لغة إنجليزية (אנגלית)", 
-                summary: "تطوير مهارات اللغة الإنجليزية لدى الطلاب، بما يشمل الفهم القرائي، التعبير الكتابي، والمحادثة، مع التركيز على المناهج الدراسية המודכנת.", 
-                highlights: [
-                    "تمكين المعلمين وتعزيز أساليب التدريس הפעאלה",
-                    "דעם אלספוף ג'יר אלמתג'אנסה ותכנון חסס תעלמייה",
-                    "תטויר מיומנויות אלתפאעל ואלוסאטה",
-                    "תכנון שיעורים אפקטיביים מבוססי מיומנויות"
-                ],
-                file: "../data/Files Jerusalem-east/flyer- English.pdf" 
-            },
-            math: { 
-                title: "رياضيات (מתמטיקה)", 
-                summary: "תחסין ג'ודה אלתדריס ואלתעלום פי אלריאד'ייאת ללמרהלה אלאבתדאא'ייה.", 
-                highlights: [
-                    "בנאא' ח'טה עמל מדראסייה שאמלה לרפע אלתחסיאל אלעלמיי",
-                    "תטויר אלתפכיר אלאבדאעיי ואלנאקד לדא אלמעלם ואלטאלב",
-                    "אלאסתעדאד לתקימאת ראמה ואמתחאנאת אלבג'רואת",
-                    "צמצום פערים לימודיים והתאמה לשונות בכיתה"
-                ],
-                file: "../data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf" 
-            },
-            eval: { 
-                title: "القياس والتقييم (מדידה והערכה)", 
-                summary: "תחסין ג'ודה אלתעלום ואלתעליים מן ח'לאל ביאנאת דקיקה.", 
-                highlights: [
-                    "תחליל נתאא'ג' אלאח'תבאראת אלח'ארג'ייה ואלדאח'לייה",
-                    "שיפור איכות הלמידה וההוראה דרך משוב מקדם",
-                    "בניית כלי הערכה חלופיים ומגוונים",
-                    "שימוש בנתונים לקבלת החלטות פדגוגיות"
-                ],
-                file: "../data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg" 
-            },
-            arabic: { 
-                title: "لغة عربية (ערבית)", 
-                summary: "תטויר ג'ודה תדריס אללוג'ה אלערבייה ותעזיז אלפהם אלקיאראא'י.", 
-                highlights: [
-                    "תשח'יס מסתויאת אלאדאא' ותכנון תוכניות עלאג'ייה מבינייה עלא אלביאנאת",
-                    "פיתוח מיומנויות הבנה והבעה בשפת האם",
-                    "השקעה באיכות החינוך דרך פיתוח מיומנויות שפה",
-                    "קידום הקריאה והניתוח הספרותי"
-                ],
-                file: "../data/Files Jerusalem-east/הדרכת ערבית.pdf" 
-            },
-            hebrew: { 
-                title: "لغة عبرية للناطقين بالعربية (עברית לדוברי ערבית)", 
-                summary: "תעזיז אללוג'ה אלעברייה ככלי ללנג'אח ללטלאב אלד'ין יתחדת'ון אלערבייה.", 
-                highlights: [
-                    "תחסין מיומנויות אלקיארה, אלכתאבה ואלמחאדדת'ה",
-                    "חיזוק השפה העברית ככלי להצלחה אקדמית ואישית",
-                    "שיפור שטף הקריאה והדיבור ביומיום",
-                    "הכנה למבחני מפמ\"ר בחינוך היסודי והעל יסודי"
-                ],
-                file: "../data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf" 
-            },
-            science: { 
-                title: "علوم (מדעים)", 
-                summary: "אלתערף עלא אלתראת' ואלהוייה אליהודייה אלאסראא'ילייה מן ח'לאל בראמג' אית'ראא'ייה.", 
-                highlights: [
-                    "דמדג' אלד'כאא' אלאסחטנאעיי ומנהג'ייה STEM פי אלעלום",
-                    "אלתעלום אלתג'ריביי ואלמחתברות ותנמייה מיומנויות אלבחת'",
-                    "פיתוח מיומנויות חקר וחשיבה מדעית",
-                    "ליווי צוותי מדעים בהוראת תוכנית הלימודים"
-                ],
-                file: "../data/Files Jerusalem-east/מדעים العلوم.pdf" 
-            },
-            ict: { 
-                title: "حوسبة وتكنولوجيا (תקשוב)", 
-                summary: "תזווית ברהנאמג' אלחוסבה ואלתעלום אלמודמדג' רקמייאן (Google Classroom).", 
-                highlights: [
-                    "אלד'כאא' אלאסחטנאעיי ואלאבתכאר פי אלעמלייה אלתעלמייה",
-                    "מראפקה אלמדארס פי ברהנאמג' \"אלקפזה אלרקמייה\"",
-                    "פיתוח מקצועי טכנו-פדגוגי למורים",
-                    "הטמעת כלי למידה דיגיטליים בשיעורים"
-                ],
-                file: "../data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg" 
-            },
-            social_comm: { 
-                title: "تربية اجتماعية وجماهيرية (חינוך חברתי קהילתי)", 
-                summary: "נז'אם אירשאד שאמל ירכז עלא אלמסאר אלאבתדאא'י אלמעאסר ותעזיז אלקיאדה אלטלאבייה.", 
-                highlights: [
-                    "קידום מעורבות חברתית ותרומה לקהילה",
-                    "טיפוח מנהיגות צעירה ויזמות תלמידים",
-                    "בניית קשרים בין בית הספר לקהילה הסובבת",
-                    "ניהול אירועים ומיזמים חברתיים משותפים"
-                ],
-                file: "../data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg" 
-            },
-            social_val: { 
-                title: "تربية اجتماعية وقيمية - SEL (חינוך חברתי ערכי)", 
-                summary: "אלתרבייה אלאג'תמאעייה ואלקיימייה - תעזיז אלקיאדה אלטלאבייה.", 
-                highlights: [
-                    "הטמעת שפה בית ספרית לקידום חוסן ומיומנויות SEL",
-                    "בניית תוכנית חברתית שנתית מותאמת ערכים",
-                    "פיתוח אישיות התלמיד ויכולת ההתמודדות",
-                    "שיח רגשי וערכי מובנה בכיתה"
-                ],
-                file: "../data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg" 
-            },
-            inclusion: { 
-                title: "الاحتواء والدمج (הכלה והשתלבות)", 
-                summary: "תופיאר אלדעם אלתעלימיי ואלאג'תמאעיי ללטלאב ד'ווי אלאחתייאג'את אלח'אסה.", 
-                highlights: [
-                    "הדרכה על התאמות לימודיות ודרכי הוראה מכילה",
-                    "ליווי צוותים בעבודה עם תלמידים משולבים",
-                    "פיתוח מענים רגשיים-חברתיים בכיתה המכילה",
-                    "בניית תוכניות אישיות מבוססות הצלחה"
-                ],
-                file: "../data/Files Jerusalem-east/הכלה והשתלבות (1).pdf" 
-            },
-            hashkafa: { 
-                title: "استشراف (השקפה)", 
-                summary: "ח'טווה לתחסין ג'ודה אלתדריס מן ח'לאל ח'לק ת'קאפה תעלם ללמעלמאת.", 
-                highlights: [
-                    "חקר פרקטיקה והוראה מבוססת נתונים",
-                    "בניית קהילות למידה מקצועיות (PLC)",
-                    "שיפור איכות ההוראה דרך שיח עמיתים",
-                    "פיתוח מקצועי מתוך בית הספר"
-                ],
-                file: "../data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf" 
-            }
-        };
-
-        function showDetail(id) {
-            const data = subjectData[id];
-            if (!data) return;
+        function showDetail(cardElement, fileUrl) {
+            const title = cardElement.querySelector('h2').innerText;
+            const summary = cardElement.getAttribute('data-summary');
+            const goals = cardElement.getAttribute('data-goals').split('|');
             
-            document.getElementById('detailTitle').innerText = data.title;
-            document.getElementById('detailSummary').innerText = data.summary;
-            document.getElementById('viewBtn').href = data.file;
-            document.getElementById('downloadBtn').href = data.file;
+            document.getElementById('detailTitle').innerText = title;
+            document.getElementById('detailSummary').innerText = summary;
+            document.getElementById('viewBtn').href = fileUrl;
+            document.getElementById('downloadBtn').href = fileUrl;
             
             const highlightsList = document.getElementById('detailHighlights');
             highlightsList.innerHTML = '';
-            data.highlights.forEach(text => {
+            goals.forEach(text => {
                 const li = document.createElement('li');
                 li.innerText = text;
                 highlightsList.appendChild(li);
