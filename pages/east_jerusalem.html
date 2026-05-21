@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מזרח ירושלים - תחומי הדרכה</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        body { font-family: 'Assistant', sans-serif; background-color: #f8fafc; color: #070543; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; padding: 40px; }
+        .card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-align: center; border: 2px solid #e2e8f0; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); border-color: #070543; }
+        .card h2 { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; height: 3.5rem; display: flex; align-items: center; justify-content: center; }
+        .btn { background-color: #070543; color: white !important; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; display: inline-block; transition: background 0.3s; }
+        .btn:hover { background-color: #460c91; }
+        .header { background: white; padding: 30px; text-align: center; border-bottom: 1px solid #e2e8f0; }
+        .back-link { display: inline-block; margin-top: 20px; color: #070543; font-weight: 700; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="../assets/logo.png" alt="Logo" style="max-height: 100px; margin-bottom: 20px;">
+        <h1 class="text-3xl font-extrabold">הדרכה מזרח ירושלים (إرشاد شرق القدس)</h1>
+        <a href="../index.html" class="back-link"><i class="fa-solid fa-arrow-right ml-2"></i>חזרה לדף הבית</a>
+    </div>
+
+    <div class="grid">
+        <div class="card"><h2>لغة إنجليزية (אנגלית)</h2><a href="../data/Files Jerusalem-east/flyer- English.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>رياضيات (מתמטיקה)</h2><a href="../data/Files Jerusalem-east/הדרכת מתמטיקה (1).pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>القياس والتقييم (מדידה והערכה)</h2><a href="../data/Files Jerusalem-east/מדידה והערכה מזרח העיר.jpg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>لغة عربية (ערבית)</h2><a href="../data/Files Jerusalem-east/הדרכת ערבית.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>لغة عبرية للناطقين بالعربية (עברית לדוברי ערבית)</h2><a href="../data/Files Jerusalem-east/הדרכת עברית מזרח העיר.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>علوم (מדעים)</h2><a href="../data/Files Jerusalem-east/מדעים العلوم.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>حوسبة وتكنولوجيا (תקשוב)</h2><a href="../data/Files Jerusalem-east/תקשוב מזרח העיר .jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>تربية اجتماعية وجماهيرية (חינוך חברתי קהילתי)</h2><a href="../data/Files Jerusalem-east/חינוך חברתי קהילתי כאורח חיים.jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>تربية اجتماعية وقيمية (חינוך חברתי ערכי - SEL)</h2><a href="../data/Files Jerusalem-east/חינוך חברתי ערכי מזרח ירושלים .jpeg" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>الاحتواء والدمج (הכלה והשתלבות)</h2><a href="../data/Files Jerusalem-east/הכלה והשתלבות (1).pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+        <div class="card"><h2>استشراف (השקפה)</h2><a href="../data/Files Jerusalem-east/מסارات إطلالة השקפה.pdf" target="_blank" class="btn">דף מידע (PDF)</a></div>
+    </div>
+</body>
+</html>
