@@ -100,6 +100,9 @@
     </style>
 </head>
 <body>
+<div style="background: red; color: white; text-align: center; padding: 10px; font-weight: bold; font-size: 20px; z-index: 9999; position: relative;">
+    האתר עודכן בהצלחה - פיזיקה נוספה! (נא לרענן Ctrl+F5)
+</div>
     <div style="width: 100%; text-align: center; padding: 20px 0; clear: both; display: block;">
         <img src="../assets/logo.png" alt="Logo" style="max-height: 100px; display: block; margin: 0 auto;">
     </div>
@@ -112,6 +115,7 @@
 
         <div class="grid-container">
             <div class="grid">
+                <div class="card" onclick="showDetail('physics')"><i class="fa-solid fa-atom"></i><h2>פיזיקה - על יסודי</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('youth')"><i class="fa-solid fa-users"></i><h2>מנהל ח"ן</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('ict')"><i class="fa-solid fa-laptop-code"></i><h2>תקשוב</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('math_elem')"><i class="fa-solid fa-plus-minus"></i><h2>מתמטיקה יסודי</h2><div class="click-info">לחץ למידע</div></div>
@@ -203,7 +207,7 @@
                 file: "../data/Files Jerusalem-dr/העיר ירושלים - אנגלית.mp4" 
             },
             science_elem: { 
-                title: "מדע וטכנולוגיה יסודי", summary: "טיפוח הסקרנות المדעية והחשיבה הטכנולוגית בקרب תלמידי העיר בשלבי היסודי.", 
+                title: "מדע וטכנולוגיה יסודי", summary: "טיפוח הסקרנות המדעית והחשיבה הטכנולוגית בקרב תלמידי העיר בשלבי היסודי.", 
                 highlights: ["ליווי אישי ותמיכה שוטפת לצוות המדעים", "פיתוח מיומנויות חקר ואוריינות מדעית", "הטמעת תוכנית הלימודים החדשה", "למידה התנסותית במעבדות ובסביבת בית הספר"],
                 file: "../data/Files Jerusalem-dr/העיר ירושלים - הדרכת מדע וטכנולוגיה יסודי.pdf" 
             },
@@ -259,7 +263,7 @@
             },
             shefi: { 
                 title: "הדרכות שפי", summary: "תמיכה פסיכולוגית וייעוצית לקידום רווחה נפשית (Well-being) בבתי הספר.", 
-                highlights: ["פיתוח חוסן נפשי של תלמידים וצוותים", "מنيעת אלימות והתנהגויות סיכון", "ליווי יועצים חינוכיים בעבודה השוטפת", "מענה ייעוצי למצבי לחץ ומשבר עירוניים"],
+                highlights: ["פיתוח חוסן נפשי של תלמידים וצוותים", "מניעת אלימות והתנהגויות סיכון", "ליווי יועצים חינוכיים בעבודה השוטפת", "מענה ייעוצי למצבי לחץ ומשבר עירוניים"],
                 file: "../data/Files Jerusalem-dr/הדרכות שפי בגפן.pdf" 
             },
             alma: { 
@@ -268,11 +272,16 @@
                 file: "../data/Files Jerusalem-dr/הדרכת עלמא לשנת הלימודים תשפז.pdf" 
             },
             restart: { 
-                title: "ברושור ריסטארט", summary: "מדריך יישומי לחיشוב ורענון מערך ההדרכה והגפ\"ן בבתי הספר העירוניים.", 
+                title: "ברושור ריסטארט", summary: "מדריך יישומי לחישוב ורענון מערך ההדרכה והגפ\"ן בבתי הספר העירוניים.", 
                 highlights: ["הנחיות לניהול יעיל של תקציבי הגפ\"ן", "בחירה ממוקדת של תחומי הדרכה רלוונטיים", "תהליכי הערכה ומדידה של אפקטיביות ההדרכה", "דרכי התקשרות עם גורמי המקצוע בעיריה"],
                 file: "../data/Files Jerusalem-dr/ברושור ריסטארט תשפז.pdf" 
+            },
+            physics: { 
+                title: "פיזיקה - על יסודי", summary: "קידום לימודי הפיזיקה וטיפוח מצוינות מדעית-טכנולוגית בחטיבות העליונות.", 
+                highlights: ["הכנה לבחינות בגרות ברמות 5 יח\"ל", "פיתוח מיומנויות חקר וניסוי במעבדה", "ליווי מורים להוראה חדשנית ומאתגרת", "שילוב כלים דיגיטליים בהוראת הפיזיקה"],
+                file: "../data/Files Jerusalem-dr/פיזיקה .png" 
             }
-        };
+            };
 
         function showDetail(id) {
             const data = subjectData[id];

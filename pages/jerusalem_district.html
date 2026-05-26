@@ -100,6 +100,9 @@
     </style>
 </head>
 <body>
+<div style="background: red; color: white; text-align: center; padding: 10px; font-weight: bold; font-size: 20px; z-index: 9999; position: relative;">
+    האתר עודכן בהצלחה - פיזיקה נוספה! (נא לרענן Ctrl+F5)
+</div>
     <div style="width: 100%; text-align: center; padding: 20px 0; clear: both; display: block;">
         <img src="../assets/logo.png" alt="Logo" style="max-height: 100px; display: block; margin: 0 auto;">
     </div>
@@ -112,6 +115,7 @@
 
         <div class="grid-container">
             <div class="grid">
+                <div class="card" onclick="showDetail('physics')"><i class="fa-solid fa-atom"></i><h2>פיזיקה - על יסודי</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('youth')"><i class="fa-solid fa-users"></i><h2>מנהל ח"ן</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('english')"><i class="fa-solid fa-language"></i><h2>אנגלית</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('math_elem')"><i class="fa-solid fa-plus-minus"></i><h2>מתמטיקה יסודי</h2><div class="click-info">לחץ למידע</div></div>
@@ -126,6 +130,7 @@
                 <div class="card" onclick="showDetail('linguistics_elem')"><i class="fa-solid fa-language"></i><h2>חינוך לשוני ליסודי</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('linguistics_hemed')"><i class="fa-solid fa-book-tanakh"></i><h2>חינוך לשוני יסודי בחמ"ד</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('ict')"><i class="fa-solid fa-laptop-code"></i><h2>תקשוב וטכנופדגוגיה</h2><div class="click-info">לחץ למידע</div></div>
+                <div class="card" onclick="showDetail('inclusion')"><i class="fa-solid fa-hands-holding"></i><h2>הכלה והשתלבות</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('social_hemed')"><i class="fa-solid fa-users-rays"></i><h2>חינוך חברתי חמ"ד</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('social_elem')"><i class="fa-solid fa-people-group"></i><h2>חינוך חברתי ליסודי</h2><div class="click-info">לחץ למידע</div></div>
                 <div class="card" onclick="showDetail('hashkafa')"><i class="fa-solid fa-eye"></i><h2>מהלך השקפה</h2><div class="click-info">לחץ למידע</div></div>
@@ -236,9 +241,9 @@
                 file: "../data/Files Jerusalem-district/חינוך לשוני בחמ_ד - למנהלים.pdf" 
             },
             ict: { 
-                title: "תקשוב וטכנופדגוגיה", summary: "הטמעת כלים דיגיטליים ופדגוגיה חדשנית בבתי הספר המחוזיים.", 
-                highlights: ["פיתוח מקצועי למורים", "ניהול סביבות ענן וקלאסרום", "שילוב AI וחדשנות", "זינוק דיגיטלי וקוד"],
-                file: "../data/Files Jerusalem-dr/העיר ירושלים - תקשוב.pdf" 
+                title: "תקשוב וטכנופדגוגיה", summary: "הטמעת חדשנות דיגיטלית וכלים טכנו-פדגוגיים בתהליכי ההוראה והלמידה המחוזיים.", 
+                highlights: ["פיתוח אוריינות דיגיטלית בקרב מורים ותלמידים", "שילוב כלי בינה מלאכותית (AI) בחינוך", "ליווי בתוכנית התקשוב המחוזית", "ניהול סביבות ענן וכלים ללמידה מרחוק"],
+                file: "../data/Files Jerusalem-district/תקשוב וטכנופדגוגיה - מחוז ירושלים - יסודי ועל יסודי.pdf" 
             },
             social_hemed: { 
                 title: "חינוך חברתי חמ\"ד", summary: "בניית קומה ערכית וחברתית בבתי הספר של החינוך הממלכתי דתי.", 
@@ -252,13 +257,23 @@
             },
             hashkafa: { 
                 title: "מהלך השקפה", summary: "העצמת מורים מובילים ליצירת שינוי פדגוגי מתוך הקהילה המקצועית של בית הספר.", 
-                highlights: ["חקר פרקטיקה והוראה מבוססת נתונים", "בניית קהילות למידה מקצועיות (PLC)", "שיפור איכות ההוראה דרך שיח עמיתים", "מהלך עירוני לקידום מצويנות בהוראה"],
+                highlights: ["חקר פרקטיקה והוראה מבוססת נתונים", "בניית קהילות למידה מקצועיות (PLC)", "שיפור איכות ההוראה דרך שיח עמיתים", "מהלך עירוני לקידום מצוינות בהוראה"],
                 file: "../data/Files Jerusalem-district/מהלך השקפה -  גפן תשפ_ז  - תהילה.pdf" 
             },
             amirim: { 
                 title: "אמירים", summary: "טיפוח מצוינות ותלמידים בעלי פוטנציאל גבוה במערכת החינוך.", 
                 highlights: ["איתור וזיהוי מחוננים", "הוראה מבדלת ושונות", "פיתוח חשיבה מסדר גבוה", "קורסי העשרה ייחודיים"],
                 file: "../data/Files Jerusalem-district/_הדרכת אמירים- תשפז.pdf" 
+            },
+            physics: { 
+                title: "פיזיקה - על יסודי", summary: "קידום לימודי הפיזיקה וטיפוח מצוינות מדעית-טכנולוגית בחטיבות העליונות.", 
+                highlights: ["הכנה לבחינות בגרות ברמות 5 יח\"ל", "פיתוח מיומנויות חקר וניסוי במעבדה", "ליווי מורים להוראה חדשנית ומאתגרת", "שילוב כלים דיגיטליים בהוראת הפיזיקה"],
+                file: "../data/Files Jerusalem-district/פיזיקה .png" 
+            },
+            inclusion: { 
+                title: "הכלה והשתלבות", summary: "קידום תרבות של הכלה ומתן מענים מותאמים לשונות התלמידים במחוז ירושלים.", 
+                highlights: ["ליווי צוותים בבניית תוכניות אישיות", "הטמעת דרכי הוראה מכילות בכיתה הטרוגנית", "מענה רגשי וחברתי לתלמידים עם צרכים מיוחדים", "פיתוח מקצועי בנושא הכלה והשתלבות"],
+                file: "../data/Files Jerusalem-district/הכלה והשתלבות מחוז ירושלים - תשפז.pdf" 
             }
         };
 
